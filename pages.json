@@ -1,0 +1,5 @@
+[
+  { "route": "privacy", "label": "Privacy", "source": "docs/legal/privacy-policy.html", "marker": "Privacy Policy" },
+  { "route": "terms", "label": "Terms", "source": "docs/legal/terms-of-service.html", "marker": "Terms of Service" },
+  { "route": "support", "label": "Support", "source": "docs/legal/support.html", "marker": "Support" }
+]

@@ -1,0 +1,5 @@
+{
+  "apps": [
+    { "slug": "noctura", "name": "Noctura", "repo": "bogdantsiganiuk/noctura" }
+  ]
+}
