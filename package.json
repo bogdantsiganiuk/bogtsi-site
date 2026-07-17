@@ -2,7 +2,7 @@
   "name": "bogtsi-site",
   "private": true,
   "scripts": {
-    "test": "node --test test/",
+    "test": "node --test",
     "build": "node scripts/build-site.mjs",
     "verify": "node scripts/verify-site.mjs"
   }
