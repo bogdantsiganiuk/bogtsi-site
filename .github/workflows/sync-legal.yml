@@ -23,6 +23,9 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    # Backstop: the whole job is minutes of work. Without this, a hung network
+    # step burns runner time until the 6h default limit.
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}
