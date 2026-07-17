@@ -8,7 +8,24 @@ This repo **pulls**; app repos never push here. The "Sync legal pages" workflow
 fetches an allowlist of HTML files from each app repo listed in `apps.json`,
 assembles `_site`, verifies it, and deploys to Pages.
 
-App repos hold no workflow and no secret. Adding an app is one entry in `apps.json`.
+App repos hold no workflow and no secret.
+
+## Adding an app
+
+Two steps, and **both** are required:
+
+1. Add an entry to `apps.json`: `{ "slug": "<slug>", "name": "<Name>", "repo": "owner/repo" }`.
+   The app repo must publish the pages listed in `pages.json` at those exact paths.
+2. **Grant the `APP_REPOS_READ_TOKEN` PAT read access to the new repo.** It is scoped to
+   named repositories only — it does *not* cover repos added later.
+
+Miss step 2 and the sync fails closed: `gh api` 404s, `set -e` aborts, nothing is
+published. Safe, but the error won't mention the token, so check the scope first.
+
+The PAT is deliberately **not** scoped to "All repositories". This repo is public, so a
+leaked token that could read every private repo you own would be a very different
+incident from one that can read the app repos it already serves. One minute per app is
+the price of that.
 
 ## URLs
 
