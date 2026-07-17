@@ -1,0 +1,55 @@
+# Publishes the legal + support pages for every app in apps.json.
+#
+# SECURITY: this repo is public and this workflow can read PRIVATE app repos.
+# Triggers are workflow_dispatch + schedule ONLY. Never add pull_request or
+# pull_request_target — a fork PR would then be able to exfiltrate the token.
+name: Sync legal pages
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Daily safety net. Legal pages change rarely; use Run workflow when they do.
+    - cron: '17 4 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Stage app legal pages
+        env:
+          # Fine-grained, Contents:Read only, scoped to the app repos.
+          GH_TOKEN: ${{ secrets.APP_REPOS_READ_TOKEN }}
+        run: ./scripts/fetch-legal.sh
+
+      - name: Build site
+        run: npm run build
+
+      - name: Guard — verify nothing unexpected would be published
+        run: npm run verify
+
+      - name: Run tests
+        run: npm test
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      - name: Verify live URLs
+        run: ./scripts/check-live.sh https://bogtsi.xyz
