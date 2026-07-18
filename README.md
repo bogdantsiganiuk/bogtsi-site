@@ -37,6 +37,9 @@ the price of that.
 | `/posture-coach/privacy` | `posture-coach:docs/legal/privacy-policy.html` |
 | `/posture-coach/terms` | `posture-coach:docs/legal/terms-of-service.html` |
 | `/posture-coach/support` | `posture-coach:docs/legal/support.html` |
+| `/ascend/privacy` | `ascend:docs/legal/privacy-policy.html` |
+| `/ascend/terms` | `ascend:docs/legal/terms-of-service.html` |
+| `/ascend/support` | `ascend:docs/legal/support.html` |
 | `/privacy`, `/terms` | redirect to the Noctura pages (the first app onboarded; see `ROOT_APP` in `scripts/build-site.mjs`) |
 
 ## Publishing

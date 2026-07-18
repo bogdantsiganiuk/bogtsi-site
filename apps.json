@@ -1,6 +1,7 @@
 {
   "apps": [
     { "slug": "noctura", "name": "Noctura", "repo": "bogdantsiganiuk/noctura" },
-    { "slug": "posture-coach", "name": "Posture Coaching", "repo": "bogdantsiganiuk/posture-coach" }
+    { "slug": "posture-coach", "name": "Posture Coaching", "repo": "bogdantsiganiuk/posture-coach" },
+    { "slug": "ascend", "name": "Ascend", "repo": "bogdantsiganiuk/ascend" }
   ]
 }
