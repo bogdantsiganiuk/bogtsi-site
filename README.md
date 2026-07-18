@@ -34,7 +34,10 @@ the price of that.
 | `/noctura/privacy` | `noctura:docs/legal/privacy-policy.html` |
 | `/noctura/terms` | `noctura:docs/legal/terms-of-service.html` |
 | `/noctura/support` | `noctura:docs/legal/support.html` |
-| `/privacy`, `/terms` | redirect to the Noctura pages |
+| `/posture-coach/privacy` | `posture-coach:docs/legal/privacy-policy.html` |
+| `/posture-coach/terms` | `posture-coach:docs/legal/terms-of-service.html` |
+| `/posture-coach/support` | `posture-coach:docs/legal/support.html` |
+| `/privacy`, `/terms` | redirect to the Noctura pages (the first app onboarded; see `ROOT_APP` in `scripts/build-site.mjs`) |
 
 ## Publishing
 
