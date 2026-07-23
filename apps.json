@@ -5,6 +5,9 @@
     { "slug": "ascend", "name": "Ascend", "repo": "bogdantsiganiuk/ascend" },
     { "slug": "umbra", "name": "Umbra", "repo": "bogdantsiganiuk/umbra" },
     { "slug": "shiver", "name": "Shiver", "repo": "bogdantsiganiuk/shiver" },
-    { "slug": "sugar-free", "name": "Sugar Free", "repo": "bogdantsiganiuk/sugar-free" }
+    { "slug": "sugar-free", "name": "Sugar Free", "repo": "bogdantsiganiuk/sugar-free" },
+    { "slug": "thaw", "name": "Thaw", "repo": "bogdantsiganiuk/thaw" },
+    { "slug": "reverie", "name": "Reverie", "repo": "bogdantsiganiuk/reverie" },
+    { "slug": "brightwater", "name": "Brightwater", "repo": "bogdantsiganiuk/brightwater" }
   ]
 }
