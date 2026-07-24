@@ -8,6 +8,7 @@
     { "slug": "sugar-free", "name": "Sugar Free", "repo": "bogdantsiganiuk/sugar-free" },
     { "slug": "thaw", "name": "Thaw", "repo": "bogdantsiganiuk/thaw" },
     { "slug": "reverie", "name": "Reverie", "repo": "bogdantsiganiuk/reverie" },
-    { "slug": "brightwater", "name": "Brightwater", "repo": "bogdantsiganiuk/brightwater" }
+    { "slug": "brightwater", "name": "Brightwater", "repo": "bogdantsiganiuk/brightwater" },
+    { "slug": "dahlia", "name": "Dahlia", "repo": "bogdantsiganiuk/ember" }
   ]
 }
