@@ -12,6 +12,7 @@
     { "slug": "dahlia", "name": "Dahlia", "repo": "bogdantsiganiuk/ember" },
     { "slug": "refluxly", "name": "Refluxly", "repo": "bogdantsiganiuk/refluxly" },
     { "slug": "wageproof", "name": "Wageproof", "repo": "bogdantsiganiuk/wageproof" },
-    { "slug": "quietkeep", "name": "Quietkeep", "repo": "bogdantsiganiuk/quietkeep" }
+    { "slug": "quietkeep", "name": "Quietkeep", "repo": "bogdantsiganiuk/quietkeep" },
+    { "slug": "voxwarm", "name": "Voxwarm", "repo": "bogdantsiganiuk/voxwarm" }
   ]
 }
