@@ -16,6 +16,9 @@ Two steps, and **both** are required:
 
 1. Add an entry to `apps.json`: `{ "slug": "<slug>", "name": "<Name>", "repo": "owner/repo" }`.
    The app repo must publish the pages listed in `pages.json` at those exact paths.
+   Once the app is live on the App Store, add `"appStoreId": "<numeric ASC app id>"`
+   to its entry — the index then links to `https://apps.apple.com/app/id<id>`.
+   Leave it off while the app is unreleased so the site never links to a 404.
 2. **Grant the `APP_REPOS_READ_TOKEN` PAT read access to the new repo.** It is scoped to
    named repositories only — it does *not* cover repos added later.
 

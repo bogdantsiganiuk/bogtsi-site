@@ -45,7 +45,11 @@ export function build({ srcDir, outDir, rootDir }) {
     const routes = pages
       .map((p) => `<a href="/${app.slug}/${p.route}">${p.label}</a>`)
       .join(' &middot; ');
-    links.push(`  <li><strong>${app.name}</strong> — ${routes}</li>`);
+    // appStoreId is set in apps.json only once the app is live on the App Store.
+    const store = app.appStoreId
+      ? ` &middot; <a href="https://apps.apple.com/app/id${app.appStoreId}" target="_blank" rel="noopener">App&nbsp;Store</a>`
+      : '';
+    links.push(`  <li><strong>${app.name}</strong> — ${routes}${store}</li>`);
   }
 
   for (const route of ['privacy', 'terms']) {

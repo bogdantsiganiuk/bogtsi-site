@@ -54,6 +54,20 @@ test('root index lists every app and substitutes the placeholder', () => {
   for (const app of APPS) assert.match(index, new RegExp(app.name));
 });
 
+test('apps with an appStoreId get an App Store link, others none', () => {
+  const { srcDir, outDir } = stage();
+  build({ srcDir, outDir, rootDir: ROOT });
+  const index = readFileSync(join(outDir, 'index.html'), 'utf8');
+  for (const app of APPS.filter((a) => a.appStoreId)) {
+    assert.ok(
+      index.includes(`https://apps.apple.com/app/id${app.appStoreId}`),
+      `expected store link for ${app.slug}`,
+    );
+  }
+  const storeLinks = index.split('https://apps.apple.com/app/id').length - 1;
+  assert.equal(storeLinks, APPS.filter((a) => a.appStoreId).length);
+});
+
 test('emits .nojekyll so Pages skips Jekyll', () => {
   const { srcDir, outDir } = stage();
   build({ srcDir, outDir, rootDir: ROOT });
