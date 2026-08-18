@@ -1,6 +1,6 @@
 {
   "apps": [
-    { "slug": "noctura", "name": "Noctura", "repo": "bogdantsiganiuk/noctura", "appStoreId": "6791122312" },
+    { "slug": "noctura", "name": "Halcyon", "repo": "bogdantsiganiuk/noctura", "appStoreId": "6791122312" },
     { "slug": "posture-coach", "name": "Posture Coaching", "repo": "bogdantsiganiuk/posture-coach", "appStoreId": "6791312375" },
     { "slug": "ascend", "name": "Ascend", "repo": "bogdantsiganiuk/ascend", "appStoreId": "6791695056" },
     { "slug": "umbra", "name": "Penumbra", "repo": "bogdantsiganiuk/umbra" },
