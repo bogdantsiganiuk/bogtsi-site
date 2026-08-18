@@ -62,6 +62,11 @@ done <<< "$apps"
 # a client-side hop, so assert the redirect stub itself names the target.
 check "$BASE/privacy" "/noctura/privacy"
 check "$BASE/terms" "/noctura/terms"
-check "$BASE/" "Noctura"
+
+# The index lists every app by display name. Assert with the first name from
+# apps.json rather than a hardcoded one — the Noctura→Halcyon rename stranded
+# a hardcoded marker here and failed an otherwise-green deploy (2026-08-18).
+first_app_name=$(node -p 'JSON.parse(require("fs").readFileSync("apps.json","utf8")).apps[0].name')
+check "$BASE/" "$first_app_name"
 
 exit "$fail"
