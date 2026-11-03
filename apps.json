@@ -7,13 +7,13 @@
     { "slug": "shiver", "name": "Shiver", "repo": "bogdantsiganiuk/shiver", "appStoreId": "6794118680" },
     { "slug": "sugar-free", "name": "Sugar Free", "repo": "bogdantsiganiuk/sugar-free" },
     { "slug": "thaw", "name": "Thaw", "repo": "bogdantsiganiuk/thaw" },
-    { "slug": "reverie", "name": "Duskmere", "repo": "bogdantsiganiuk/reverie" },
+    { "slug": "reverie", "name": "Duskmere", "repo": "bogdantsiganiuk/reverie", "appStoreId": "6794113579" },
     { "slug": "brightwater", "name": "Brightwater", "repo": "bogdantsiganiuk/brightwater", "appStoreId": "6794113463" },
     { "slug": "dahlia", "name": "Dahlia", "repo": "bogdantsiganiuk/ember", "appStoreId": "6791726428" },
     { "slug": "refluxly", "name": "Refluxly", "repo": "bogdantsiganiuk/refluxly" },
-    { "slug": "wageproof", "name": "Wageproof", "repo": "bogdantsiganiuk/wageproof" },
+    { "slug": "wageproof", "name": "Wageproof", "repo": "bogdantsiganiuk/wageproof", "appStoreId": "6800065810" },
     { "slug": "quietkeep", "name": "Quietkeep", "repo": "bogdantsiganiuk/quietkeep" },
-    { "slug": "voxwarm", "name": "Voxwarm", "repo": "bogdantsiganiuk/voxwarm" },
+    { "slug": "voxwarm", "name": "Voxwarm", "repo": "bogdantsiganiuk/voxwarm", "appStoreId": "6796622537" },
     { "slug": "chervil", "name": "Chervil", "repo": "bogdantsiganiuk/chervil" }
   ]
 }
