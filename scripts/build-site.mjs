@@ -35,14 +35,15 @@ export function build({ srcDir, outDir, rootDir }) {
 
   const links = [];
   for (const app of apps) {
-    for (const page of pages) {
+    const appPages = pages.filter((page) => !page.app || page.app === app.slug);
+    for (const page of appPages) {
       const src = join(srcDir, app.slug, `${page.route}.html`);
       if (!existsSync(src)) throw new Error(`missing staged page: ${src}`);
       const html = readFileSync(src, 'utf8');
       if (html.trim() === '') throw new Error(`empty staged page: ${src}`);
       write(join(outDir, app.slug, page.route, 'index.html'), html);
     }
-    const routes = pages
+    const routes = appPages
       .map((p) => `<a href="/${app.slug}/${p.route}">${p.label}</a>`)
       .join(' &middot; ');
     // appStoreId is set in apps.json only once the app is live on the App Store.

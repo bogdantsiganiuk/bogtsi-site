@@ -48,10 +48,10 @@ check() {
 }
 
 apps=$(node -p 'JSON.parse(require("fs").readFileSync("apps.json","utf8")).apps.map(a=>a.slug).join("\n")')
-pages=$(node -p 'JSON.parse(require("fs").readFileSync("pages.json","utf8")).map(p=>p.route+"\t"+p.marker).join("\n")')
 
 while read -r slug; do
   [ -n "$slug" ] || continue
+  pages=$(node -e 'const fs=require("fs"); process.stdout.write(JSON.parse(fs.readFileSync("pages.json","utf8")).filter(p=>!p.app||p.app===process.argv[1]).map(p=>p.route+"\t"+p.marker).join("\n"))' "$slug")
   while IFS=$'\t' read -r route marker; do
     [ -n "$route" ] || continue
     check "$BASE/$slug/$route" "$marker"

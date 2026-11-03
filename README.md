@@ -15,7 +15,8 @@ App repos hold no workflow and no secret.
 Two steps, and **both** are required:
 
 1. Add an entry to `apps.json`: `{ "slug": "<slug>", "name": "<Name>", "repo": "owner/repo" }`.
-   The app repo must publish the pages listed in `pages.json` at those exact paths.
+   The app repo must publish the unscoped pages listed in `pages.json` and any
+   entries whose optional `app` field matches its slug, at those exact paths.
    Once the app is live on the App Store, add `"appStoreId": "<numeric ASC app id>"`
    to its entry — the index then links to `https://apps.apple.com/app/id<id>`.
    Leave it off while the app is unreleased so the site never links to a 404.
@@ -44,10 +45,25 @@ the price of that.
 | `/ascend/terms` | `ascend:docs/legal/terms-of-service.html` |
 | `/ascend/support` | `ascend:docs/legal/support.html` |
 | `/privacy`, `/terms` | redirect to the Noctura pages (the first app onboarded; see `ROOT_APP` in `scripts/build-site.mjs`) |
+| `/wageproof/es/privacy` | `wageproof:docs/legal/privacy-policy.es.html` |
+| `/wageproof/es/terms` | `wageproof:docs/legal/terms-of-service.es.html` |
+| `/wageproof/es/support` | `wageproof:docs/legal/support.es.html` |
+
+An optional `"app": "wageproof"` on a `pages.json` entry limits that route to
+Wageproof; entries without `app` remain shared by every listed app. Nested routes
+such as `es/privacy` use the same explicit allowlist and are not fetched or
+published for other apps. Only HTML is published, never a recursive legal-docs copy.
 
 ## Publishing
 
 Actions → **Sync legal pages** → Run workflow. Also runs daily.
+
+The fetcher uses each app repository's default branch, not an unreleased app
+branch or local checkout. Prepare a legal-only source change and approve the
+combined app/legal and publisher diffs before merging or publishing new routes.
+New language links must not go live before their target pages are available.
+The daily workflow can publish merged changes without a manual dispatch: hold
+publication while reviewing staged output, then coordinate the approved release.
 
 ## Security
 

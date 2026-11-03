@@ -1,5 +1,8 @@
 [
   { "route": "privacy", "label": "Privacy", "source": "docs/legal/privacy-policy.html", "marker": "Privacy Policy" },
   { "route": "terms", "label": "Terms", "source": "docs/legal/terms-of-service.html", "marker": "Terms of Service" },
-  { "route": "support", "label": "Support", "source": "docs/legal/support.html", "marker": "Support" }
+  { "route": "support", "label": "Support", "source": "docs/legal/support.html", "marker": "Support" },
+  { "app": "wageproof", "route": "es/privacy", "label": "Privacidad (Español)", "source": "docs/legal/privacy-policy.es.html", "marker": "Política de privacidad" },
+  { "app": "wageproof", "route": "es/terms", "label": "Términos (Español)", "source": "docs/legal/terms-of-service.es.html", "marker": "Términos de servicio" },
+  { "app": "wageproof", "route": "es/support", "label": "Soporte (Español)", "source": "docs/legal/support.es.html", "marker": "Soporte" }
 ]
