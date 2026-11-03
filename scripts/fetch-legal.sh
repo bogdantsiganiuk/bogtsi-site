@@ -12,14 +12,15 @@ set -euo pipefail
 : "${GH_TOKEN:?GH_TOKEN is required}"
 
 apps=$(node -p 'JSON.parse(require("fs").readFileSync("apps.json","utf8")).apps.map(a=>a.slug+" "+a.repo).join("\n")')
-pages=$(node -p 'JSON.parse(require("fs").readFileSync("pages.json","utf8")).map(p=>p.route+" "+p.source).join("\n")')
 
 rm -rf _src
 while read -r slug repo; do
   [ -n "$slug" ] || continue
+  pages=$(node -e 'const fs=require("fs"); process.stdout.write(JSON.parse(fs.readFileSync("pages.json","utf8")).filter(p=>!p.app||p.app===process.argv[1]).map(p=>p.route+" "+p.source).join("\n"))' "$slug")
   mkdir -p "_src/$slug"
   while read -r route source; do
     [ -n "$route" ] || continue
+    mkdir -p "_src/$slug/$(dirname "$route")"
     echo "fetching $repo:$source -> _src/$slug/$route.html"
     gh api "repos/$repo/contents/$source" \
       --header "Accept: application/vnd.github.raw" \

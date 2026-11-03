@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, writeFileSync, readFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from '../scripts/build-site.mjs';
 import { verify, expectedFiles } from '../scripts/verify-site.mjs';
@@ -16,7 +16,8 @@ function built() {
   const srcDir = join(dir, '_src');
   for (const app of APPS) {
     mkdirSync(join(srcDir, app.slug), { recursive: true });
-    for (const page of PAGES) {
+    for (const page of PAGES.filter((page) => !page.app || page.app === app.slug)) {
+      mkdirSync(dirname(join(srcDir, app.slug, `${page.route}.html`)), { recursive: true });
       writeFileSync(join(srcDir, app.slug, `${page.route}.html`), `<h1>${page.marker}</h1>`);
     }
   }
@@ -57,4 +58,32 @@ test('rejects credential-shaped content even in an expected file', () => {
     '<p>ghp_0123456789abcdefghijABCDEFGHIJ0123</p>',
   );
   assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /possible credential/);
+});
+
+test('expected files scope nested routes without changing unscoped routes or root redirects', () => {
+  assert.deepEqual(expectedFiles(
+    [{ slug: 'wageproof' }, { slug: 'noctura' }],
+    [{ route: 'privacy' }, { app: 'wageproof', route: 'es/privacy' }],
+  ), [
+    '.nojekyll',
+    'index.html',
+    'noctura/privacy/index.html',
+    'privacy/index.html',
+    'terms/index.html',
+    'wageproof/es/privacy/index.html',
+    'wageproof/privacy/index.html',
+  ]);
+});
+
+test('rejects an app-specific page copied into another app', () => {
+  const outDir = built();
+  mkdirSync(join(outDir, 'noctura', 'es', 'privacy'), { recursive: true });
+  writeFileSync(join(outDir, 'noctura', 'es', 'privacy', 'index.html'), '<h1>Wrong app</h1>');
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /unexpected files/);
+});
+
+test('rejects a missing required app-specific nested page', () => {
+  const outDir = built();
+  rmSync(join(outDir, 'wageproof', 'es', 'privacy', 'index.html'));
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /missing files/);
 });

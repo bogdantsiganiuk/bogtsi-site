@@ -25,7 +25,9 @@ function walk(dir, base = dir, out = []) {
 export function expectedFiles(apps, pages) {
   const files = ['.nojekyll', 'index.html', 'privacy/index.html', 'terms/index.html'];
   for (const app of apps) {
-    for (const page of pages) files.push(`${app.slug}/${page.route}/index.html`);
+    for (const page of pages.filter((page) => !page.app || page.app === app.slug)) {
+      files.push(`${app.slug}/${page.route}/index.html`);
+    }
   }
   return files.sort();
 }
