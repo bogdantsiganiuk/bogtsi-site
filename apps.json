@@ -17,6 +17,7 @@
     { "slug": "outshot", "name": "Outshot", "repo": "bogdantsiganiuk/outshot" },
     { "slug": "chervil", "name": "Chervil", "repo": "bogdantsiganiuk/chervil" },
     { "slug": "maelzel", "name": "Maelzel", "repo": "bogdantsiganiuk/maelzel" },
-    { "slug": "farthing", "name": "Farthing", "repo": "bogdantsiganiuk/farthing" }
+    { "slug": "farthing", "name": "Farthing", "repo": "bogdantsiganiuk/farthing" },
+    { "slug": "promptside", "name": "Promptside", "repo": "bogdantsiganiuk/promptside" }
   ]
 }
