@@ -1,0 +1,72 @@
+{
+  "title": "Shiver — Cold-shower timer and gradual plans",
+  "description": "Start warm and finish cold with a hands-free shower timer, a free 14-day starter plan, session logs, and a weekly rhythm with room to rest.",
+  "headline": "A cold finish.\nAt your own pace.",
+  "intro": "Shiver is for an ordinary shower, not an ice bath. Start warm, follow a gradual cold finish, and let a large timer, haptics, and chimes mark each change. Rest days belong in the routine, too.",
+  "category": "Cold-shower habit",
+  "tagline": "Start warm. Finish cold. Keep room for rest.",
+  "cardHeadline": "A hands-free cold-shower timer, with graduated plans and room for rest days.",
+  "theme": "ice",
+  "group": "rhythm",
+  "purchaseNote": "Shiver Pro is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
+  "sourceVersion": "1.5.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Begin with the starter plan",
+      "text": "The free 14-Day Starter grows a cold finish from 15 to 90 seconds over two weeks. Read the safety guidance before deciding whether to begin."
+    },
+    {
+      "title": "Let the timer guide the phases",
+      "text": "Choose a get-ready countdown, then follow warm and cold phases with haptics and a chime. Stop whenever you need to; a longer shower is not a better score."
+    },
+    {
+      "title": "Log the session and find a rhythm",
+      "text": "Completed sessions record duration, cold time, and plan day. Add mood and a cold rating, choose a weekly session goal, and use Rest Mode when you need a break."
+    }
+  ],
+  "features": [
+    {
+      "title": "A timer made for the shower",
+      "text": "Large controls, phase cues, and one free timer preset keep the session simple. Optional post-target timing records extra elapsed time only; it earns no streak, badge, or plan credit."
+    },
+    {
+      "title": "Progress without competing",
+      "text": "Review your calendar heatmap, sessions, and 18 visible milestones against your own history. Rest days never count as completed sessions."
+    },
+    {
+      "title": "A backup you control",
+      "text": "Manually save sessions, notes, plans, presets, and selected settings as a plaintext JSON file. Restore it from a destination you choose."
+    }
+  ],
+  "included": [
+    "14-Day Starter plan, hands-free timer, and session log",
+    "One timer preset, weekly rhythm goal, Rest Mode, and safety skip",
+    "Session deletion and manual JSON backup and restore"
+  ],
+  "premium": [
+    "Five additional plans, including Contrast Protocol and The Reset",
+    "Full statistics, retro-logging and streak repair, CSV export, and unlimited timer presets",
+    "Seated, silent breathing preparation before the shower—not during it",
+    "Separate Apple Health opt-ins for mindful minutes or a nonmedical recovery nudge",
+    "Optional on-device voice commands, enabled for each foreground session"
+  ],
+  "privacy": [
+    "Your session history and notes are stored on your device. A manual backup is plaintext: keep the file somewhere private.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "Health access and foreground voice commands are optional; touch controls remain available."
+  ],
+  "limitations": [
+    "Cold exposure is a physiological stressor. Read the safety guidance, stop if you feel unwell, and ask a qualified healthcare professional first if you have any concern about suitability.",
+    "Shiver is a habit and timer tool, not a medical device or treatment. It does not measure water temperature or turn a shower into a cold plunge.",
+    "Breathing preparation is seated and outside the shower. Extra time after a target is not an instruction to stay cold longer."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/shiver-1.png",
+      "alt": "Shiver App Store screenshot showing the large cold-phase shower countdown, safety stop cues, and Pause and End controls.",
+      "width": 1242,
+      "height": 2688
+    }
+  ]
+}

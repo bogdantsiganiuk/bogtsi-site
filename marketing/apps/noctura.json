@@ -1,0 +1,72 @@
+{
+  "title": "Halcyon — Sleep sounds, stories, and a gentle timer",
+  "description": "Mix sleep sounds with individual volume controls, save a favorite blend, and fade it out with a timer. Explore breathing exercises, guides, and sleep stories.",
+  "headline": "A little sound.\nA softer evening.",
+  "intro": "Mix rain, a fan, or a low wash of noise to suit the room. Set a fade-out timer, settle into a story, or follow a breathing exercise. Halcyon leaves the evening yours.",
+  "category": "Sleep sounds and wind-down",
+  "tagline": "Make a mix, set a timer, let the day quiet down.",
+  "cardHeadline": "Mix your own sleep sounds, settle into a story, and let a timer fade things out.",
+  "theme": "night",
+  "group": "rhythm",
+  "purchaseNote": "Halcyon Premium is an auto-renewing subscription. The annual plan offers a 7-day free trial, subject to eligibility. Cancel at least 24 hours before the trial or subscription ends to avoid renewal; manage it in your App Store account settings.",
+  "sourceVersion": "1.4.1",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Choose your layers",
+      "text": "Select available sounds and set the volume of each one. Free mixes can hold up to three layers; Premium opens the complete 39-sound library with unlimited layers."
+    },
+    {
+      "title": "Choose how the evening ends",
+      "text": "Set a timer that fades the mix to silence, or try a wind-down program. Save a timer with a mix or set a default for when you press play."
+    },
+    {
+      "title": "Return to something familiar",
+      "text": "Save up to two mixes for free. Keep sounds playing with the screen locked, or take a quiet moment with breathing exercises, an available guide, or a story."
+    }
+  ],
+  "features": [
+    {
+      "title": "A mix with room to adjust",
+      "text": "Nature, water, noise, comfort, ambience, pulses, and binaural tones make up the full library. Adjust individual sound levels instead of accepting one fixed recording."
+    },
+    {
+      "title": "More than a sound loop",
+      "text": "The full collection includes 10 guides, 20 original stories, and three wind-down programs. Eighteen stories have narration in four voices; The Riverboat includes all four voices without Premium."
+    },
+    {
+      "title": "Playback that fits your evening",
+      "text": "Use background playback, Siri Shortcuts, and optional playback alongside another app. When alongside playback is enabled, Halcyon turns off its Lock Screen controls."
+    }
+  ],
+  "included": [
+    "Available free sounds, up to 3 layers, and 2 saved mixes",
+    "Fade-out sleep timer and background playback",
+    "Breathing exercises and a free selection of guides and stories",
+    "The Riverboat narration in all four voices; file backup and restore"
+  ],
+  "premium": [
+    "All 39 sounds, unlimited mix layers, and unlimited saved mixes",
+    "All 10 guides and 20 stories; four read-aloud voices for narrated stories beyond The Riverboat",
+    "Deep Descent and Long Night wind-down programs",
+    "Adaptive soundscapes across the whole library"
+  ],
+  "privacy": [
+    "Mixes, favorites, and settings can be backed up to a file you save or share yourself.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "A file backup is a manual action, not a promise of automatic cloud sync."
+  ],
+  "limitations": [
+    "Halcyon is for general relaxation and everyday wind-down, not diagnosis or treatment for insomnia or any other condition. Sleep and focus outcomes are not guaranteed.",
+    "Not every story has narration: the released version has 18 narrated stories out of 20. Headphones are recommended for binaural tones, not required for ordinary sound mixes.",
+    "Use a comfortable listening volume. Optional alongside playback changes which app provides Lock Screen controls."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/noctura-1.png",
+      "alt": "Halcyon App Store screenshot showing the Sounds library, noise choices, wind-down programs, and a Rainy Night mix with two layers playing.",
+      "width": 1284,
+      "height": 2778
+    }
+  ]
+}

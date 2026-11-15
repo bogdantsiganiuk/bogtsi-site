@@ -1,0 +1,76 @@
+{
+  "title": "Duskmere — A private dream journal and lucid-dreaming lessons",
+  "description": "Capture a dream in dim light, connect recurring dreams in a Series, and explore cited lucid-dreaming lessons. Your meaning stays yours; no AI interpretation.",
+  "headline": "Catch the fragment\nbefore it fades.",
+  "intro": "A few words at 3 a.m. can be enough. Duskmere keeps dream capture close, saves a draft as you type, and gives you room to revisit recurring dreams later—without handing their meaning to an AI.",
+  "category": "Dream journal and learning",
+  "tagline": "Write what you remember. Leave the meaning with you.",
+  "cardHeadline": "Catch a dream before it fades. Keep a journal and explore lucid-dreaming lessons.",
+  "theme": "indigo",
+  "group": "practice",
+  "purchaseNote": "Duskmere Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
+  "sourceVersion": "1.0.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Save the first fragment",
+      "text": "Open Capture in dim light. Write a phrase, add keywords, or use an available voice memo. Every keystroke saves a draft for when you wake."
+    },
+    {
+      "title": "Connect what returns",
+      "text": "Link related dreams in your first free Series and use basic Signs to keep recurring images near their entries. You decide which connections matter."
+    },
+    {
+      "title": "Read, reflect, or export",
+      "text": "Begin the first three cited lessons, revisit entries, and export the full journal as JSON, text, or PDF without a subscription. Premium opens the rest of the course and deeper tools."
+    }
+  ],
+  "features": [
+    {
+      "title": "A journal for the half-awake moment",
+      "text": "Capture is designed for dim light and incomplete thoughts. You can return to a saved draft rather than trying to write a polished entry in the night."
+    },
+    {
+      "title": "Recurring dreams, kept together",
+      "text": "A Series groups related dreams and their shared threads. One Series and basic Signs are free; unlimited Series, ongoing suggestions, and full Signs are Premium."
+    },
+    {
+      "title": "Learning with sources",
+      "text": "Ten lessons cover recall, dream signs, reality checks, and lucid-dreaming techniques. Premium includes lessons 4–10 and the guided SSILD cycle through vision, hearing, and touch."
+    },
+    {
+      "title": "Exports that stay available",
+      "text": "Full-journal JSON, text, and PDF exports are free. Premium adds filtered Dream Book PDF exports, rather than putting access to your whole journal behind a subscription."
+    }
+  ],
+  "included": [
+    "Dream capture, saved drafts, and journal access",
+    "Your first Series and basic Signs",
+    "Lessons 1–3",
+    "Full-journal JSON, text, and PDF exports"
+  ],
+  "premium": [
+    "Lessons 4–10 and the guided SSILD sense cycle",
+    "All 200 symbols, full Signs, and longer-horizon trends",
+    "Wake Back to Bed and custom reality checks",
+    "Unlimited audio memos and Series, ongoing Series suggestions, and filtered Dream Book PDF exports"
+  ],
+  "privacy": [
+    "Dream entries and voice memos stay on your device unless you choose to export or share them. No app account is required, and no AI reads your dreams.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "Exporting gives you a file to keep or share yourself. Treat a journal export as private information."
+  ],
+  "limitations": [
+    "Duskmere is for journaling, education, and general wellness, not medical, sleep-therapy, or psychological advice, diagnosis, or treatment.",
+    "Symbols and recurring themes are for personal reflection, not authoritative dream interpretation. Lucid dreaming is not guaranteed.",
+    "Sleep-interruption techniques may not suit you. Prioritize rest, skip a technique when needed, and seek professional guidance about persistent nightmares or sleep concerns."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/reverie-1.png",
+      "alt": "Duskmere App Store screenshot showing an empty dim-light Capture page with dream keyword suggestions and a voice memo control.",
+      "width": 1284,
+      "height": 2778
+    }
+  ]
+}

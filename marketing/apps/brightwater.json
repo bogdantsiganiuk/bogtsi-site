@@ -1,0 +1,77 @@
+{
+  "title": "Brightwater — Aquarium logs and care reminders",
+  "description": "Keep aquarium water tests, maintenance, dosing records, and equipment history together. Start with one free tank and free CSV export and import.",
+  "headline": "Less aquarium admin.\nMore time by the tank.",
+  "intro": "Keep water tests, care jobs, and tank history in one place. Brightwater helps you remember what you measured and what you did, with reminders for the tank and task—not another spreadsheet to maintain.",
+  "category": "Aquarium care log",
+  "tagline": "Your tank, its readings, and the next small job.",
+  "cardHeadline": "Water-test logs, tank-care reminders and a little less aquarium admin.",
+  "theme": "ocean",
+  "group": "details",
+  "purchaseNote": "Brightwater Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
+  "sourceVersion": "1.2.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Set up your tank",
+      "text": "Start with one tank for free. Choose its type so the quick-log sheet and care schedules fit the parameters you track."
+    },
+    {
+      "title": "Record readings and care",
+      "text": "Enter test results by hand, log a water change, record a dose you have chosen yourself, or note equipment service. Edit readings later when needed."
+    },
+    {
+      "title": "Review the history",
+      "text": "See readings over time, keep care reminders, and export your tank history as CSV. Premium adds full chart history, overlays, and custom ranges."
+    }
+  ],
+  "features": [
+    {
+      "title": "Quick water-test logging",
+      "text": "A large-key sheet prefills your last reading and supports multiple readings a day. Parameters vary by tank type, including additional reef measurements."
+    },
+    {
+      "title": "A fuller tank notebook",
+      "text": "Keep livestock history, notes, expenses, diary photos, equipment inventory, and service records beside your readings."
+    },
+    {
+      "title": "Guidance with boundaries",
+      "text": "Light-hour planning, algae and cloudy-water troubleshooters, and a nitrogen-cycle assistant provide cited hobbyist guidance. Premium unlocks both full troubleshooters and the cycle assistant beyond week one."
+    },
+    {
+      "title": "Portable records",
+      "text": "CSV export and import are free. Version 1.2 also supports file backup and restore for tanks, history, photos, and settings, plus a 180-species guide with cited care notes."
+    }
+  ],
+  "included": [
+    "One tank with quick water-test logging and basic charts",
+    "Equipment inventory and service log; dosing logs with one schedule per tank",
+    "Tank-history CSV export and import, plus file backup and restore",
+    "First week of the cycle assistant"
+  ],
+  "premium": [
+    "Unlimited tanks, full chart history, and multi-parameter overlays",
+    "Custom Good and Watch ranges for each tank",
+    "Light plans for every tank, both full troubleshooters, and the cycle assistant beyond week one",
+    "Custom care cadences, extra schedules, and dosing reminders and chart markers",
+    "Unlimited photos per diary entry"
+  ],
+  "privacy": [
+    "Your tank records are stored locally without an app account.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "Export and backup files go to a destination you choose, not automatic cloud sync. Backup files are not encrypted; keep them private."
+  ],
+  "limitations": [
+    "Brightwater does not connect to or control lights, filters, pumps, test kits, or any other hardware. Readings must be entered or imported; no strip-scanner accuracy is promised.",
+    "Dosing tools record names and amounts you supply. They do not recommend a product or dosage.",
+    "Ranges and cited hobbyist guidance do not guarantee water quality, cycling time, compatibility, or livestock outcomes. Use appropriate tests and your own judgment."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/brightwater-1.png",
+      "alt": "Brightwater App Store screenshot showing the water-clarity troubleshooter with choices for milky white, green, drifting particles, or yellow-brown water.",
+      "width": 1284,
+      "height": 2778
+    }
+  ]
+}

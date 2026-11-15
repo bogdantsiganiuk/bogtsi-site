@@ -1,0 +1,72 @@
+{
+  "title": "Dahlia — Date ideas for the night you have",
+  "description": "Find a date idea by mood, budget, and time. Build a plan, keep a date journal, and remember the little things with Dahlia for iPhone.",
+  "headline": "Less deciding.\nMore time together.",
+  "intro": "An hour at home or a whole evening out: Dahlia gives you a specific idea for the time and budget you actually have. Pick a suggestion, make it yours, and keep a small record of the nights you share.",
+  "category": "Date ideas and planning",
+  "tagline": "A plan for tonight, not another feed to scroll.",
+  "cardHeadline": "Date ideas for the time and budget you have. Pick one, make a plan, go together.",
+  "theme": "garden",
+  "group": "details",
+  "purchaseNote": "Dahlia Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
+  "sourceVersion": "1.5.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Choose what fits tonight",
+      "text": "Filter by mood, budget, time, and staying in or heading out. Optional relationship and lifestyle filters carry through to the ideas you see."
+    },
+    {
+      "title": "Make a night of it",
+      "text": "Take a complete suggestion or use the Date Builder to combine an activity, food, and a twist. Save a plan and share an invite as text or a calendar file."
+    },
+    {
+      "title": "Remember the good parts",
+      "text": "Mark a date as done, add how it went and a line to your journal, and watch your garden grow. Forget-me-nots keep useful details and important days close."
+    }
+  ],
+  "features": [
+    {
+      "title": "Specific ideas, not endless scrolling",
+      "text": "The generator remembers what you have seen. Four full decks are free, with more than 400 ideas across the complete 14-deck collection."
+    },
+    {
+      "title": "Plans you can share",
+      "text": "Send a calendar invite that opens on another phone, add a plan to your own calendar, or share a small plan file with another Dahlia user. Dahlia does not read your calendar."
+    },
+    {
+      "title": "A record worth keeping",
+      "text": "The date journal is free. Back up favorites, history, plans, forget-me-nots, preferences, and streaks to a file, with an optional passphrase and a preview before restoring."
+    }
+  ],
+  "included": [
+    "Four full decks, the generator, Date Builder, and filters",
+    "15 saved ideas, 3 saved Date Builder plans, and 10 forget-me-nots",
+    "Date journal, streaks, garden, and reminders",
+    "File backup and restore, plan invites, and Anniversary Mode"
+  ],
+  "premium": [
+    "Every deck and seasonal pack",
+    "Unlimited saved ideas, saved plans, and forget-me-nots",
+    "The full set of conversation prompts",
+    "Search, mood filtering, and export for your date journal"
+  ],
+  "privacy": [
+    "Date records and preferences live on your phone; no account is required to use the app.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "Sending an invite or saving a backup shares only when you choose. A passphrase for a backup is optional; keep the file and any passphrase safe."
+  ],
+  "limitations": [
+    "Suggestions are entertainment, not relationship therapy or professional advice. Choose activities that suit your circumstances, boundaries, and accessibility needs.",
+    "The app supplies ideas and planning tools; it does not book venues, verify availability, or guarantee the outcome of a date.",
+    "Extra App Store listing languages do not imply translated app interfaces."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/dahlia-1.png",
+      "alt": "Dahlia App Store screenshot showing a date idea on Tonight, with mood, budget, time, and indoor tags plus save, share, and planning controls.",
+      "width": 1290,
+      "height": 2796
+    }
+  ]
+}

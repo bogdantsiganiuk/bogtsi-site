@@ -1,0 +1,78 @@
+{
+  "title": "Wageproof — US work hours and pay estimates",
+  "description": "Record work hours, keep shift evidence, and review US pay estimates with visible math and limits. Federal overtime and file backup are available free.",
+  "headline": "Your hours.\nThe math, made visible.",
+  "intro": "Keep a record of your workday and see how an estimated pay figure was calculated. Wageproof is built for hourly workers in the United States, with visible sources, recorded facts, and limits that stay beside the numbers.",
+  "category": "US hours and pay records",
+  "tagline": "Record the work. Review the estimate. Keep the limits in view.",
+  "cardHeadline": "Record US work hours and compare estimated pay. See the math and its limits.",
+  "theme": "jade",
+  "group": "details",
+  "purchaseNote": "Wageproof Premium is available monthly, annually, or as a one-time purchase. Subscriptions renew automatically unless canceled at least 24 hours before renewal; manage them in your App Store account settings. The one-time option does not renew.",
+  "sourceVersion": "1.3.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Record the workday",
+      "text": "Clock in and out or enter shifts manually, including overnight or split shifts, rates, and paid and unpaid breaks. Keep off-the-clock notes and optional photos with the record."
+    },
+    {
+      "title": "Read the calculation",
+      "text": "Review a weighted-average regular rate and federal overtime estimate step by step. Premium adds supported state rules and paystub comparison; a discrepancy is a prompt to review, not proof of missing pay."
+    },
+    {
+      "title": "Keep the surrounding facts",
+      "text": "Record posted schedules, changes, tips, and how a job ended. Use free backup and final-pay date tools; Premium adds supported schedule-pay amounts, tipped-pay calculations, and shareable reports."
+    }
+  ],
+  "features": [
+    {
+      "title": "A calculation you can inspect",
+      "text": "Federal overtime is available free. Premium supports state overtime for California, Alaska, Nevada, and Colorado within the stated limits, plus paystub checks with a rounding range."
+    },
+    {
+      "title": "Records beyond a timesheet",
+      "text": "Schedule-change facts, notice times, evidence notes, edit history, and record fingerprints keep context with your hours. Fingerprints can help reveal changes, not prove a record true or legally admissible."
+    },
+    {
+      "title": "Dates and year-end context",
+      "text": "Record job-end facts to estimate a supported final-pay date, and choose optional local reminders. The Year-End Pay Check groups calculated federal overtime premiums by pay date for comparison with confirmed records and a W-2."
+    },
+    {
+      "title": "English and Spanish interfaces",
+      "text": "Use either interface while amounts remain in US-dollar format. Some law and source text remains in English; other App Store listing languages are not extra interface translations."
+    }
+  ],
+  "included": [
+    "Hour and shift records with federal overtime estimates",
+    "Evidence records, edit history, and record fingerprints",
+    "Manual file backup and restore",
+    "Final-pay date tools and optional local reminders"
+  ],
+  "premium": [
+    "Supported state overtime rules and multiple jobs",
+    "Paystub comparison and CSV/PDF report exports",
+    "Supported tipped-pay calculations",
+    "Supported schedule-pay amounts"
+  ],
+  "privacy": [
+    "Work records are stored locally and do not require an app account.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "Backup, restore, and report sharing use files you choose to save or share, not automatic cloud sync. Backups disclose any photos they omit."
+  ],
+  "limitations": [
+    "All pay figures are estimates, not a paystub, a finding of underpayment, legal advice, tax advice, or a guarantee of recovery. A paystub difference is not proof that wages are missing.",
+    "Coverage depends on recorded facts and supported rules. State overtime coverage is limited to California, Alaska, Nevada, and Colorado; supported schedule-pay rules have separate coverage questions and limits.",
+    "The app does not model tip-pooling allocation, service charges, commissions, piece rates, collective bargaining agreements, exempt-status determination, taxes or withholding, or unsupported states.",
+    "Tip reports are records, not calculated reporting obligations or submitted reports. The Year-End Pay Check is not tax filing or a deduction guarantee.",
+    "A final-pay date is an estimate from your inputs and available sources. The app cannot know whether a paycheck arrived."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/wageproof-1.png",
+      "alt": "Wageproof App Store screenshot showing the shift editor with start and end times, breaks, an optional rate, shift tags, and notes.",
+      "width": 1290,
+      "height": 2796
+    }
+  ]
+}

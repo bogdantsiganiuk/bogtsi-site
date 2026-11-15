@@ -1,0 +1,73 @@
+{
+  "title": "Ascend — A weight log with a fantasy-RPG twist",
+  "description": "Log weight, earn XP for showing up, and follow a smoothed trend. Weight Health sync, CSV export, corrections, backfill, and Chronicle averages are free.",
+  "headline": "Log a day.\nBuild your own saga.",
+  "intro": "Ascend puts a fantasy-RPG layer around a simple weight log. Earn XP for showing up, not for reaching a body size. Follow your trend, keep your history, and choose how much of the fantasy to explore.",
+  "category": "Weight tracking and motivation",
+  "tagline": "Consistency earns the XP. The scale does not.",
+  "cardHeadline": "A weight log with a fantasy-RPG twist. Earn XP for showing up, not a number.",
+  "theme": "gold",
+  "group": "practice",
+  "purchaseNote": "Ascend Pro is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal. The free features below reflect the October 5, 2026 production update for app version 1.8.0.",
+  "sourceVersion": "1.8.0; production OTA 991b5e0, October 5, 2026",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Choose a class and a goal",
+      "text": "Choose Knight, Wizard, Hunter, or Rogue at the initial class pick for free. A class gives your progress a story; later class changes are part of Pro."
+    },
+    {
+      "title": "Log when you are ready",
+      "text": "Enter weight in kilograms, pounds, or stones, or optionally sync weight with Apple Health. Correct an entry or backfill history without subscribing; backfill is history, not a way to earn missed-day rewards."
+    },
+    {
+      "title": "Look at the pattern",
+      "text": "Review the smoothed trend, weekly rate, and free 7- and 30-day Chronicle averages. Daily fluctuations are context, not a grade."
+    }
+  ],
+  "features": [
+    {
+      "title": "Your records are not an upgrade",
+      "text": "Weight logging, corrections, backfill, weight Health sync, and CSV export are free. The weekly rate and Chronicle averages are free, too."
+    },
+    {
+      "title": "Progression for participation",
+      "text": "Logs, self-reported quests, and consistency support the fantasy progression. Streak freezes provide room for a missed day; badges reward behavior rather than a weight target."
+    },
+    {
+      "title": "More depth with Pro",
+      "text": "Oracle forecasts, plateau explanations, detailed Saga reports, and Realm insights add interpretation and story depth. Pro also adds body-fat tracking and Health import, extra focuses and freezes, later class changes, and a custom reminder time."
+    }
+  ],
+  "included": [
+    "Weight logging, correction, backfill, smoothed trend, goal progress, and optional BMI",
+    "Two-way Apple Health weight sync and CSV export",
+    "Weekly rate and 7- and 30-day Chronicle averages",
+    "All four classes at the initial pick, core progression, and basic Realm mode"
+  ],
+  "premium": [
+    "Oracle forecast and plateau explanations",
+    "Detailed Saga reports, Realm insights, and seal bonuses",
+    "Body-fat tracking and Health import",
+    "Changing class later, extra focuses and freezes, and a custom reminder time"
+  ],
+  "privacy": [
+    "Weight history, goals, and game progress are stored on your iPhone. Optional Health data is handled locally by Ascend.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "CSV export uses the iOS share sheet, and you choose its destination. Deleting Ascend does not delete weights already written to Apple Health."
+  ],
+  "limitations": [
+    "Ascend is a tracking and motivation tool, not a medical device or medical or nutritional advice. Discuss health, diet, and exercise decisions with a qualified professional.",
+    "Forecasts, BMI, rates, and trend summaries are informational estimates, not guaranteed outcomes or a judgment of your health.",
+    "The October 5 production update changed the free/Pro boundary. Older App Store description text may still describe weight sync, CSV export, and Chronicle averages as Pro; they are free in the released update.",
+    "CSV export is available; CSV import and file backup/restore are not promised for this release."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/ascend-1.png",
+      "alt": "Ascend App Store screenshot showing a Knight portrait, class title, XP progress, and a body-fat tracking panel marked Ascend Pro.",
+      "width": 1284,
+      "height": 2778
+    }
+  ]
+}

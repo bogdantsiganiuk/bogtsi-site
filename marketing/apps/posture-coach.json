@@ -1,0 +1,72 @@
+{
+  "title": "Posture Coaching — Gentle reminders and guided stretches",
+  "description": "Make room for a desk reset with posture reminders, guided stretch sessions, free starter plans, and a custom routine you can run hands-free.",
+  "headline": "A small reset\nbetween meetings.",
+  "intro": "A gentle nudge to change position. A short stretch when there is room for one. Posture Coaching helps you build a desk-break habit with reminders, guided sessions, and progress based on showing up.",
+  "category": "Desk reminders and stretches",
+  "tagline": "A reminder to move, not a posture score.",
+  "cardHeadline": "Gentle desk reminders and guided stretches that fit between the meetings.",
+  "theme": "jade",
+  "group": "rhythm",
+  "purchaseNote": "Posture Coaching Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
+  "sourceVersion": "1.6.1",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Set a window for reminders",
+      "text": "Choose an interval and active hours that suit your workday. Reminders stay quiet outside the window, and you can pause them whenever you need."
+    },
+    {
+      "title": "Choose a comfortable session",
+      "text": "Start with an available Quick Session, follow a free starter plan, or save one custom routine from free stretches. Timed instructions guide each step."
+    },
+    {
+      "title": "Keep a record of showing up",
+      "text": "Check in, review session charts and badges, and return after a missed day. Streak freezes bridge a single missed day and are earned back through consistency."
+    }
+  ],
+  "features": [
+    {
+      "title": "Short sessions, clear steps",
+      "text": "The complete catalog contains 49 stretches for the neck, shoulders, back, hips, and hamstrings, plus 16 Quick Sessions. Free and Premium selections are clearly separated in the app."
+    },
+    {
+      "title": "A routine of your own",
+      "text": "Pick stretches, name your routine, and run it hands-free. Free access includes one saved routine using free stretches; Premium adds unlimited routines and the full stretch catalog."
+    },
+    {
+      "title": "Optional mindful minutes",
+      "text": "If you turn it on in Settings, completed stretch sessions can be written to Apple Health as mindful minutes. The app writes only; it does not read your Health data."
+    }
+  ],
+  "included": [
+    "Standard reminder intervals and active hours",
+    "Desk Posture Reset and Neck & Shoulder Relief starter plans, one active plan at a time",
+    "Free stretch and Quick Session selections; one saved custom routine",
+    "Check-ins, streaks, badges, progress charts, and optional Health mindful-minute writes"
+  ],
+  "premium": [
+    "All eight structured plans and the full 49-stretch catalog",
+    "10 Premium Quick Sessions",
+    "A finer custom reminder cadence",
+    "Multiple active plans and unlimited custom routines"
+  ],
+  "privacy": [
+    "No app account is required; check-ins and stretch history are stored on your device.",
+    "Purchases and entitlement checks use Apple and RevenueCat. App updates use Expo; local activity storage does not mean the app never connects to the internet.",
+    "Apple Health writing is optional and off until you enable it. Posture Coaching does not read Health records."
+  ],
+  "limitations": [
+    "Posture Coaching is a general wellness and habit tool, not a medical device, posture diagnosis, or treatment for pain.",
+    "Move within a comfortable range and stop if a stretch hurts. Consult a qualified professional before beginning if you have an injury or condition.",
+    "The released app provides reminders and guided stretches. It does not monitor your posture with a camera or AirPods."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/posture-coach-1.png",
+      "alt": "Posture Coaching App Store screenshot showing a check-in, streak freezes, a Desk Posture Reset plan, reminder hours, and badges.",
+      "width": 1284,
+      "height": 2778
+    }
+  ]
+}
