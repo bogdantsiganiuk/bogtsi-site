@@ -9,6 +9,7 @@
 import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { marketingFiles } from './marketing-site.mjs';
 
 // Belt and braces: nothing published should ever look like a GitHub token.
 const TOKEN_RE = /\b(gh[pousr]_[A-Za-z0-9]{16,}|github_pat_[A-Za-z0-9_]{20,})\b/;
@@ -22,19 +23,20 @@ function walk(dir, base = dir, out = []) {
   return out;
 }
 
-export function expectedFiles(apps, pages) {
-  const files = ['.nojekyll', 'index.html', 'privacy/index.html', 'terms/index.html'];
+export function expectedFiles(apps, pages, marketing) {
+  const files = ['.nojekyll', 'index.html', 'privacy/index.html', 'terms/index.html', ...marketingFiles({ apps, marketing })];
   for (const app of apps) {
     for (const page of pages.filter((page) => !page.app || page.app === app.slug)) {
       files.push(`${app.slug}/${page.route}/index.html`);
     }
   }
+  if (new Set(files).size !== files.length) throw new Error('duplicate publication route');
   return files.sort();
 }
 
-export function verify({ outDir, apps, pages }) {
+export function verify({ outDir, apps, pages, marketing }) {
+  const expected = expectedFiles(apps, pages, marketing);
   const actual = walk(outDir).sort();
-  const expected = expectedFiles(apps, pages);
   const errors = [];
 
   const extra = actual.filter((f) => !expected.includes(f));
@@ -58,6 +60,7 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
   const rootDir = fileURLToPath(new URL('..', import.meta.url));
   const apps = JSON.parse(readFileSync(join(rootDir, 'apps.json'), 'utf8')).apps;
   const pages = JSON.parse(readFileSync(join(rootDir, 'pages.json'), 'utf8'));
-  const files = verify({ outDir: join(rootDir, '_site'), apps, pages });
+  const marketing = JSON.parse(readFileSync(join(rootDir, 'marketing.json'), 'utf8'));
+  const files = verify({ outDir: join(rootDir, '_site'), apps, pages, marketing });
   console.log(`guard passed — ${files.length} files`);
 }

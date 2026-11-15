@@ -43,32 +43,39 @@ test('root /privacy and /terms redirect to the noctura pages', () => {
   build({ srcDir, outDir, rootDir: ROOT });
   const privacy = readFileSync(join(outDir, 'privacy', 'index.html'), 'utf8');
   assert.match(privacy, /url=\/noctura\/privacy/);
-  assert.ok(!privacy.includes('__TARGET__'), 'placeholder must be substituted');
   const terms = readFileSync(join(outDir, 'terms', 'index.html'), 'utf8');
   assert.match(terms, /url=\/noctura\/terms/);
 });
 
-test('root index lists every app and substitutes the placeholder', () => {
+test('support directory retains every app and legal endpoint, including unreleased apps', () => {
   const { srcDir, outDir } = stage();
   build({ srcDir, outDir, rootDir: ROOT });
-  const index = readFileSync(join(outDir, 'index.html'), 'utf8');
-  assert.ok(!index.includes('__APP_LINKS__'));
-  for (const app of APPS) assert.match(index, new RegExp(app.name));
+  const support = readFileSync(join(outDir, 'support/index.html'), 'utf8');
+  for (const app of APPS) {
+    assert.ok(support.includes(app.name));
+    for (const page of PAGES.filter(p => !p.app || p.app === app.slug)) {
+      assert.ok(support.includes(`href="/${app.slug}/${page.route}"`));
+    }
+  }
 });
 
-test('apps with an appStoreId get an App Store link, others none', () => {
+test('marketing navigation, screenshots, resources and app legal links resolve to published files', () => {
   const { srcDir, outDir } = stage();
   build({ srcDir, outDir, rootDir: ROOT });
-  const index = readFileSync(join(outDir, 'index.html'), 'utf8');
-  for (const app of APPS.filter((a) => a.appStoreId)) {
-    assert.ok(
-      index.includes(`https://apps.apple.com/app/id${app.appStoreId}`),
-      `expected store link for ${app.slug}`,
-    );
+  const marketing = JSON.parse(readFileSync(join(ROOT, 'marketing.json'), 'utf8'));
+  const pages = ['index.html', 'support/index.html', 'site-privacy/index.html', 'resources/index.html',
+    ...marketing.products.map(p => `${p.route}/index.html`),
+    ...marketing.resources.map(p => `${p.route}/index.html`)];
+  for (const page of pages) {
+    const html = readFileSync(join(outDir, page), 'utf8');
+    for (const match of html.matchAll(/(?:href|src)="(\/[^"]*)"/g)) {
+      const path = match[1].split(/[?#]/, 1)[0].replace(/^\//, '');
+      const target = /\.[a-z0-9]+$/i.test(path) ? path : `${path.replace(/\/$/, '')}${path ? '/' : ''}index.html`;
+      assert.ok(existsSync(join(outDir, target)), `${page} links to missing ${match[1]}`);
+    }
   }
-  const storeLinks = index.split('https://apps.apple.com/app/id').length - 1;
-  assert.equal(storeLinks, APPS.filter((a) => a.appStoreId).length);
 });
+
 
 test('emits .nojekyll so Pages skips Jekyll', () => {
   const { srcDir, outDir } = stage();
@@ -84,7 +91,7 @@ test('throws when a staged page is missing rather than publishing a hole', () =>
 test('publishes all six Wageproof routes without adding Spanish routes to another app', () => {
   const { srcDir, outDir } = stage();
   build({ srcDir, outDir, rootDir: ROOT });
-  const index = readFileSync(join(outDir, 'index.html'), 'utf8');
+  const index = readFileSync(join(outDir, 'support', 'index.html'), 'utf8');
   for (const route of ['privacy', 'terms', 'support', 'es/privacy', 'es/terms', 'es/support']) {
     assert.ok(existsSync(join(outDir, 'wageproof', route, 'index.html')));
     assert.ok(index.includes(`href="/wageproof/${route}"`));
@@ -108,10 +115,14 @@ test('shell fetch and live checks honor app scope without contacting GitHub or t
   const bin = join(dir, 'bin');
   mkdirSync(bin);
   writeFileSync(join(dir, 'apps.json'), JSON.stringify({ apps: [
-    { slug: 'wageproof', name: 'Wageproof', repo: 'owner/wageproof' },
-    { slug: 'noctura', name: 'Halcyon', repo: 'owner/noctura' },
+    { slug: 'wageproof', name: 'Wageproof', repo: 'owner/wageproof', appStoreId: '6800065810' },
+    { slug: 'noctura', name: 'Halcyon', repo: 'owner/noctura', appStoreId: '6791122312' },
   ] }));
   writeFileSync(join(dir, 'pages.json'), JSON.stringify(PAGES));
+  writeFileSync(join(dir, 'marketing.json'), JSON.stringify({
+    products: [{ app: 'wageproof', route: 'wageproof', content: 'marketing/apps/wageproof.json' }],
+    resources: [], featured: [], assets: [],
+  }));
   // Replace only external commands: the real shell scripts still select routes,
   // stage files, validate markers and construct URLs. Fixtures contain no token.
   writeFileSync(join(bin, 'gh'), `#!/usr/bin/env bash
@@ -127,7 +138,7 @@ while [ "$#" -gt 0 ]; do
   esac
 done
 printf '%s\\n' "$url" >> live.log
-printf '%s\\n' 'Privacy Policy Terms of Service Support Política de privacidad Términos de servicio Soporte /noctura/privacy /noctura/terms Wageproof' > "$output"
+printf '%s\\n' 'Privacy Policy Terms of Service Support Política de privacidad Términos de servicio Soporte /noctura/privacy /noctura/terms Wageproof Support for every app. Website privacy. A good place <urlset Sitemap: https://apps.apple.com/app/id6800065810' > "$output"
 printf '200'
 `, { mode: 0o755 });
   const shell = process.platform === 'win32'
@@ -160,6 +171,12 @@ printf '200'
     const checked = readFileSync(join(dir, 'live.log'), 'utf8').trim().split(/\r?\n/).sort();
     assert.deepEqual(checked, [
       'https://fixture.invalid/',
+      'https://fixture.invalid/resources/',
+      'https://fixture.invalid/support/',
+      'https://fixture.invalid/site-privacy/',
+      'https://fixture.invalid/sitemap.xml',
+      'https://fixture.invalid/robots.txt',
+      'https://fixture.invalid/wageproof/',
       'https://fixture.invalid/privacy',
       'https://fixture.invalid/terms',
       'https://fixture.invalid/noctura/privacy',

@@ -16,7 +16,7 @@
     { "slug": "voxwarm", "name": "Voxwarm", "repo": "bogdantsiganiuk/voxwarm", "appStoreId": "6796622537" },
     { "slug": "outshot", "name": "Outshot", "repo": "bogdantsiganiuk/outshot" },
     { "slug": "chervil", "name": "Chervil", "repo": "bogdantsiganiuk/chervil" },
-    { "slug": "maelzel", "name": "Maelzel", "repo": "bogdantsiganiuk/maelzel" },
+    { "slug": "maelzel", "name": "Maelzel", "repo": "bogdantsiganiuk/maelzel", "appStoreId": "6830308948" },
     { "slug": "farthing", "name": "Farthing", "repo": "bogdantsiganiuk/farthing" },
     { "slug": "promptside", "name": "Promptside", "repo": "bogdantsiganiuk/promptside" }
   ]

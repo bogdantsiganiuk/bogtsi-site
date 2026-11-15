@@ -1,0 +1,95 @@
+{
+  "featured": [
+    "voxwarm",
+    "umbra"
+  ],
+  "products": [
+    {
+      "app": "voxwarm",
+      "route": "voxwarm",
+      "content": "marketing/apps/voxwarm.json"
+    },
+    {
+      "app": "umbra",
+      "route": "penumbra",
+      "content": "marketing/apps/umbra.json"
+    },
+    {
+      "app": "shiver",
+      "route": "shiver",
+      "content": "marketing/apps/shiver.json"
+    },
+    {
+      "app": "dahlia",
+      "route": "dahlia",
+      "content": "marketing/apps/dahlia.json"
+    },
+    {
+      "app": "brightwater",
+      "route": "brightwater",
+      "content": "marketing/apps/brightwater.json"
+    },
+    {
+      "app": "noctura",
+      "route": "halcyon",
+      "content": "marketing/apps/noctura.json"
+    },
+    {
+      "app": "posture-coach",
+      "route": "posture-coach",
+      "content": "marketing/apps/posture-coach.json"
+    },
+    {
+      "app": "ascend",
+      "route": "ascend",
+      "content": "marketing/apps/ascend.json"
+    },
+    {
+      "app": "wageproof",
+      "route": "wageproof",
+      "content": "marketing/apps/wageproof.json"
+    },
+    {
+      "app": "reverie",
+      "route": "duskmere",
+      "content": "marketing/apps/reverie.json"
+    },
+    {
+      "app": "maelzel",
+      "route": "maelzel",
+      "content": "marketing/apps/maelzel.json"
+    }
+  ],
+  "resources": [
+    {
+      "app": "voxwarm",
+      "route": "resources/five-minute-vocal-warm-up",
+      "content": "marketing/resources/five-minute-vocal-warm-up.html",
+      "title": "Five-minute vocal warm-up",
+      "description": "A gentle, five-minute vocal warm-up you can follow without an app. Start comfortably, listen, and stop if your voice feels strained."
+    },
+    {
+      "app": "umbra",
+      "route": "resources/private-reflection-worksheet",
+      "content": "marketing/resources/private-reflection-worksheet.html",
+      "title": "Private reflection worksheet",
+      "description": "A short, printable reflection worksheet. Notice one manageable moment, write at your own pace, and keep the page to yourself."
+    }
+  ],
+  "assets": [
+    "marketing/assets/site.css",
+    "marketing/assets/voxwarm-1.png",
+    "marketing/assets/voxwarm-3.png",
+    "marketing/assets/penumbra-1.png",
+    "marketing/assets/penumbra-3.png",
+    "marketing/assets/shiver-1.png",
+    "marketing/assets/dahlia-1.png",
+    "marketing/assets/brightwater-1.png",
+    "marketing/assets/noctura-1.png",
+    "marketing/assets/posture-coach-1.png",
+    "marketing/assets/ascend-1.png",
+    "marketing/assets/wageproof-1.png",
+    "marketing/assets/reverie-1.png",
+    "marketing/assets/maelzel-1.png"
+  ]
+}

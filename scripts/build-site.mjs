@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { buildMarketing, marketingFiles } from './marketing-site.mjs';
 
 // The app whose pages answer the bare /privacy and /terms URLs. Noctura shipped
 // with those paths compiled in before the site was namespaced per app.
@@ -27,13 +28,13 @@ export function build({ srcDir, outDir, rootDir }) {
   const apps = readJson(join(rootDir, 'apps.json')).apps;
   const pages = readJson(join(rootDir, 'pages.json'));
   const redirectTpl = readFileSync(join(rootDir, 'templates', 'redirect.html'), 'utf8');
-  const indexTpl = readFileSync(join(rootDir, 'templates', 'index.html'), 'utf8');
+  const marketing = readJson(join(rootDir, 'marketing.json'));
+  marketingFiles({ apps, marketing });
 
   rmSync(outDir, { recursive: true, force: true });
   mkdirSync(outDir, { recursive: true });
   write(join(outDir, '.nojekyll'), '');
 
-  const links = [];
   for (const app of apps) {
     const appPages = pages.filter((page) => !page.app || page.app === app.slug);
     for (const page of appPages) {
@@ -43,14 +44,6 @@ export function build({ srcDir, outDir, rootDir }) {
       if (html.trim() === '') throw new Error(`empty staged page: ${src}`);
       write(join(outDir, app.slug, page.route, 'index.html'), html);
     }
-    const routes = appPages
-      .map((p) => `<a href="/${app.slug}/${p.route}">${p.label}</a>`)
-      .join(' &middot; ');
-    // appStoreId is set in apps.json only once the app is live on the App Store.
-    const store = app.appStoreId
-      ? ` &middot; <a href="https://apps.apple.com/app/id${app.appStoreId}" target="_blank" rel="noopener">App&nbsp;Store</a>`
-      : '';
-    links.push(`  <li><strong>${app.name}</strong> — ${routes}${store}</li>`);
   }
 
   for (const route of ['privacy', 'terms']) {
@@ -60,7 +53,7 @@ export function build({ srcDir, outDir, rootDir }) {
     );
   }
 
-  write(join(outDir, 'index.html'), indexTpl.replaceAll('__APP_LINKS__', links.join('\n')));
+  buildMarketing({ rootDir, outDir, apps, marketing });
 }
 
 if (import.meta.url === pathToFileURL(process.argv[1]).href) {

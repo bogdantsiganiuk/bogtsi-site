@@ -10,6 +10,7 @@ import { verify, expectedFiles } from '../scripts/verify-site.mjs';
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const APPS = JSON.parse(readFileSync(join(ROOT, 'apps.json'), 'utf8')).apps;
 const PAGES = JSON.parse(readFileSync(join(ROOT, 'pages.json'), 'utf8'));
+const MARKETING = JSON.parse(readFileSync(join(ROOT, 'marketing.json'), 'utf8'));
 
 function built() {
   const dir = mkdtempSync(join(tmpdir(), 'bogtsi-v-'));
@@ -28,27 +29,27 @@ function built() {
 
 test('accepts a site built by build()', () => {
   const outDir = built();
-  const files = verify({ outDir, apps: APPS, pages: PAGES });
-  assert.deepEqual(files, expectedFiles(APPS, PAGES));
+  const files = verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING });
+  assert.deepEqual(files, expectedFiles(APPS, PAGES, MARKETING));
 });
 
 test('rejects an unexpected file — the glob-creep backstop', () => {
   const outDir = built();
   writeFileSync(join(outDir, 'noctura', 'app-store-privacy.md'), '# internal notes');
-  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /unexpected files/);
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING }), /unexpected files/);
 });
 
 test('rejects a leaked .git directory from a stray checkout copy', () => {
   const outDir = built();
   mkdirSync(join(outDir, '.git'), { recursive: true });
   writeFileSync(join(outDir, '.git', 'config'), '[remote "origin"]');
-  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /unexpected files/);
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING }), /unexpected files/);
 });
 
 test('rejects a missing file', () => {
   const outDir = built();
   rmSync(join(outDir, 'noctura', 'support', 'index.html'));
-  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /missing files/);
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING }), /missing files/);
 });
 
 test('rejects credential-shaped content even in an expected file', () => {
@@ -57,33 +58,18 @@ test('rejects credential-shaped content even in an expected file', () => {
     join(outDir, 'index.html'),
     '<p>ghp_0123456789abcdefghijABCDEFGHIJ0123</p>',
   );
-  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /possible credential/);
-});
-
-test('expected files scope nested routes without changing unscoped routes or root redirects', () => {
-  assert.deepEqual(expectedFiles(
-    [{ slug: 'wageproof' }, { slug: 'noctura' }],
-    [{ route: 'privacy' }, { app: 'wageproof', route: 'es/privacy' }],
-  ), [
-    '.nojekyll',
-    'index.html',
-    'noctura/privacy/index.html',
-    'privacy/index.html',
-    'terms/index.html',
-    'wageproof/es/privacy/index.html',
-    'wageproof/privacy/index.html',
-  ]);
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING }), /possible credential/);
 });
 
 test('rejects an app-specific page copied into another app', () => {
   const outDir = built();
   mkdirSync(join(outDir, 'noctura', 'es', 'privacy'), { recursive: true });
   writeFileSync(join(outDir, 'noctura', 'es', 'privacy', 'index.html'), '<h1>Wrong app</h1>');
-  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /unexpected files/);
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING }), /unexpected files/);
 });
 
 test('rejects a missing required app-specific nested page', () => {
   const outDir = built();
   rmSync(join(outDir, 'wageproof', 'es', 'privacy', 'index.html'));
-  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES }), /missing files/);
+  assert.throws(() => verify({ outDir, apps: APPS, pages: PAGES, marketing: MARKETING }), /missing files/);
 });

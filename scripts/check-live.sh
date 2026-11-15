@@ -63,10 +63,32 @@ done <<< "$apps"
 check "$BASE/privacy" "/noctura/privacy"
 check "$BASE/terms" "/noctura/terms"
 
-# The index lists every app by display name. Assert with the first name from
-# apps.json rather than a hardcoded one — the Noctura→Halcyon rename stranded
-# a hardcoded marker here and failed an otherwise-green deploy (2026-08-18).
-first_app_name=$(node -p 'JSON.parse(require("fs").readFileSync("apps.json","utf8")).apps[0].name')
-check "$BASE/" "$first_app_name"
+# Marketing probes share the explicit local manifest; each product must expose
+# its own registry App Store identity, not merely a generic successful page.
+marketing_probes=$(node --input-type=module -e '
+  import { readFileSync } from "node:fs";
+  const apps = JSON.parse(readFileSync("apps.json", "utf8")).apps;
+  const marketing = JSON.parse(readFileSync("marketing.json", "utf8"));
+  const products = marketing.products.map(p => {
+    const app = apps.find(a => a.slug === p.app);
+    if (!app?.appStoreId) throw new Error("marketing app lacks released identity");
+    return p.route + "/\t" + "https://apps.apple.com/app/id" + app.appStoreId;
+  });
+  process.stdout.write([
+    "/\t" + apps.find(a => a.slug === marketing.products[0].app).name,
+    "resources/\tA good place",
+    "support/\tSupport for every app.",
+    "site-privacy/\tWebsite privacy.",
+    "sitemap.xml\t<urlset",
+    "robots.txt\tSitemap:",
+    ...products,
+    ...marketing.resources.map(r => r.route + "/\t" + r.title),
+  ].join("\n"));
+')
+while IFS=$'\t' read -r route marker; do
+  [ -n "$route" ] || continue
+  if [ "$route" = "/" ]; then check "$BASE/" "$marker";
+  else check "$BASE/$route" "$marker"; fi
+done <<< "$marketing_probes"
 
 exit "$fail"

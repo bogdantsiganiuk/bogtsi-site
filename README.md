@@ -1,14 +1,24 @@
 # bogtsi-site
 
-Serves the legal and support pages for bogtsi.xyz apps via GitHub Pages.
+Serves bogtsi.xyz: eleven released iPhone apps, two practical resources, and the complete app legal/support directory via GitHub Pages.
 
 ## How it works
 
-This repo **pulls**; app repos never push here. The "Sync legal pages" workflow
-fetches an allowlist of HTML files from each app repo listed in `apps.json`,
-assembles `_site`, verifies it, and deploys to Pages.
+This repo **pulls** legal pages; app repos never push here. The “Sync legal pages”
+workflow fetches only `pages.json` from the 19 repositories in `apps.json`.
+`scripts/build-site.mjs` preserves those 60 HTML pages byte-for-byte and the
+legacy root redirects, then renders checked-in marketing content.
 
-App repos hold no workflow and no secret.
+`apps.json` is the only product-name/App Store identity registry.
+`marketing.json` explicitly lists the eleven marketed products, two resources,
+featured order, and every public PNG/CSS asset. Product copy lives in
+`marketing/apps/<registry-slug>.json`; resources are trusted HTML body fragments
+in `marketing/resources/`. Content files themselves are not published.
+Source-version/review timestamps are internal provenance, not public freshness claims.
+
+App repos hold no workflow and no secret. Marketing never enters the PAT-backed
+fetch. There is no framework, external font, analytics, pixel, cookie, form,
+recording, or reflection upload.
 
 ## Adding an app
 
@@ -17,9 +27,13 @@ Two steps, and **both** are required:
 1. Add an entry to `apps.json`: `{ "slug": "<slug>", "name": "<Name>", "repo": "owner/repo" }`.
    The app repo must publish the unscoped pages listed in `pages.json` and any
    entries whose optional `app` field matches its slug, at those exact paths.
-   Once the app is live on the App Store, add `"appStoreId": "<numeric ASC app id>"`
-   to its entry — the index then links to `https://apps.apple.com/app/id<id>`.
-   Leave it off while the app is unreleased so the site never links to a 404.
+   Once the app is released and its identity is verified, add
+   `"appStoreId": "<numeric ASC app id>"`. Leave it off while unreleased.
+   An ID alone does not market an app: add a product to `marketing.json` with
+   complete released-version copy and registered real screenshots. The renderer
+   rejects unknown/unreleased identities, identity overrides, foreign routes,
+   unsafe source paths, duplicate outputs, unregistered screenshots, and PNG
+   dimensions that disagree with the content.
 2. **Grant the `APP_REPOS_READ_TOKEN` PAT read access to the new repo.** It is scoped to
    named repositories only — it does *not* cover repos added later.
 
@@ -54,6 +68,56 @@ Wageproof; entries without `app` remain shared by every listed app. Nested route
 such as `es/privacy` use the same explicit allowlist and are not fetched or
 published for other apps. Only HTML is published, never a recursive legal-docs copy.
 
+## Marketing routes and content
+
+The homepage features Voxwarm and Penumbra first, followed by the other nine
+released products. `/support/` lists all 19 legal registry entries and their
+scoped routes, including Wageproof’s six English/Spanish links.
+`/site-privacy/` describes this website, not any app. Root `/privacy` and `/terms`
+remain legacy Halcyon redirects.
+
+Product routes are `/voxwarm/`, `/penumbra/`, `/shiver/`, `/dahlia/`,
+`/brightwater/`, `/halcyon/`, `/posture-coach/`, `/ascend/`, `/wageproof/`,
+`/duskmere/`, and `/maelzel/`. Legal namespaces stay unchanged: Penumbra uses
+`/umbra/privacy`, Halcyon uses `/noctura/privacy`, and Duskmere uses
+`/reverie/privacy`. No duplicate `/umbra/` marketing page is generated.
+
+The resource directory at `/resources/` contains two printable, app-independent guides:
+`/resources/five-minute-vocal-warm-up/` and
+`/resources/private-reflection-worksheet/`.
+New pages have trailing-slash canonicals, unique metadata, and a crawlable
+`sitemap.xml` / `robots.txt`. Product structured data takes its identity and
+install URL from the registry; it contains no invented prices, offers, ratings,
+or reviews. The original 64 outputs remain; the manifest adds exactly 32 files
+(11 products, 2 guides, resource index, support, site privacy, sitemap, robots,
+13 PNGs and CSS), for 96 explicitly allowed output paths.
+
+To change an image, copy only the named real PNG into `marketing/assets/`,
+register that exact path, and record its real width/height and descriptive alt
+text in product content. Do not copy app screenshot directories or private docs
+trees. Do not promote draft app features or infer translated UIs from metadata
+locales.
+
+## Measurement and launch record
+
+Search Console verification is a separate owner-authorized action. No verification
+file or tag is currently registered. If a file is chosen later, review and add
+its exact public path to the publication contract; never relax the guard.
+
+Until Apple issues real provider/campaign tokens, App Store links are ordinary
+`https://apps.apple.com/app/id<verified-id>` links. Do not invent campaign IDs,
+add sensitive data to URLs, or install a tracker workaround.
+Apple campaign and custom-product-page reporting suppresses data below five
+first-time downloads; campaign attribution uses a 24-hour window. Blank data
+is not zero, and sub-five-install tests cannot establish precise attribution.
+
+This implementation is not a production-launch record. The publisher must record
+the actual website launch timestamp and live URL in the separate ASO keyword
+experiment confounder record when deployed, and record teacher/creator outreach
+dates/links if it occurs. Do not ascribe subsequent changes to keywords alone.
+No app code, SDK, release, or App Store marketing URL change is needed for this site.
+
+
 ## Publishing
 
 Actions → **Sync legal pages** → Run workflow. Also runs daily.
@@ -72,11 +136,13 @@ app repos. Three rules keep that safe. Do not relax them:
 
 1. **Triggers are `workflow_dispatch` + `schedule` only.** Never add
    `pull_request_target`, or a fork PR can exfiltrate the token.
-2. **`scripts/build-site.mjs` copies an explicit allowlist** (`pages.json`).
-   Never replace it with a glob — app repos' `docs/legal/` also holds internal
-   engineering notes that must not ship.
-3. **`scripts/verify-site.mjs` must run before deploy.** It fails if `_site`
-   contains anything unexpected. It is the backstop for mistakes in rule 2.
+2. **Build copies explicit allowlists only:** `pages.json` for fetched legal HTML
+   and `marketing.json` for local marketing publication. Never substitute a glob
+   or copy an entire checkout. Private content/metadata never becomes an output.
+3. **`scripts/verify-site.mjs` must run before deploy.** Build and verifier share
+   `marketingFiles({ apps, marketing })`. Both `expectedFiles(apps, pages, marketing)`
+   and `verify({ outDir, apps, pages, marketing })` require the marketing manifest;
+   missing or extra files and credential-shaped content fail closed.
 
 The token is `APP_REPOS_READ_TOKEN`: fine-grained, **Contents: Read** only,
 scoped to the app repos. It cannot write anything. If it expires the live site
@@ -88,4 +154,16 @@ keeps serving; only updates stop.
 npm test          # node --test
 ```
 
-To build locally you need staged sources in `_src/<slug>/<route>.html`.
+To build locally you need staged sources in `_src/<slug>/<route>.html`, plus the
+checked-in marketing content and explicitly registered assets:
+
+```bash
+node scripts/build-site.mjs
+node scripts/verify-site.mjs
+```
+
+The build signature remains `build({ srcDir, outDir, rootDir })`.
+`buildMarketing({ rootDir, outDir, apps, marketing })` renders real pages without
+fetching app repositories. `scripts/check-live.sh https://bogtsi.xyz` probes
+every legal route, legacy redirects, marketing pages and each product’s own App
+Store ID, preserving bounded connection/request timeouts and CDN retries.
