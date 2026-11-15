@@ -241,7 +241,8 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .editorial h2, .resource-body h2 { font-size: 30px; margin-block: 32px 16px; }
 .resource-body h3 { font-size: 21px; margin-block: 24px 12px; }
 .resource-body li + li { margin-top: 10px; }
-.resource-body .writing-space { min-height: 90px; border-bottom: 1px solid var(--line); }
+.resource-body .writing-space { width: 100%; min-height: 2rem; margin-block: 1rem; border-bottom: 1px solid #a79d8c; break-inside: avoid; }
+.resource-card .resource-date, .editorial .resource-date { font-size: 12px; color: var(--muted); }
 .support-list { list-style: none; padding: 0; }
 .support-list li { padding-block: 20px; border-top: 1px solid var(--line); }
 .support-list strong { display: block; font-size: 20px; margin-bottom: 7px; }

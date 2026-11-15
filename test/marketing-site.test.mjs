@@ -35,6 +35,14 @@ test('rejects duplicate assets and unsafe content publication paths', () => {
   assert.throws(() => marketingFiles({ apps, marketing: privateContent }), /content/i);
 });
 
+test('requires real calendar publication dates for resource metadata', () => {
+  for (const publishedAt of [undefined, '', 'November 15, 2026', '2026-02-30']) {
+    const marketing = manifest();
+    marketing.resources[0].publishedAt = publishedAt;
+    assert.throws(() => marketingFiles({ apps, marketing }), /publication date/i);
+  }
+});
+
 test('all eleven product pages preserve registry store identity and legal namespace', () => {
   const outDir = mkdtempSync(join(tmpdir(), 'bogtsi-marketing-'));
   try {
@@ -65,8 +73,10 @@ test('all eleven product pages preserve registry store identity and legal namesp
     for (const resource of manifest().resources) {
       assert.ok(resourceIndex.includes(`href="/${resource.route}/"`));
       assert.ok(resourceIndex.includes(resource.title));
+      assert.ok(resourceIndex.includes(`<time datetime="${resource.publishedAt}">`));
       const html = readFileSync(join(outDir, resource.route, 'index.html'), 'utf8');
       assert.ok(html.includes(`<h1>${resource.title}</h1>`));
+      assert.ok(html.includes(`<time datetime="${resource.publishedAt}">`));
       assert.ok(html.includes(`href="/${manifest().products.find(p => p.app === resource.app).route}/"`));
     }
     const sitemap = readFileSync(join(outDir, 'sitemap.xml'), 'utf8');

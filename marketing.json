@@ -66,6 +66,7 @@
       "route": "resources/five-minute-vocal-warm-up",
       "content": "marketing/resources/five-minute-vocal-warm-up.html",
       "title": "Five-minute vocal warm-up",
+      "publishedAt": "2026-11-15",
       "description": "A gentle, five-minute vocal warm-up you can follow without an app. Start comfortably, listen, and stop if your voice feels strained."
     },
     {
@@ -73,6 +74,7 @@
       "route": "resources/private-reflection-worksheet",
       "content": "marketing/resources/private-reflection-worksheet.html",
       "title": "Private reflection worksheet",
+      "publishedAt": "2026-11-15",
       "description": "A short, printable reflection worksheet. Notice one manageable moment, write at your own pace, and keep the page to yourself."
     }
   ],

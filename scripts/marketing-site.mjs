@@ -55,6 +55,7 @@ export function marketingFiles({ apps, marketing }) {
     if (!/^resources\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(resource.route) || routes.has(resource.route)) fail(`unsafe or duplicate resource route: ${resource.route}`);
     if (resource.content !== `marketing/${resource.route}.html`) fail(`invalid resource content path: ${resource.content}`);
     if (!text(resource.title) || !text(resource.description)) fail(`resource title and description required: ${resource.route}`);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(resource.publishedAt || '') || !Number.isFinite(Date.parse(resource.publishedAt)) || new Date(resource.publishedAt).toISOString().slice(0, 10) !== resource.publishedAt) fail(`valid resource publication date required: ${resource.route}`);
     routes.add(resource.route);
     files.push(`${resource.route}/index.html`);
   }
@@ -121,10 +122,13 @@ ${resource ? `<aside class="product-resource"><div><h2>A good place to start.</h
 <aside class="product-resource"><div><h2>Need a hand with ${esc(app.name)}?</h2><p><a href="/${app.slug}/privacy">Privacy policy</a> · <a href="/${app.slug}/terms">Terms of use</a></p></div><a class="inline-link" href="/${app.slug}/support">${esc(app.name)} support <span aria-hidden="true">↗</span></a></aside></div>`;
 }
 
+const resourceDateFormat = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const resourceDate = (resource) => `<p class="resource-date">Published <time datetime="${resource.publishedAt}">${resourceDateFormat.format(new Date(resource.publishedAt))}</time></p>`;
+
 function resourceCards(products, marketing) {
   return marketing.resources.map(resource => {
     const { app } = products.find(product => product.app.slug === resource.app);
-    return `<article class="resource-card"><p class="eyebrow">${esc(app.name)} / A practical guide</p><h3><a href="/${resource.route}/">${esc(resource.title)}</a></h3><p>${esc(resource.description)}</p></article>`;
+    return `<article class="resource-card"><p class="eyebrow">${esc(app.name)} / A practical guide</p><h3><a href="/${resource.route}/">${esc(resource.title)}</a></h3>${resourceDate(resource)}<p>${esc(resource.description)}</p></article>`;
   }).join('');
 }
 
@@ -172,7 +176,7 @@ export function buildMarketing({ rootDir, outDir, apps, marketing }) {
   }
   for (const resource of resources) {
     const product = products.find(p => p.app.slug === resource.app);
-    page({ route: resource.route, title: `${resource.title} — bogtsi`, description: resource.description, content: `<article class="shell editorial"><p class="eyebrow">From the notebook / ${esc(product.app.name)}</p><h1>${esc(resource.title)}</h1><div class="resource-body">${resource.html}</div><p class="resource-app-link">Want an app alongside this practice? <a href="/${product.entry.route}/">Meet ${esc(product.app.name)}</a>. No app is required to use this page.</p></article>` });
+    page({ route: resource.route, title: `${resource.title} — bogtsi`, description: resource.description, content: `<article class="shell editorial"><p class="eyebrow">From the notebook / ${esc(product.app.name)}</p><h1>${esc(resource.title)}</h1>${resourceDate(resource)}<div class="resource-body">${resource.html}</div><p class="resource-app-link">Want an app alongside this practice? <a href="/${product.entry.route}/">Meet ${esc(product.app.name)}</a>. No app is required to use this page.</p></article>` });
   }
   page({ route: 'site-privacy', title: 'Website privacy — bogtsi', description: 'How bogtsi.xyz handles website privacy: no visitor tracking, ordinary GitHub Pages hosting requests, and separate privacy policies for each app.', content: source(rootDir, 'templates/site-privacy.html', 'privacy template').toString('utf8') });
   const urls = ['', 'support', 'site-privacy', 'resources', ...marketing.products.map(p => p.route), ...marketing.resources.map(r => r.route)];

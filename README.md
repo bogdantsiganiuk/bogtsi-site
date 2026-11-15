@@ -85,6 +85,9 @@ Product routes are `/voxwarm/`, `/penumbra/`, `/shiver/`, `/dahlia/`,
 The resource directory at `/resources/` contains two printable, app-independent guides:
 `/resources/five-minute-vocal-warm-up/` and
 `/resources/private-reflection-worksheet/`.
+Each resource’s required `publishedAt` records its actual content publication
+date (`YYYY-MM-DD`), displayed as semantic `time` metadata in the directory and
+guide. It is not an app-update date or the product’s internal review timestamp.
 New pages have trailing-slash canonicals, unique metadata, and a crawlable
 `sitemap.xml` / `robots.txt`. Product structured data takes its identity and
 install URL from the registry; it contains no invented prices, offers, ratings,
