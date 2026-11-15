@@ -1,0 +1,89 @@
+{
+  "title": "Penumbra — A private journal for guided reflection",
+  "description": "Explore six guided journeys, a 120-prompt deck, and private on-device writing. See what is free in Penumbra, what Pro adds, and a no-app reflection worksheet.",
+  "headline": "A quieter place to meet yourself.",
+  "intro": "Six guided journeys. A deck of 120 prompts. Space to write honestly, at your own pace, with an optional Face ID lock and no account.",
+  "category": "Private reflection",
+  "tagline": "On-device journal. Yours to export. Not therapy.",
+  "cardHeadline": "Give one ordinary moment a little space.",
+  "theme": "earth",
+  "group": "practice",
+  "purchaseNote": "Writing is free on iPhone. Penumbra Pro is an optional subscription; local prices and any trial terms appear before purchase. Payment is charged to your Apple Account. Subscriptions renew automatically unless canceled at least 24 hours before the current period ends. Manage or cancel in the app's Settings or your App Store settings.",
+  "sourceVersion": "1.6.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Choose a gentle beginning.",
+      "text": "Start with Meeting Your Shadow, the free seven-day introduction, or choose one of the 30 free daily-reflection prompts. You can also open a blank journal entry without following a journey."
+    },
+    {
+      "title": "Write only what you want.",
+      "text": "Use a prompt, capture a trigger or glimmer, or make a two-tap mood and energy check-in. Voice capture can turn speech into editable text on your iPhone; review it before inserting. Typing is always an option."
+    },
+    {
+      "title": "Leave room to stop.",
+      "text": "Skip any prompt, close the app, or come back another day. Turn on the optional Face ID or passcode lock in Settings, and choose whether to export or make a manual backup."
+    }
+  ],
+  "features": [
+    {
+      "title": "A path, not a pile of questions.",
+      "text": "Six journeys offer 77 guided days in total: Meeting Your Shadow, The Inner Critic, Triggers & Projection, Boundaries & People-Pleasing, Grief & Letting Go, and Money & Scarcity. The seven-day introduction is free; Pro includes all six. Content notes appear before tender sessions, and prompts can be skipped."
+    },
+    {
+      "title": "Small entries count, too.",
+      "text": "Unlimited freeform writing, trigger and glimmer logs, and a free mood and energy check-in give you different ways to notice an ordinary day. Writing itself is never behind a paywall."
+    },
+    {
+      "title": "A question you can return to.",
+      "text": "Thirty daily-reflection prompts are free. Pro opens the full 120-question deck, deeper follow-ups, and six inner-child and parts exercises. Pro Insights includes emotion and trigger patterns, glimmers, check-in trends, and Then & Now to revisit a prompt and compare your own answers."
+    },
+    {
+      "title": "Keep a copy on your terms.",
+      "text": "Plain-text export and a full manual backup are free. Save a backup to Files or email it, optionally protected with a passphrase. A weekly backup reminder is opt-in; this is not automatic cloud sync. PDF export is part of Pro."
+    }
+  ],
+  "included": [
+    "Meeting Your Shadow, a seven-day guided introduction, and 30 daily-reflection prompts.",
+    "Unlimited searchable, editable plain-text journal entries.",
+    "Unlimited trigger and glimmer logs, plus mood and energy check-ins.",
+    "Optional Face ID or passcode lock and on-device voice capture where supported.",
+    "Plain-text export and full manual backup, with optional passphrase protection and a weekly reminder.",
+    "Crisis Resources available even before unlocking the journal."
+  ],
+  "premium": [
+    "All six journeys: 77 guided days in total.",
+    "The full 120-prompt deck and dive-deeper follow-up questions.",
+    "Six structured inner-child and parts exercises.",
+    "Insights for emotions, trigger clusters, glimmers, and reflection patterns, including Then & Now.",
+    "Seven- and 30-day mood and energy check-in trends.",
+    "PDF export."
+  ],
+  "privacyHeadline": "Your words belong to you.",
+  "privacy": [
+    "Journal entries, logs, check-ins, and journey progress are stored on your iPhone. There is no account or developer-operated journal cloud. The optional Face ID or passcode lock must be enabled in Settings.",
+    "Voice capture uses on-device speech recognition and saves no audio. If local recognition is unavailable for your device or language, typing remains available; the app does not switch to cloud transcription.",
+    "You decide when to share, export, or back up. Unprotected backups are readable text; your chosen email or storage provider may receive their contents. Optional passphrase protection is available, but a lost passphrase cannot be recovered by Penumbra.",
+    "No ads, analytics, or tracking. Apple and RevenueCat process purchase and subscription information, not your writing. Expo/EAS delivers app updates. Local reflection is separate from these distribution and billing services."
+  ],
+  "limitations": [
+    "Penumbra is a self-reflection tool, not therapy, diagnosis, or medical care. It does not promise trauma healing or a particular emotional outcome.",
+    "Some prompts may bring up difficult feelings. Skip, stop, or seek support rather than pushing through. Crisis Resources remain accessible before the journal is unlocked.",
+    "Backups are manual snapshots, not automatic sync. Keep exported files somewhere you trust; deleting an entry in the app does not delete copies you have shared."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/penumbra-1.png",
+      "alt": "Penumbra App Store screenshot lists six guided journeys. Meeting Your Shadow is seven days; the other five are marked Premium and last 14 days each.",
+      "width": 1290,
+      "height": 2796
+    },
+    {
+      "src": "marketing/assets/penumbra-3.png",
+      "alt": "Penumbra's Then & Now screen compares example answers about making time for drawing, with an Answer it again action.",
+      "width": 1290,
+      "height": 2796
+    }
+  ],
+  "resourceRoute": "resources/private-reflection-worksheet"
+}

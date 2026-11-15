@@ -1,0 +1,88 @@
+{
+  "title": "Voxwarm — Vocal warm-ups inside your range",
+  "description": "Find your range, hear a piano phrase, then sing it back with live pitch feedback. Explore Voxwarm's free warm-up tools and optional Premium for iPhone.",
+  "headline": "Vocal warm-ups, inside your range.",
+  "intro": "Find your range. Hear a piano phrase. Sing it back. Voxwarm fits each exercise to your voice and shows the note you are singing, as you sing it.",
+  "category": "A daily vocal practice",
+  "tagline": "Range-aware warm-ups. One phrase at a time.",
+  "cardHeadline": "Make a little time for your voice.",
+  "theme": "coral",
+  "group": "practice",
+  "purchaseNote": "Start free on iPhone. Premium is an optional subscription; local prices and terms appear in the app before purchase. Payment is charged to your Apple Account. Subscriptions renew automatically unless canceled at least 24 hours before the current period ends. Manage or cancel in your App Store settings.",
+  "sourceVersion": "1.1.0",
+  "reviewedAt": "2026-11-15",
+  "steps": [
+    {
+      "title": "Find your range.",
+      "text": "A guided range test finds your low and high notes. Adjust the result by hand whenever you like. Exercises transpose to stay inside the range you set; choose notes that feel comfortable today."
+    },
+    {
+      "title": "Let the piano lead.",
+      "text": "Listen to a short phrase. The piano stops, then a count-in gives you a moment to prepare. Playback and microphone listening take separate turns."
+    },
+    {
+      "title": "Sing. See the note.",
+      "text": "When it is your turn, the microphone opens and the pitch ladder follows your voice. Live pitch feedback is included free, with or without headphones."
+    }
+  ],
+  "features": [
+    {
+      "title": "Practice that starts with your range.",
+      "text": "Preview an exercise before you start, then follow a piano phrase transposed into your selected span. The library covers scales, arpeggios, sirens and glides, articulation, breathing, and cool-down. Five core patterns are free; Premium opens all 26."
+    },
+    {
+      "title": "Listen without the microphone.",
+      "text": "The Hear tab is listening practice only. Name the interval between two piano notes, or place a note in a key. Eight drills are free; Premium includes all 28 interval and scale-degree drills."
+    },
+    {
+      "title": "Feedback, not a finish line.",
+      "text": "Session scores keep tuning, steadiness, and finding the next note separate. Review a pitch graph, your session history, and each exercise's best score. Use the numbers as information, not a reason to push your voice."
+    },
+    {
+      "title": "A small practice you can return to.",
+      "text": "Begin with the free five-minute Singer warm-up and guided breathing. An optional daily reminder can help you make time; CSV and JSON export let you take your practice and range history with you."
+    }
+  ],
+  "included": [
+    "Guided range finder, manual range adjustment, and real-time pitch feedback.",
+    "Five core patterns and the five-minute Singer warm-up with guided breathing.",
+    "Every session score, practice history, and four weeks of vocal-range history.",
+    "Eight listen-only ear-training drills and an optional daily reminder.",
+    "Unlimited CSV and JSON data export."
+  ],
+  "premium": [
+    "All 26 exercise patterns, including cool-down patterns.",
+    "Speaker, Choir, and Audition presets, plus 10- and 15-minute routines.",
+    "Full vocal-range history beyond four weeks.",
+    "Exercise key and tempo controls, always inside your selected range.",
+    "Light voice warm-ups and custom exercises.",
+    "All 28 ear-training drills: the full 14-interval set and scale-degree drills."
+  ],
+  "privacyHeadline": "Your voice stays in the room.",
+  "privacy": [
+    "Microphone audio is analyzed in memory on your iPhone. It is not recorded, saved, or transmitted. The piano is generated on your device.",
+    "Range history, practice history, and settings are stored locally. When you export, the file goes to the destination you choose, under that service's policies.",
+    "No account, ads, analytics, or tracking. Vocal practice works offline; this does not mean purchases and app updates avoid online services.",
+    "Apple and RevenueCat handle purchase and subscription information, not your microphone audio or practice history. Expo/EAS delivers app updates. See the privacy policy for these service boundaries."
+  ],
+  "limitations": [
+    "Voxwarm is a training and practice tool, not a medical device, voice therapy, or medical care. It does not diagnose or treat conditions.",
+    "Stop and rest if you feel pain, strain, or hoarseness. Ask a qualified professional about persistent vocal symptoms.",
+    "A selected range is not a target to exceed. Choose a comfortable span for today; neither a score nor a warm-up promises range growth."
+  ],
+  "screenshots": [
+    {
+      "src": "marketing/assets/voxwarm-1.png",
+      "alt": "Voxwarm App Store screenshot: See every note as you sing it. The Your turn pitch ladder shows C-sharp 3.",
+      "width": 1290,
+      "height": 2796
+    },
+    {
+      "src": "marketing/assets/voxwarm-3.png",
+      "alt": "Voxwarm's Hear tab shows listen-only interval practice, with eight free drills and 28 drills in the full set. The microphone stays closed.",
+      "width": 1290,
+      "height": 2796
+    }
+  ],
+  "resourceRoute": "resources/five-minute-vocal-warm-up"
+}
