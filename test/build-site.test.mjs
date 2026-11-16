@@ -121,7 +121,7 @@ test('shell fetch and live checks honor app scope without contacting GitHub or t
   writeFileSync(join(dir, 'pages.json'), JSON.stringify(PAGES));
   writeFileSync(join(dir, 'marketing.json'), JSON.stringify({
     products: [{ app: 'wageproof', route: 'wageproof', content: 'marketing/apps/wageproof.json' }],
-    resources: [], featured: [], assets: [],
+    resources: [], appOrder: ['wageproof'], assets: [],
   }));
   // Replace only external commands: the real shell scripts still select routes,
   // stage files, validate markers and construct URLs. Fixtures contain no token.

@@ -11,7 +11,7 @@ legacy root redirects, then renders checked-in marketing content.
 
 `apps.json` is the only product-name/App Store identity registry.
 `marketing.json` explicitly lists the eleven marketed products, five resources,
-primary featured order, compact campaign order, and every public PNG/SVG/CSS asset. Product copy lives in
+one shared `appOrder`, and every public PNG/SVG/CSS asset. Product copy lives in
 `marketing/apps/<registry-slug>.json`; resources are trusted HTML body fragments
 in `marketing/resources/`. Content files themselves are not published.
 Source-version/review timestamps are internal provenance, not public freshness claims.
@@ -30,11 +30,12 @@ Two steps, and **both** are required:
    entries whose optional `app` field matches its slug, at those exact paths.
    Once the app is released and its identity is verified, add
    `"appStoreId": "<numeric ASC app id>"`. Leave it off while unreleased.
-   An ID alone does not market an app: add a product to `marketing.json` with
-   complete released-version copy and all three registered visual roles. The renderer
-   rejects unknown/unreleased identities, identity overrides, foreign routes,
-   unsafe source paths, duplicate outputs, missing/unregistered/foreign visuals,
-   invalid frame profiles, mismatched PNG/SVG dimensions, and unsupported SVG content.
+   An ID alone does not market an app: add a product to `marketing.json`, include
+   its identity exactly once in `appOrder`, and provide complete released-version
+   copy and all four registered visual roles. The renderer rejects unknown/unreleased
+   identities, identity overrides, foreign routes, unsafe source paths, duplicate
+   outputs, missing/unregistered/foreign visuals, invalid frame profiles, identical
+   screenshot pairs, mismatched PNG/SVG dimensions, and unsupported SVG content.
 2. **Grant the `APP_REPOS_READ_TOKEN` PAT read access to the new repo.** It is scoped to
    named repositories only — it does *not* cover repos added later.
 
@@ -71,21 +72,27 @@ published for other apps. Only HTML is published, never a recursive legal-docs c
 
 ## Marketing routes and content
 
-The homepage keeps Voxwarm and Penumbra as its primary pair, followed by a compact
-Dahlia/Shiver/Brightwater campaign row and the six remaining released products.
-`featured` and optional `campaigns` are separate ordered identity lists.
-An absent or empty `campaigns` list means no campaign promotion. Campaign entries
-must be distinct marketed apps, must not already be primary features, and must
-have a registered, published companion resource linked by the product's
-`resourceRoute`. Their cards reuse the same approved full-screen iPhone component
-and link to the existing product URL and complete app-independent resource.
-All eleven homepage introductions are screenshot-led: two featured, three campaign,
-and six catalog cards. Catalog groups span the available width with responsive
-three/two/one-column card grids. The catalog is the complement of the existing
-promotion lists, not a second identity registry. Each card reuses the complete
-native screenshot/iPhone scene, existing headline and description, and a direct
-“Meet” link to its existing full product page. The six catalog apps do not need
-companion resources; this change adds or revises no resources.
+The homepage starts with a native horizontal carousel, then gives every one of the
+eleven apps the same full-size, two-column highlight treatment. A single required
+`appOrder` controls both sections: Voxwarm, Penumbra, Dahlia, Shiver, Ascend, Duskmere,
+Halcyon, Brightwater, Posture Coach, Wageproof, and Maelzel. It must contain each
+marketed registry identity exactly once; missing, duplicate, unknown, and unmarketed
+identities fail closed. The obsolete `featured` and `campaigns` fields are rejected.
+
+Each equal-width carousel card shows the app's complete secondary screenshot and
+links to its own `#highlight-<registry-slug>` below. The focusable, labelled scroll
+region supports native swipe, trackpad, scrollbar, keyboard, and tab navigation,
+with proximity scroll snap, visible focus, persistent instructions, and a skip link.
+There is no carousel JavaScript, autoplay, fake control, hidden scrollbar, or input
+interception. Reduced-motion preferences disable smooth scrolling.
+
+Every highlight shows the existing full introduction, headline, tagline, primary
+screenshot, and “Meet” button. Its heading, phone, and button link to the canonical
+product page, not a raw image or App Store URL. Alternating desktop columns use CSS
+only; mobile always presents the copy before the phone. The homepage displays 22
+complete native screenshots: two distinct actual screens per app, with truthful
+source/demo captions. The five existing companion resources remain independent
+and unchanged; further resource work is deferred.
 `/support/` lists all 19 legal registry entries and their scoped routes,
 including Wageproof’s six English/Spanish links.
 `/site-privacy/` describes this website, not any app. Root `/privacy` and `/terms`
@@ -123,21 +130,22 @@ install URL from the registry; it contains no invented prices, offers, ratings,
 or reviews. `SoftwareApplication.screenshot` uses the complete original capture;
 `image`, Open Graph and social image metadata use the approved standalone iPhone
 PNG. Optional social metadata is empty on pages without a product image.
-The original 64 outputs remain; the manifest adds exactly 55 files
+The original 64 outputs remain; the manifest adds exactly 66 files
 (11 products, 5 guides/records, resource index, support, site privacy, sitemap, robots,
-22 PNGs, 11 SVGs and CSS), for 119 explicitly allowed output paths.
+33 PNGs, 11 SVGs and CSS), for 130 explicitly allowed output paths.
 
-Every product has exactly three required `visuals` roles, using the registry slug
+Every product has exactly four required `visuals` roles, using the registry slug
 even where the public product route is an alias:
 
 | Role | Registered asset | Use |
 |---|---|---|
 | `device` | `marketing/assets/<registry-slug>-device.png` | Approved standalone phone PNG, product/social image and full-render link |
-| `capture` | `marketing/assets/<registry-slug>-capture.png` | Unmodified complete native screenshot visible inside the approved HTML/CSS phone; full-source link and structured-data screenshot |
+| `capture` | `marketing/assets/<registry-slug>-capture.png` | Unmodified complete native screenshot inside the highlight/product phone; product full-source link and structured-data screenshot |
+| `secondaryCapture` | `marketing/assets/<registry-slug>-secondary-capture.png` | A different unmodified complete native screenshot inside the carousel phone |
 | `illustration` | `marketing/assets/<registry-slug>-art.svg` | Original conceptual art in product how-it-works and the existing resource cards/headers |
 
-All roles require real `width`, `height` and descriptive `alt` metadata. Captures
-also require their qualification `caption` and explicit `frameProfile` (`notch`
+All roles require real `width`, `height` and descriptive `alt` metadata. Both capture
+roles also require their qualification `caption` and explicit `frameProfile` (`notch`
 or `island`). Ascend uses `island`; the other approved captures use `notch`.
 The renderer reads the profile from content, not a runtime app-ID crop rule.
 No legacy image alias is supported. Product free/paid details remain text-only
@@ -151,12 +159,13 @@ filter. The conservative display corners mask edge chrome, and the sensor sits
 in the empty central status area. The original source and standalone render
 remain available at full resolution. Existing genuine captures are not new
 native captures or proof of the latest binary; demonstration content is not a
-real user outcome. Ascend retains the complete original Today screen.
+real user outcome. Ascend's primary capture retains the complete original Today screen.
 
 `scripts/marketing-assets.mjs` is a small fail-closed admission boundary:
-`VISUAL_FILES` defines the three identity filename suffixes and
+`VISUAL_FILES` defines the four identity filename suffixes and
 `validateVisualAsset(bytes, visual, role)` checks PNG signature/IHDR dimensions
-or the site's closed static SVG language. SVG allows only `svg`, `title`, `desc`,
+or the site's closed static SVG language. The build rejects primary/secondary
+captures with identical bytes before publishing. SVG allows only `svg`, `title`, `desc`,
 `g`, `path`, `circle`, `ellipse`, `defs`, `linearGradient`, `stop` and `mask`,
 with explicit static geometry/color/ARIA attributes, the SVG root namespace and
 matching dimensions/viewBox. Unknown tags/attributes, events, style/script,

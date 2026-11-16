@@ -7,7 +7,6 @@ const ORIGIN = 'https://bogtsi.xyz';
 const ALIASES = { umbra: 'penumbra', noctura: 'halcyon', reverie: 'duskmere' };
 const RESERVED = new Set(['privacy', 'terms', 'support', 'site-privacy', 'resources', 'marketing', 'index', 'robots', 'sitemap']);
 const THEMES = new Set(['coral', 'earth', 'night', 'ice', 'jade', 'ocean', 'garden', 'gold', 'indigo', 'slate']);
-const GROUPS = { rhythm: 'Find a daily rhythm', details: 'Look after the details', practice: 'Keep a practice of your own' };
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const lines = (s) => esc(s).replace(/\r?\n/g, '<br>');
 const storeUrl = (app) => `https://apps.apple.com/app/id${app.appStoreId}`;
@@ -18,8 +17,9 @@ const fail = (message) => { throw new Error(message); };
 // Pure: validate identity/routes and return the exact additional public files.
 // The homepage already belongs to the legacy 64-file publication contract.
 export function marketingFiles({ apps, marketing }) {
-  if (!marketing || !Array.isArray(marketing.products) || !Array.isArray(marketing.resources) || !Array.isArray(marketing.assets) || !Array.isArray(marketing.featured)) fail('explicit marketing manifest is required');
-  if (marketing.campaigns !== undefined && !Array.isArray(marketing.campaigns)) fail('campaigns must be a list of marketed app identities');
+  if (!marketing || !Array.isArray(marketing.products) || !Array.isArray(marketing.resources) || !Array.isArray(marketing.assets)) fail('explicit marketing manifest is required');
+  if ('featured' in marketing || 'campaigns' in marketing) fail('obsolete featured/campaigns configuration; use appOrder');
+  if (!Array.isArray(marketing.appOrder)) fail('appOrder must be an explicit list of marketed app identities');
   const registry = new Map();
   const storeIds = new Set();
   for (const app of apps) {
@@ -47,11 +47,12 @@ export function marketingFiles({ apps, marketing }) {
     routes.add(entry.route);
     files.push(`${entry.route}/index.html`);
   }
-  const featured = new Set();
-  for (const app of marketing.featured) {
-    if (!products.has(app) || featured.has(app)) fail(`unknown or duplicate featured app: ${app}`);
-    featured.add(app);
+  const ordered = new Set();
+  for (const app of marketing.appOrder) {
+    if (!products.has(app) || ordered.has(app)) fail(`unknown, unmarketed or duplicate appOrder identity: ${app}`);
+    ordered.add(app);
   }
+  if (ordered.size !== products.size) fail('appOrder must contain every marketed product exactly once');
   for (const resource of marketing.resources) {
     if (!products.has(resource.app)) fail(`unknown resource app: ${resource.app}`);
     if (!/^resources\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(resource.route) || routes.has(resource.route)) fail(`unsafe or duplicate resource route: ${resource.route}`);
@@ -60,14 +61,6 @@ export function marketingFiles({ apps, marketing }) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(resource.publishedAt || '') || !Number.isFinite(Date.parse(resource.publishedAt)) || new Date(resource.publishedAt).toISOString().slice(0, 10) !== resource.publishedAt) fail(`valid resource publication date required: ${resource.route}`);
     routes.add(resource.route);
     files.push(`${resource.route}/index.html`);
-  }
-  const campaigns = new Set();
-  for (const app of marketing.campaigns || []) {
-    if (!products.has(app)) fail(`unknown or ineligible campaign app: ${app}`);
-    if (campaigns.has(app)) fail(`duplicate campaign app: ${app}`);
-    if (featured.has(app)) fail(`campaign app is already featured: ${app}`);
-    if (!marketing.resources.some(resource => resource.app === app)) fail(`campaign app requires a published companion resource: ${app}`);
-    campaigns.add(app);
   }
   const assets = new Set();
   const allowedAssets = new Set(['marketing/assets/site.css', ...marketing.products.flatMap(entry => Object.values(VISUAL_FILES).map(file => `marketing/assets/${entry.app}-${file}`))]);
@@ -89,11 +82,11 @@ function source(rootDir, path, label) {
 }
 
 function validateContent(data, entry, marketing) {
-  for (const key of ['title', 'description', 'headline', 'intro', 'category', 'tagline', 'cardHeadline', 'theme', 'group', 'purchaseNote', 'sourceVersion', 'reviewedAt']) {
+  for (const key of ['title', 'description', 'headline', 'intro', 'category', 'tagline', 'cardHeadline', 'theme', 'purchaseNote', 'sourceVersion', 'reviewedAt']) {
     if (!text(data[key])) fail(`missing product ${key}: ${entry.app}`);
   }
   if ('appStoreId' in data || 'name' in data) fail(`product identity must come from apps.json: ${entry.app}`);
-  if (!THEMES.has(data.theme) || !Object.hasOwn(GROUPS, data.group)) fail(`invalid product theme or group: ${entry.app}`);
+  if (!THEMES.has(data.theme)) fail(`invalid product theme: ${entry.app}`);
   for (const [key, count] of [['steps', 3], ['features', 2]]) {
     if (!Array.isArray(data[key]) || (key === 'steps' ? data[key].length !== count : data[key].length < count) || data[key].some(item => !text(item.title) || !text(item.text))) fail(`invalid product ${key}: ${entry.app}`);
   }
@@ -101,25 +94,32 @@ function validateContent(data, entry, marketing) {
     if (!Array.isArray(data[key]) || !data[key].length || data[key].some(item => !text(item))) fail(`invalid product ${key}: ${entry.app}`);
   }
   if ('screenshots' in data) fail(`obsolete screenshots field: ${entry.app}`);
-  if (!data.visuals || typeof data.visuals !== 'object' || Array.isArray(data.visuals) || Object.keys(data.visuals).length !== 3 || Object.keys(data.visuals).some(role => !Object.hasOwn(VISUAL_FILES, role))) fail(`exactly three visual roles required: ${entry.app}`);
+  if (!data.visuals || typeof data.visuals !== 'object' || Array.isArray(data.visuals) || Object.keys(data.visuals).length !== 4 || Object.keys(data.visuals).some(role => !Object.hasOwn(VISUAL_FILES, role))) fail(`exactly four visual roles required: ${entry.app}`);
   for (const [role, file] of Object.entries(VISUAL_FILES)) {
     const visual = data.visuals[role];
     if (!visual || !text(visual.src) || !marketing.assets.includes(visual.src)) fail(`unregistered visual ${role}: ${entry.app}`);
     if (visual.src !== `marketing/assets/${entry.app}-${file}`) fail(`visual does not match product identity: ${entry.app}/${role}`);
     if (!text(visual.alt) || !Number.isInteger(visual.width) || !Number.isInteger(visual.height) || visual.width <= 0 || visual.height <= 0) fail(`invalid visual metadata: ${entry.app}/${role}`);
   }
-  if (!text(data.visuals.capture.caption) || !['notch', 'island'].includes(data.visuals.capture.frameProfile)) fail(`invalid capture caption or frame profile: ${entry.app}`);
+  for (const role of ['capture', 'secondaryCapture']) {
+    if (!text(data.visuals[role].caption) || !['notch', 'island'].includes(data.visuals[role].frameProfile)) fail(`invalid ${role} caption or frame profile: ${entry.app}`);
+  }
   if (data.resourceRoute && !marketing.resources.some(r => r.route === data.resourceRoute && r.app === entry.app)) fail(`unknown product resource route: ${data.resourceRoute}`);
 }
 
-function device({ app, data }, lazy = false) {
-  const image = data.visuals.capture;
-  return `<a class="iphone-device" id="phone-main-${app.slug}" data-frame-profile="${image.frameProfile}" href="/${esc(image.src)}" aria-label="Open the complete ${esc(app.name)} screenshot"><span class="iphone-ground-shadow" aria-hidden="true"></span><span class="iphone-chassis"><span class="iphone-button iphone-mute" aria-hidden="true"></span><span class="iphone-button iphone-volume-up" aria-hidden="true"></span><span class="iphone-button iphone-volume-down" aria-hidden="true"></span><span class="iphone-button iphone-power" aria-hidden="true"></span><span class="iphone-antenna iphone-antenna-top" aria-hidden="true"></span><span class="iphone-antenna iphone-antenna-bottom" aria-hidden="true"></span><span class="iphone-glass" style="aspect-ratio:${image.width} / ${image.height}"><img class="iphone-screen-image" src="/${esc(image.src)}" width="${image.width}" height="${image.height}" alt="${esc(image.alt)}" decoding="async"${lazy ? ' loading="lazy"' : ''}><span class="iphone-sensor" aria-hidden="true"><span class="iphone-earpiece"></span><span class="iphone-camera"></span></span></span></span></a>`;
+function device({ app, entry, data }, { placement = 'main', visual = 'capture', link = 'source', lazy = false } = {}) {
+  const image = data.visuals[visual];
+  const tag = link ? 'a' : 'span';
+  const destination = link === 'product' ? `/${entry.route}/` : `/${image.src}`;
+  const action = link === 'product' ? `Meet ${app.name}` : `Open the complete ${app.name} screenshot`;
+  return `<${tag} class="iphone-device" id="phone-${placement}-${app.slug}" data-frame-profile="${image.frameProfile}"${link ? ` href="${esc(destination)}" aria-label="${esc(action)}"` : ''}><span class="iphone-ground-shadow" aria-hidden="true"></span><span class="iphone-chassis"><span class="iphone-button iphone-mute" aria-hidden="true"></span><span class="iphone-button iphone-volume-up" aria-hidden="true"></span><span class="iphone-button iphone-volume-down" aria-hidden="true"></span><span class="iphone-button iphone-power" aria-hidden="true"></span><span class="iphone-antenna iphone-antenna-top" aria-hidden="true"></span><span class="iphone-antenna iphone-antenna-bottom" aria-hidden="true"></span><span class="iphone-glass" style="aspect-ratio:${image.width} / ${image.height}"><img class="iphone-screen-image" src="/${esc(image.src)}" width="${image.width}" height="${image.height}" alt="${esc(image.alt)}" decoding="async"${lazy ? ' loading="lazy"' : ''}><span class="iphone-sensor" aria-hidden="true"><span class="iphone-earpiece"></span><span class="iphone-camera"></span></span></span></span></${tag}>`;
 }
 
-function scene(product, lazy = false) {
+function scene(product, { placement = 'main', visual = 'capture', link = 'source', lazy = false, sources = true } = {}) {
   const { app, data } = product;
-  return `<figure class="iphone-scene" id="scene-${app.slug}" aria-label="${esc(app.name)} shown on an illustrative iPhone"><div class="iphone-stage">${device(product, lazy)}</div><figcaption><p>${esc(data.visuals.capture.caption)}</p><p class="frame-note">Complete native screenshot in an original illustrative frame; not a device photograph.</p><details class="scene-sources"><summary>Open complete images</summary><ul><li><a href="/${esc(data.visuals.capture.src)}">Complete source screenshot · ${data.visuals.capture.width} × ${data.visuals.capture.height}</a></li><li><a href="/${esc(data.visuals.device.src)}">Standalone iPhone render · ${data.visuals.device.width} × ${data.visuals.device.height}</a></li></ul></details></figcaption></figure>`;
+  const image = data.visuals[visual];
+  const sourceLinks = sources ? `<details class="scene-sources"><summary>Open complete images</summary><ul><li><a href="/${esc(image.src)}">Complete source screenshot · ${image.width} × ${image.height}</a></li><li><a href="/${esc(data.visuals.device.src)}">Standalone iPhone render · ${data.visuals.device.width} × ${data.visuals.device.height}</a></li></ul></details>` : '';
+  return `<figure class="iphone-scene" id="scene-${placement}-${app.slug}" aria-label="${esc(app.name)} shown on an illustrative iPhone"><div class="iphone-stage">${device(product, { placement, visual, link, lazy })}</div><figcaption><p>${esc(image.caption)}</p><p class="frame-note">Complete native screenshot in an original illustrative frame; not a device photograph.</p>${sourceLinks}</figcaption></figure>`;
 }
 
 function art(data) {
@@ -154,31 +154,17 @@ function resourceCards(products, marketing) {
 }
 
 function homepage(products, marketing, template) {
-  const byApp = new Map(products.map(p => [p.app.slug, p]));
-  const featured = marketing.featured.map((slug, i) => {
-    const { app, entry, data } = byApp.get(slug);
-    const visual = `<div class="feature-art">${scene({ app, data }, i > 0)}</div>`;
-    const copy = `<div class="feature-copy"><p class="eyebrow">0${i + 1} / ${esc(app.name)} · ${esc(data.category)}</p><h3 id="featured-${app.slug}" class="feature-title">${lines(data.cardHeadline)}</h3><p>${esc(data.intro)}</p><a class="button ${slug === 'umbra' ? 'button-light' : 'button-coral'}" href="/${entry.route}/">Meet ${esc(app.name)} <span aria-hidden="true">↗</span></a><div class="feature-meta">${esc(data.tagline)}</div></div>`;
-    return `<article class="feature ${slug === 'umbra' ? 'feature-pen' : 'feature-vox'}" aria-labelledby="featured-${app.slug}">${slug === 'umbra' ? visual + copy : copy + visual}</article>`;
+  const byApp = new Map(products.map(product => [product.app.slug, product]));
+  const ordered = marketing.appOrder.map(slug => byApp.get(slug));
+  const carousel = ordered.map((product, index) => {
+    const { app, data } = product;
+    return `<li class="carousel-item"><a class="carousel-card theme-${data.theme}" href="#highlight-${app.slug}"><div class="carousel-copy"><p class="eyebrow">${esc(data.category)}</p><h3>${esc(app.name)}</h3></div>${scene(product, { placement: 'carousel', visual: 'secondaryCapture', link: null, lazy: index > 0, sources: false })}<span class="carousel-explore">Explore below <span aria-hidden="true">↓</span></span></a></li>`;
   }).join('');
-  const campaigns = (marketing.campaigns || []).map(slug => {
-    const product = byApp.get(slug);
+  const highlights = ordered.map(product => {
     const { app, entry, data } = product;
-    const resource = marketing.resources.find(item => item.app === slug && item.route === data.resourceRoute);
-    if (!resource) fail(`campaign app requires its linked companion resource: ${slug}`);
-    return `<article class="campaign-card theme-${data.theme}" aria-labelledby="campaign-${app.slug}"><div class="campaign-copy"><p class="eyebrow">${esc(app.name)} / ${esc(data.category)}</p><h3 id="campaign-${app.slug}">${esc(data.cardHeadline)}</h3></div><div class="campaign-art product-art">${scene(product, true)}</div><div class="campaign-links"><a class="inline-link" href="/${entry.route}/">Meet ${esc(app.name)} <span aria-hidden="true">↗</span></a><a class="inline-link" href="/${resource.route}/">${esc(resource.title)}</a></div></article>`;
+    return `<article class="feature theme-${data.theme}" id="highlight-${app.slug}" tabindex="-1" aria-labelledby="highlight-title-${app.slug}"><div class="feature-copy"><p class="eyebrow">${esc(data.category)}</p><h3 id="highlight-title-${app.slug}" class="feature-title"><a href="/${entry.route}/">${esc(app.name)}<br>${lines(data.cardHeadline)}</a></h3><p>${esc(data.intro)}</p><a class="button" href="/${entry.route}/">Meet ${esc(app.name)} <span aria-hidden="true">↗</span></a><div class="feature-meta">${esc(data.tagline)}</div></div><div class="feature-art">${scene(product, { placement: 'highlight', link: 'product', lazy: true, sources: false })}</div></article>`;
   }).join('');
-  const promoted = new Set([...marketing.featured, ...(marketing.campaigns || [])]);
-  const catalog = Object.entries(GROUPS).map(([group, title]) => {
-    const members = products.filter(product => !promoted.has(product.app.slug) && product.data.group === group);
-    if (!members.length) return '';
-    return `<section class="catalog-group" aria-labelledby="group-${group}"><h3 class="group-label" id="group-${group}">${title}</h3><div class="catalog-grid">${members.map(product => {
-      const { app, entry, data } = product;
-      return `<article class="catalog-card theme-${data.theme}" aria-labelledby="catalog-${app.slug}"><div class="catalog-art product-art">${scene(product, true)}</div><div class="catalog-copy"><p class="eyebrow">${esc(app.name)} / ${esc(data.category)}</p><h4 id="catalog-${app.slug}">${esc(data.cardHeadline)}</h4><p class="catalog-description">${esc(data.description)}</p><a class="inline-link" href="/${entry.route}/">Meet ${esc(app.name)} <span aria-hidden="true">↗</span></a>${data.tagline ? `<p class="catalog-tagline">${esc(data.tagline)}</p>` : ''}</div></article>`;
-    }).join('')}</div></section>`;
-  }).join('');
-  const campaignSection = campaigns ? `<section class="campaigns shell" aria-labelledby="campaign-title"><div class="section-heading"><h2 id="campaign-title" class="eyebrow">Ideas, habits, and everyday care</h2><span>An app alongside a useful paper tool.</span></div><div class="campaign-grid">${campaigns}</div></section>` : '';
-  return template.replaceAll('__FEATURED__', featured).replaceAll('__CAMPAIGNS__', campaignSection).replaceAll('__CATALOG__', catalog).replaceAll('__RESOURCES__', resourceCards(products, marketing));
+  return template.replaceAll('__CAROUSEL__', carousel).replaceAll('__HIGHLIGHTS__', highlights).replaceAll('__RESOURCES__', resourceCards(products, marketing));
 }
 
 export function buildMarketing({ rootDir, outDir, apps, marketing }) {
@@ -189,6 +175,7 @@ export function buildMarketing({ rootDir, outDir, apps, marketing }) {
     const data = JSON.parse(source(rootDir, entry.content, 'product content').toString('utf8'));
     validateContent(data, entry, marketing);
     for (const [role, visual] of Object.entries(data.visuals)) validateVisualAsset(assets.get(visual.src), visual, role);
+    if (assets.get(data.visuals.capture.src).equals(assets.get(data.visuals.secondaryCapture.src))) fail(`primary and secondary screenshots must contain distinct bytes: ${entry.app}`);
     return { entry, data, app: apps.find(app => app.slug === entry.app) };
   });
   const resources = marketing.resources.map(resource => {

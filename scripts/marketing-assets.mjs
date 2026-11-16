@@ -1,5 +1,5 @@
 // Closed publication vocabulary for this site's original art, not a general SVG sanitizer.
-export const VISUAL_FILES = Object.freeze({ device: 'device.png', capture: 'capture.png', illustration: 'art.svg' });
+export const VISUAL_FILES = Object.freeze({ device: 'device.png', capture: 'capture.png', secondaryCapture: 'secondary-capture.png', illustration: 'art.svg' });
 
 const NUMBER = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?%?$/;
 const ID = /^[A-Za-z_][A-Za-z0-9_.-]*$/;

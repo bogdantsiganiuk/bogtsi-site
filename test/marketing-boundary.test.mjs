@@ -4,7 +4,7 @@ import { expectedFiles } from '../scripts/verify-site.mjs';
 
 const app = { slug: 'voxwarm', name: 'Voxwarm', repo: 'owner/voxwarm', appStoreId: '6796622537' };
 const product = { app: 'voxwarm', route: 'voxwarm', content: 'marketing/apps/voxwarm.json' };
-const manifest = (entry) => ({ featured: [], products: [entry], resources: [], assets: [] });
+const manifest = (entry) => ({ appOrder: [entry.app], products: [entry], resources: [], assets: [] });
 
 test('refuses a marketed product whose app identity is unknown', () => {
   assert.throws(() => expectedFiles([app], [], manifest({ ...product, app: 'unknown-app' })), /unknown.*app/i);

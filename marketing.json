@@ -1,12 +1,16 @@
 {
-  "featured": [
+  "appOrder": [
     "voxwarm",
-    "umbra"
-  ],
-  "campaigns": [
+    "umbra",
     "dahlia",
     "shiver",
-    "brightwater"
+    "ascend",
+    "reverie",
+    "noctura",
+    "brightwater",
+    "posture-coach",
+    "wageproof",
+    "maelzel"
   ],
   "products": [
     {
@@ -141,6 +145,17 @@
     "marketing/assets/reverie-art.svg",
     "marketing/assets/maelzel-device.png",
     "marketing/assets/maelzel-capture.png",
-    "marketing/assets/maelzel-art.svg"
+    "marketing/assets/maelzel-art.svg",
+    "marketing/assets/voxwarm-secondary-capture.png",
+    "marketing/assets/umbra-secondary-capture.png",
+    "marketing/assets/dahlia-secondary-capture.png",
+    "marketing/assets/shiver-secondary-capture.png",
+    "marketing/assets/ascend-secondary-capture.png",
+    "marketing/assets/reverie-secondary-capture.png",
+    "marketing/assets/noctura-secondary-capture.png",
+    "marketing/assets/brightwater-secondary-capture.png",
+    "marketing/assets/posture-coach-secondary-capture.png",
+    "marketing/assets/wageproof-secondary-capture.png",
+    "marketing/assets/maelzel-secondary-capture.png"
   ]
 }

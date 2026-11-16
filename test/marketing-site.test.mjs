@@ -48,41 +48,39 @@ test('requires real calendar publication dates for resource metadata', () => {
   }
 });
 
-test('rejects invalid campaign promotion inputs at the authoring boundary', () => {
+test('requires appOrder to contain every marketed product exactly once at the authoring boundary', () => {
   const control = manifest();
-  control.campaigns = [];
+  control.appOrder = control.products.map(product => product.app);
   assert.doesNotThrow(() => marketingFiles({ apps, marketing: control }));
 
-  const eligible = manifest();
-  eligible.campaigns = ['dahlia'];
-  eligible.resources = eligible.resources.filter(resource => resource.app !== 'dahlia');
-  eligible.resources.push({
-    app: 'dahlia',
-    route: 'resources/choose-tonight-date-planner',
-    content: 'marketing/resources/choose-tonight-date-planner.html',
-    title: 'Choose-tonight date planner',
-    description: 'A printable planning card for choosing an activity together without an app.',
-    publishedAt: '2026-11-16',
-  });
-  assert.doesNotThrow(() => marketingFiles({ apps, marketing: eligible }));
+  const reordered = structuredClone(control);
+  reordered.appOrder.reverse();
+  assert.doesNotThrow(() => marketingFiles({ apps, marketing: reordered }));
+
+  assert.doesNotThrow(() => marketingFiles({
+    apps, marketing: { appOrder: [], products: [], resources: [], assets: [] },
+  }));
 
   const cases = [
-    ['ineligible registered app without a marketed product', marketing => { marketing.campaigns = ['sugar-free']; }],
-    ['unknown app', marketing => { marketing.campaigns = ['unknown-app']; }],
-    ['duplicate promotion', marketing => { marketing.campaigns = ['dahlia', 'dahlia']; }],
-    ['already-primary promotion', marketing => { marketing.campaigns = ['voxwarm']; }],
-    ['missing published companion', marketing => {
-      marketing.resources = marketing.resources.filter(resource => resource.app !== 'dahlia');
-    }],
-    ['wrong list type', marketing => { marketing.campaigns = 'dahlia'; }],
+    ['missing order', undefined],
+    ['wrong list type', 'voxwarm'],
+    ['unknown app', [...control.appOrder.slice(0, -1), 'unknown-app']],
+    ['registered but unmarketed app', [...control.appOrder.slice(0, -1), 'sugar-free']],
+    ['duplicate product', [...control.appOrder.slice(0, -1), control.appOrder[0]]],
+    ['omitted product', control.appOrder.slice(0, -1)],
   ];
-  for (const [label, mutate] of cases) {
-    const marketing = structuredClone(eligible);
-    mutate(marketing);
-    const unpromoted = structuredClone(marketing);
-    unpromoted.campaigns = [];
-    assert.doesNotThrow(() => marketingFiles({ apps, marketing: unpromoted }), `${label} preconditions`);
-    assert.throws(() => marketingFiles({ apps, marketing }), /campaign/i, label);
+  for (const [label, appOrder] of cases) {
+    const marketing = structuredClone(control);
+    marketing.appOrder = appOrder;
+    assert.throws(() => marketingFiles({ apps, marketing }), /appOrder|app order/i, label);
+  }
+});
+
+test('rejects obsolete promotion lists instead of ignoring legacy configuration', () => {
+  for (const key of ['featured', 'campaigns']) {
+    const marketing = manifest();
+    marketing[key] = [];
+    assert.throws(() => marketingFiles({ apps, marketing }), /obsolete|appOrder/i, key);
   }
 });
 
@@ -147,7 +145,7 @@ test('rejects missing, unregistered, foreign and dimension-mismatched visual rol
   try {
     const contentPath = join(rootDir, marketing.products[0].content);
     const original = JSON.parse(readFileSync(contentPath, 'utf8'));
-    for (const role of ['device', 'capture', 'illustration']) {
+    for (const role of ['device', 'capture', 'secondaryCapture', 'illustration']) {
       const data = structuredClone(original);
       const visual = data.visuals[role];
       const assetPath = join(rootDir, visual.src);
@@ -160,7 +158,7 @@ test('rejects missing, unregistered, foreign and dimension-mismatched visual rol
       visual.src = `marketing/assets/not-registered-${role === 'illustration' ? 'art.svg' : `${role}.png`}`;
       writeFileSync(contentPath, JSON.stringify(data));
       assert.throws(() => buildMarketing(fixture), /unregistered.*visual/i);
-      visual.src = `marketing/assets/umbra-${role === 'illustration' ? 'art.svg' : `${role}.png`}`;
+      visual.src = `marketing/assets/umbra-${role === 'illustration' ? 'art.svg' : role === 'secondaryCapture' ? 'secondary-capture.png' : `${role}.png`}`;
       writeFileSync(contentPath, JSON.stringify(data));
       assert.throws(() => buildMarketing(fixture), /visual.*identity/i);
       visual.src = src;
@@ -190,20 +188,42 @@ test('rejects missing, unregistered, foreign and dimension-mismatched visual rol
     legacy.screenshots = [original.visuals.capture];
     writeFileSync(contentPath, JSON.stringify(legacy));
     assert.throws(() => buildMarketing(fixture), /screenshots|obsolete|visual/i);
-    for (const profile of [undefined, '', 'phone', 'notch" onload="alert(1)']) {
-      const invalid = structuredClone(original);
-      invalid.visuals.capture.frameProfile = profile;
-      writeFileSync(contentPath, JSON.stringify(invalid));
-      assert.throws(() => buildMarketing(fixture), /frame profile/i);
+    for (const role of ['capture', 'secondaryCapture']) {
+      for (const profile of [undefined, '', 'phone', 'notch" onload="alert(1)']) {
+        const invalid = structuredClone(original);
+        invalid.visuals[role].frameProfile = profile;
+        writeFileSync(contentPath, JSON.stringify(invalid));
+        assert.throws(() => buildMarketing(fixture), /frame profile/i);
+      }
+      for (const caption of [undefined, '', '   ']) {
+        const invalid = structuredClone(original);
+        invalid.visuals[role].caption = caption;
+        writeFileSync(contentPath, JSON.stringify(invalid));
+        assert.throws(() => buildMarketing(fixture), /caption/i);
+      }
     }
     const extra = structuredClone(original);
     extra.visuals.poster = original.visuals.device;
     writeFileSync(contentPath, JSON.stringify(extra));
     assert.throws(() => buildMarketing(fixture), /visual roles/i);
-    const noCaption = structuredClone(original);
-    delete noCaption.visuals.capture.caption;
-    writeFileSync(contentPath, JSON.stringify(noCaption));
-    assert.throws(() => buildMarketing(fixture), /caption/i);
+  } finally { rmSync(rootDir, { recursive: true, force: true }); }
+});
+
+test('rejects identical primary and secondary screenshot bytes before publication', () => {
+  const fixture = visualFixture();
+  const { rootDir, outDir, marketing } = fixture;
+  try {
+    buildMarketing(fixture);
+    rmSync(outDir, { recursive: true, force: true });
+    const contentPath = join(rootDir, marketing.products[0].content);
+    const data = JSON.parse(readFileSync(contentPath, 'utf8'));
+    const { capture, secondaryCapture } = data.visuals;
+    secondaryCapture.width = capture.width;
+    secondaryCapture.height = capture.height;
+    writeFileSync(contentPath, JSON.stringify(data));
+    writeFileSync(join(rootDir, secondaryCapture.src), readFileSync(join(rootDir, capture.src)));
+    assert.throws(() => buildMarketing(fixture), /screenshots.*distinct bytes/i);
+    assert.equal(existsSync(outDir), false);
   } finally { rmSync(rootDir, { recursive: true, force: true }); }
 });
 
