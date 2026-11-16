@@ -17,8 +17,9 @@ in `marketing/resources/`. Content files themselves are not published.
 Source-version/review timestamps are internal provenance, not public freshness claims.
 
 App repos hold no workflow and no secret. Marketing never enters the PAT-backed
-fetch. There is no framework, external font, analytics, pixel, cookie, form,
-recording, or reflection upload.
+fetch. There is no framework, external font, advertising pixel, cookie, form,
+recording, or reflection upload. Website-only aggregate Cloudflare Web Analytics
+is installed as described below; each app’s privacy policy remains separate.
 
 ## Adding an app
 
@@ -78,6 +79,13 @@ must be distinct marketed apps, must not already be primary features, and must
 have a registered, published companion resource linked by the product's
 `resourceRoute`. Their cards reuse the same approved full-screen iPhone component
 and link to the existing product URL and complete app-independent resource.
+All eleven homepage introductions are screenshot-led: two featured, three campaign,
+and six catalog cards. Catalog groups span the available width with responsive
+three/two/one-column card grids. The catalog is the complement of the existing
+promotion lists, not a second identity registry. Each card reuses the complete
+native screenshot/iPhone scene, existing headline and description, and a direct
+“Meet” link to its existing full product page. The six catalog apps do not need
+companion resources; this change adds or revises no resources.
 `/support/` lists all 19 legal registry entries and their scoped routes,
 including Wageproof’s six English/Spanish links.
 `/site-privacy/` describes this website, not any app. Root `/privacy` and `/terms`
@@ -169,11 +177,27 @@ Search Console verification is a separate owner-authorized action. No verificati
 file or tag is currently registered. If a file is chosen later, review and add
 its exact public path to the publication contract; never relax the guard.
 
-Website analytics remains blocked on the owner's real Cloudflare Web Analytics
-public site token. There is no active beacon or placeholder tracking. Do not
-publish a dummy token, credentials, or a privacy statement claiming analytics is
-active. Wire the real public token only after it is supplied and coordinate the
-website privacy update with that actual change.
+Cloudflare Web Analytics is installed using the owner-supplied literal module
+beacon in `templates/page.html`. Its site token
+`b315f78a92b84683a6fe606a1ef1a05a` is intentionally public, not a credential.
+The manual embed covers exactly 20 generated pages: the homepage, eleven product
+pages, five resources, the resource directory, support directory, and website
+privacy page. It is absent from the 60 byte-preserved app-scoped legal/support
+pages and both legacy redirects. No app analytics SDK or app privacy policy changes.
+
+The provider setup uses Cloudflare Web Analytics for `bogtsi.xyz` with this manual
+snippet; do not also enable an automatic injection that would duplicate it.
+See [Cloudflare’s setup documentation](https://developers.cloudflare.com/web-analytics/get-started/)
+and [FAQ](https://developers.cloudflare.com/web-analytics/faq/).
+The provider’s current embed uses `type='module'`; no SRI pin is supplied because
+the vendor does not offer safe version-pinning for this script.
+Aggregate page views, visits, performance, referrers, and device/browser/country
+summaries are approximate, not exact unique-person counts. The beacon uses no
+cookies, browser storage, or fingerprinting. There are no custom conversion events,
+visible counters, or query-string/UTM campaign attribution. Dashboard updates can
+be delayed, and blockers or failed requests can undercount visits.
+Installation and HTTP delivery do not verify real visitor ingestion; that requires
+the owner’s provider dashboard. Do not send synthetic analytics requests as proof.
 
 Until Apple issues real provider/campaign tokens, App Store links are ordinary
 `https://apps.apple.com/app/id<verified-id>` links. Do not invent campaign IDs,
