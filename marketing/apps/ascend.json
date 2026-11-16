@@ -7,7 +7,6 @@
   "tagline": "Consistency earns the XP. The scale does not.",
   "cardHeadline": "A weight log with a fantasy-RPG twist. Earn XP for showing up, not a number.",
   "theme": "gold",
-  "group": "practice",
   "purchaseNote": "Ascend Pro is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal. The free features below reflect the October 5, 2026 production update for app version 1.8.0.",
   "sourceVersion": "1.8.0; production OTA 991b5e0, October 5, 2026",
   "reviewedAt": "2026-11-15",
@@ -82,6 +81,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Ascend; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/ascend-secondary-capture.png",
+      "width": 1290,
+      "height": 2796,
+      "alt": "Ascend Character screen showing example weekly logging, a Rebirth class-change option, and achievement badges.",
+      "caption": "Character progress · example logs and achievements; purchase terms remain in the app.",
+      "frameProfile": "island"
     }
   }
 }

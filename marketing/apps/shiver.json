@@ -7,7 +7,6 @@
   "tagline": "Start warm. Finish cold. Keep room for rest.",
   "cardHeadline": "A hands-free cold-shower timer, with graduated plans and room for rest days.",
   "theme": "ice",
-  "group": "rhythm",
   "purchaseNote": "Shiver Pro is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
   "sourceVersion": "1.5.0",
   "reviewedAt": "2026-11-15",
@@ -82,6 +81,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Shiver; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/shiver-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Shiver 14-Day Starter plan showing warm, cool, and cold phases in its day-by-day schedule.",
+      "caption": "App plan view · not a clinical claim or a personal exposure prescription.",
+      "frameProfile": "notch"
     }
   }
 }

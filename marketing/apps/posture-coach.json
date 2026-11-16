@@ -7,7 +7,6 @@
   "tagline": "A reminder to move, not a posture score.",
   "cardHeadline": "Gentle desk reminders and guided stretches that fit between the meetings.",
   "theme": "jade",
-  "group": "rhythm",
   "purchaseNote": "Posture Coaching Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
   "sourceVersion": "1.6.1",
   "reviewedAt": "2026-11-15",
@@ -81,6 +80,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Posture Coaching; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/posture-coach-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Posture Coaching guided stretch session showing a timed movement and session controls.",
+      "caption": "Guided movement · app demonstration, not a diagnosis or treatment claim.",
+      "frameProfile": "notch"
     }
   }
 }

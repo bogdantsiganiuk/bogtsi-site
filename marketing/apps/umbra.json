@@ -7,7 +7,6 @@
   "tagline": "On-device journal. Yours to export. Not therapy.",
   "cardHeadline": "Give one ordinary moment a little space.",
   "theme": "earth",
-  "group": "practice",
   "purchaseNote": "Writing is free on iPhone. Penumbra Pro is an optional subscription; local prices and any trial terms appear before purchase. Payment is charged to your Apple Account. Subscriptions renew automatically unless canceled at least 24 hours before the current period ends. Manage or cancel in the app's Settings or your App Store settings.",
   "sourceVersion": "1.6.0",
   "reviewedAt": "2026-11-15",
@@ -91,6 +90,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Penumbra; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/umbra-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Penumbra Then & Now reflection screen with an example prompt, two example journal entries, and an Answer it again action.",
+      "caption": "Then & Now · demonstration journal entries, not a testimonial.",
+      "frameProfile": "notch"
     }
   },
   "resourceRoute": "resources/private-reflection-worksheet"

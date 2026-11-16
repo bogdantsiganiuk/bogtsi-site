@@ -7,7 +7,6 @@
   "tagline": "A plan for tonight, not another feed to scroll.",
   "cardHeadline": "Date ideas for the time and budget you have. Pick one, make a plan, go together.",
   "theme": "garden",
-  "group": "details",
   "purchaseNote": "Dahlia Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
   "sourceVersion": "1.5.0",
   "reviewedAt": "2026-11-15",
@@ -82,6 +81,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Dahlia; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/dahlia-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Dahlia Planned screen showing a saved example activity, reminder time, and move or cancel actions.",
+      "caption": "A saved plan · example activity and time.",
+      "frameProfile": "notch"
     }
   }
 }

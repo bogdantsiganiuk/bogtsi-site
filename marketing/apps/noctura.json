@@ -7,7 +7,6 @@
   "tagline": "Make a mix, set a timer, let the day quiet down.",
   "cardHeadline": "Mix your own sleep sounds, settle into a story, and let a timer fade things out.",
   "theme": "night",
-  "group": "rhythm",
   "purchaseNote": "Halcyon Premium is an auto-renewing subscription. The annual plan offers a 7-day free trial, subject to eligibility. Cancel at least 24 hours before the trial or subscription ends to avoid renewal; manage it in your App Store account settings.",
   "sourceVersion": "1.4.1",
   "reviewedAt": "2026-11-15",
@@ -81,6 +80,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Halcyon; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/noctura-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Halcyon sound library showing the app’s available sound choices.",
+      "caption": "Sound library · choose sounds for a mix.",
+      "frameProfile": "notch"
     }
   }
 }

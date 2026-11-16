@@ -7,7 +7,6 @@
   "tagline": "Range-aware warm-ups. One phrase at a time.",
   "cardHeadline": "Make a little time for your voice.",
   "theme": "coral",
-  "group": "practice",
   "purchaseNote": "Start free on iPhone. Premium is an optional subscription; local prices and terms appear in the app before purchase. Payment is charged to your Apple Account. Subscriptions renew automatically unless canceled at least 24 hours before the current period ends. Manage or cancel in your App Store settings.",
   "sourceVersion": "1.1.0",
   "reviewedAt": "2026-11-15",
@@ -90,6 +89,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Voxwarm; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/voxwarm-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Voxwarm Hear screen showing a listening-only interval question, Play control, and answer choices.",
+      "caption": "Hear · example interval drill; listening only.",
+      "frameProfile": "notch"
     }
   },
   "resourceRoute": "resources/five-minute-vocal-warm-up"

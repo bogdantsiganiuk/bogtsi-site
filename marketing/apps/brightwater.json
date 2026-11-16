@@ -7,7 +7,6 @@
   "tagline": "Your tank, its readings, and the next small job.",
   "cardHeadline": "Water-test logs, tank-care reminders and a little less aquarium admin.",
   "theme": "ocean",
-  "group": "details",
   "purchaseNote": "Brightwater Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
   "sourceVersion": "1.2.0",
   "reviewedAt": "2026-11-15",
@@ -87,6 +86,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Brightwater; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/brightwater-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Brightwater quick-log sheet showing an example temperature field, keypad, and Save or Cancel controls.",
+      "caption": "Quick logging · example tank and reading.",
+      "frameProfile": "notch"
     }
   }
 }

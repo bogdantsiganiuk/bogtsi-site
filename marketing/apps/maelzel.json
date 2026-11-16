@@ -7,7 +7,6 @@
   "tagline": "A precise click, with room to grow beyond it.",
   "cardHeadline": "A precise metronome, tempo training and setlists for time with your instrument.",
   "theme": "coral",
-  "group": "practice",
   "purchaseNote": "Every feature is free to try for 3 days (72 hours) from your original trial purchase. After that, continuing to use the metronome and trainer requires a one-time lifetime purchase. There is no automatic charge and no renewal. Reinstalling, restoring purchases, or importing a backup does not restart the trial.",
   "sourceVersion": "1.0.0",
   "reviewedAt": "2026-11-15",
@@ -78,6 +77,14 @@
       "width": 1000,
       "height": 640,
       "alt": "Original supporting illustration for Maelzel; conceptual artwork, not an app screen."
+    },
+    "secondaryCapture": {
+      "src": "marketing/assets/maelzel-secondary-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Maelzel Gaps Trainer showing practice controls for alternating audible and silent beats.",
+      "caption": "Gaps Trainer · a practice setup from the 1.0 capture set.",
+      "frameProfile": "notch"
     }
   }
 }
