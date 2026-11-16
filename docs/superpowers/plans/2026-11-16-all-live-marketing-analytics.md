@@ -17,7 +17,7 @@
 - Companion resources were explicitly called bad and deferred. Do not add, revise or delete the five existing resource bodies, their metadata or links; do not create resourceRoute requirements for the six catalog apps.
 - Preserve featured Voxwarm/Penumbra and the existing three campaign cards, all11 original SVG bytes, all22 approved PNG bytes, full native screenshot pixels/aspect/frame component, native app/listing source files and every existing free/paid/privacy/safety boundary.
 - Preserve60app-scoped legal pages byte-for-byte,19support identities/WageproofSpanish, legacy Noctura redirects, identity/store IDs, aliases, allowlist119files, strict asset/credential/realpath guards. No new exported API.
-- Owner explicitly prohibits all browser launching/page opening, including headless QA. Use approved visual evidence/static checks/direct images, actual build and local/live HTTP; disclose no fresh visual/browser/print or dashboard-ingestion proof.
+- Owner explicitly prohibits all browser launching/page opening, including headless QA (C:/Users/bogda/.claude/memory/decision-pages.md). Use approved visual evidence/static checks/direct images, actual build and local/live HTTP; disclose no fresh visual/browser/print or dashboard-ingestion proof.
 - No native builds/captures/EAS/AppStore writes, DNS changes, service-account creation, paid marketing or outreach.
 - Agents skip tests/builds/linters/formatters midflight. Parent runs integrated checks once. No permanent wiring/source-text/copy tests; use private failing-before/passing-after output smoke for template changes. Keep all existing behavioral/security tests unless an obsolete incidental assertion needs deletion.
 
@@ -30,7 +30,7 @@
 - Modify marketing/assets/site.css (catalog layout/card scopes and responsive rules only)
 - Modify templates/index.html (catalog intro only if needed for truthful navigation)
 - Modify README.md (actual analytics scope and screenshot-led catalog documentation)
-- Test test/marketing-site.test.mjs and test/site.test.mjs using the existing npm test command; do not invent a test path if the second differs, inspect known test directory first.
+- Test the existing npm test suite: test/marketing-site.test.mjs, test/build-site.test.mjs, test/marketing-boundary.test.mjs and test/verify-site.test.mjs. No new permanent template-wiring tests.
 
 **Interfaces:** existing buildMarketing({rootDir,outDir,apps,marketing}) and marketingFiles({apps,marketing}) remain unchanged. Reuse private scene(product,true) with no phone geometry changes. Catalog selection remains the complement of featured and campaigns; no list duplication or new promotion configuration.
 
