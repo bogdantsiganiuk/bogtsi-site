@@ -46,17 +46,18 @@ Use actual per-app dimensions/alts/captions from approved input manifest, not ex
 
 ## Task 1: Asset and product-data migration
 
-**Owner files:** `marketing.json`, all11 `marketing/apps/*.json`, exactly33 new role images in `marketing/assets/`, and removal of13 obsolete numbered PNGs. Do NOT edit `site.css`, scripts, tests, templates or README.
+**Owner files:** `.gitattributes`, `marketing.json`, all11 `marketing/apps/*.json`, exactly33 new role images in `marketing/assets/`, and removal of13 obsolete numbered PNGs. Do NOT edit `site.css`, scripts, tests, templates or README.
 
 **Consumes:** approved immutable input manifest copied into this plan's workspace (`asset-inputs.json`) containing exact source paths, destination metadata and SHA-256 for each role. Originals are the approved iPhone revision PNGs/full captures and original art; no new capture or image processing.
 
 **Produces:** the fixed production contract above, exact registered role images and no old poster fields/files. No PhaseB campaign/resource changes yet.
 
+- [ ] Preserve SVG bytes across Windows Git checkout: no `.gitattributes` exists, and Git reports automatic line-ending conversion. Create `.gitattributes` with `marketing/assets/*-art.svg -text` before staging the original SVGs; do not change global/local Git configuration or unrelated file handling.
 - [ ] Copy only the33 individually enumerated image files; verify each source/destination hash against the input record. Preserve native app repositories.
 - [ ] Replace only the old `screenshots` block in each product JSON with `visuals`. Leave all other copy/version/review/resource fields unchanged.
 - [ ] Replace the numbered PNG list in `marketing.json.assets` with CSS and the33 exact new paths; preserve featured/products/resources.
 - [ ] Delete only the13 now-obsolete website poster PNGs. Do not delete source app store assets.
-- [ ] Self-review metadata/identity/hash completeness without running checks. Commit only the exact owned JSON/image paths and write the task report with commit/base and concerns.
+- [ ] Self-review metadata/identity/hash completeness without running tests/builds. Commit only `.gitattributes` and the exact owned JSON/image paths, then write the task report with commit/base and concerns.
 
 ## Task 2: Renderer, strict asset admission, contract tests and documentation
 
