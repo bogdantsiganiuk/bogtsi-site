@@ -48,6 +48,44 @@ test('requires real calendar publication dates for resource metadata', () => {
   }
 });
 
+test('rejects invalid campaign promotion inputs at the authoring boundary', () => {
+  const control = manifest();
+  control.campaigns = [];
+  assert.doesNotThrow(() => marketingFiles({ apps, marketing: control }));
+
+  const eligible = manifest();
+  eligible.campaigns = ['dahlia'];
+  eligible.resources = eligible.resources.filter(resource => resource.app !== 'dahlia');
+  eligible.resources.push({
+    app: 'dahlia',
+    route: 'resources/choose-tonight-date-planner',
+    content: 'marketing/resources/choose-tonight-date-planner.html',
+    title: 'Choose-tonight date planner',
+    description: 'A printable planning card for choosing an activity together without an app.',
+    publishedAt: '2026-11-16',
+  });
+  assert.doesNotThrow(() => marketingFiles({ apps, marketing: eligible }));
+
+  const cases = [
+    ['ineligible registered app without a marketed product', marketing => { marketing.campaigns = ['sugar-free']; }],
+    ['unknown app', marketing => { marketing.campaigns = ['unknown-app']; }],
+    ['duplicate promotion', marketing => { marketing.campaigns = ['dahlia', 'dahlia']; }],
+    ['already-primary promotion', marketing => { marketing.campaigns = ['voxwarm']; }],
+    ['missing published companion', marketing => {
+      marketing.resources = marketing.resources.filter(resource => resource.app !== 'dahlia');
+    }],
+    ['wrong list type', marketing => { marketing.campaigns = 'dahlia'; }],
+  ];
+  for (const [label, mutate] of cases) {
+    const marketing = structuredClone(eligible);
+    mutate(marketing);
+    const unpromoted = structuredClone(marketing);
+    unpromoted.campaigns = [];
+    assert.doesNotThrow(() => marketingFiles({ apps, marketing: unpromoted }), `${label} preconditions`);
+    assert.throws(() => marketingFiles({ apps, marketing }), /campaign/i, label);
+  }
+});
+
 test('all eleven product pages preserve registry store identity and legal namespace', () => {
   const outDir = mkdtempSync(join(tmpdir(), 'bogtsi-marketing-'));
   try {

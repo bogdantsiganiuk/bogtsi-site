@@ -19,6 +19,7 @@ const fail = (message) => { throw new Error(message); };
 // The homepage already belongs to the legacy 64-file publication contract.
 export function marketingFiles({ apps, marketing }) {
   if (!marketing || !Array.isArray(marketing.products) || !Array.isArray(marketing.resources) || !Array.isArray(marketing.assets) || !Array.isArray(marketing.featured)) fail('explicit marketing manifest is required');
+  if (marketing.campaigns !== undefined && !Array.isArray(marketing.campaigns)) fail('campaigns must be a list of marketed app identities');
   const registry = new Map();
   const storeIds = new Set();
   for (const app of apps) {
@@ -59,6 +60,14 @@ export function marketingFiles({ apps, marketing }) {
     if (!/^\d{4}-\d{2}-\d{2}$/.test(resource.publishedAt || '') || !Number.isFinite(Date.parse(resource.publishedAt)) || new Date(resource.publishedAt).toISOString().slice(0, 10) !== resource.publishedAt) fail(`valid resource publication date required: ${resource.route}`);
     routes.add(resource.route);
     files.push(`${resource.route}/index.html`);
+  }
+  const campaigns = new Set();
+  for (const app of marketing.campaigns || []) {
+    if (!products.has(app)) fail(`unknown or ineligible campaign app: ${app}`);
+    if (campaigns.has(app)) fail(`duplicate campaign app: ${app}`);
+    if (featured.has(app)) fail(`campaign app is already featured: ${app}`);
+    if (!marketing.resources.some(resource => resource.app === app)) fail(`campaign app requires a published companion resource: ${app}`);
+    campaigns.add(app);
   }
   const assets = new Set();
   const allowedAssets = new Set(['marketing/assets/site.css', ...marketing.products.flatMap(entry => Object.values(VISUAL_FILES).map(file => `marketing/assets/${entry.app}-${file}`))]);
@@ -152,8 +161,17 @@ function homepage(products, marketing, template) {
     const copy = `<div class="feature-copy"><p class="eyebrow">0${i + 1} / ${esc(app.name)} · ${esc(data.category)}</p><h3 id="featured-${app.slug}" class="feature-title">${lines(data.cardHeadline)}</h3><p>${esc(data.intro)}</p><a class="button ${slug === 'umbra' ? 'button-light' : 'button-coral'}" href="/${entry.route}/">Meet ${esc(app.name)} <span aria-hidden="true">↗</span></a><div class="feature-meta">${esc(data.tagline)}</div></div>`;
     return `<article class="feature ${slug === 'umbra' ? 'feature-pen' : 'feature-vox'}" aria-labelledby="featured-${app.slug}">${slug === 'umbra' ? visual + copy : copy + visual}</article>`;
   }).join('');
-  const catalog = Object.entries(GROUPS).map(([group, title]) => `<section aria-labelledby="group-${group}"><h3 class="group-label" id="group-${group}">${title}</h3>${products.filter(p => !marketing.featured.includes(p.app.slug) && p.data.group === group).map(({ app, entry, data }) => `<article class="app-card"><h3><a href="/${entry.route}/">${esc(app.name)} <span class="arrow" aria-hidden="true">↗</span></a></h3><p>${esc(data.description)}</p></article>`).join('')}</section>`).join('');
-  return template.replaceAll('__FEATURED__', featured).replaceAll('__CATALOG__', catalog).replaceAll('__RESOURCES__', resourceCards(products, marketing));
+  const campaigns = (marketing.campaigns || []).map(slug => {
+    const product = byApp.get(slug);
+    const { app, entry, data } = product;
+    const resource = marketing.resources.find(item => item.app === slug && item.route === data.resourceRoute);
+    if (!resource) fail(`campaign app requires its linked companion resource: ${slug}`);
+    return `<article class="campaign-card theme-${data.theme}" aria-labelledby="campaign-${app.slug}"><div class="campaign-copy"><p class="eyebrow">${esc(app.name)} / ${esc(data.category)}</p><h3 id="campaign-${app.slug}">${esc(data.cardHeadline)}</h3></div><div class="campaign-art product-art">${scene(product, true)}</div><div class="campaign-links"><a class="inline-link" href="/${entry.route}/">Meet ${esc(app.name)} <span aria-hidden="true">↗</span></a><a class="inline-link" href="/${resource.route}/">${esc(resource.title)}</a></div></article>`;
+  }).join('');
+  const promoted = new Set([...marketing.featured, ...(marketing.campaigns || [])]);
+  const catalog = Object.entries(GROUPS).map(([group, title]) => `<section aria-labelledby="group-${group}"><h3 class="group-label" id="group-${group}">${title}</h3>${products.filter(p => !promoted.has(p.app.slug) && p.data.group === group).map(({ app, entry, data }) => `<article class="app-card"><h3><a href="/${entry.route}/">${esc(app.name)} <span class="arrow" aria-hidden="true">↗</span></a></h3><p>${esc(data.description)}</p></article>`).join('')}</section>`).join('');
+  const campaignSection = campaigns ? `<section class="campaigns shell" aria-labelledby="campaign-title"><div class="section-heading"><h2 id="campaign-title" class="eyebrow">Ideas, habits, and everyday care</h2><span>An app alongside a useful paper tool.</span></div><div class="campaign-grid">${campaigns}</div></section>` : '';
+  return template.replaceAll('__FEATURED__', featured).replaceAll('__CAMPAIGNS__', campaignSection).replaceAll('__CATALOG__', catalog).replaceAll('__RESOURCES__', resourceCards(products, marketing));
 }
 
 export function buildMarketing({ rootDir, outDir, apps, marketing }) {
@@ -178,7 +196,7 @@ export function buildMarketing({ rootDir, outDir, apps, marketing }) {
     write(route ? `${route}/index.html` : 'index.html', template.replace(/__(TITLE|DESCRIPTION|CANONICAL|CONTENT|BODY_CLASS|SCHEMA|SOCIAL_META|TWITTER_CARD)__/g, (_, key) => values[key]));
   };
   page({ title: 'bogtsi — independent iPhone apps for real life', description: 'Eleven independent iPhone apps for voice practice, private reflection, everyday care, and the things you make time for. Find your next useful thing.', content: homepage(products, marketing, source(rootDir, 'templates/index.html', 'homepage template').toString('utf8')) });
-  page({ route: 'resources', title: 'Practical guides for voice and reflection — bogtsi', description: 'Two free, printable guides: a five-minute vocal warm-up and a private reflection worksheet. No app, account, or sign-up required.', content: `<section class="home-intro shell" aria-labelledby="resources-title"><div><p class="eyebrow">From the notebook</p><h1 id="resources-title">A good place<br>to start.</h1></div><div class="intro-aside"><p>Two small, practical guides. Read them here or print a copy. No sign-up, no download, and no app required.</p></div></section><section class="resources" aria-label="Practical guides"><div class="shell resource-grid">${resourceCards(products, marketing)}</div></section>` });
+  page({ route: 'resources', title: 'Free practical guides and printable records — bogtsi', description: 'Free, app-independent tools for voice, reflection, date planning, shower choices, and aquarium records. Read online or print; no account or sign-up required.', content: `<section class="home-intro shell" aria-labelledby="resources-title"><div><p class="eyebrow">From the notebook</p><h1 id="resources-title">A good place<br>to start.</h1></div><div class="intro-aside"><p>Practical guides and blank records. Read them here or print a copy. No sign-up, no download, and no app required.</p></div></section><section class="resources" aria-label="Practical guides and records"><div class="shell resource-grid">${resourceCards(products, marketing)}</div></section>` });
   for (const product of products) {
     const { app, entry, data } = product;
     page({ route: entry.route, title: data.title, description: data.description, bodyClass: `theme-${data.theme}`, content: productBody(product, marketing), socialImage: data.visuals.device, schema: { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: app.name, description: data.description, operatingSystem: 'iOS', url: canonical(entry.route), installUrl: storeUrl(app), screenshot: [`${ORIGIN}/${data.visuals.capture.src}`], image: `${ORIGIN}/${data.visuals.device.src}`, author: { '@type': 'Organization', name: 'bogtsi', url: `${ORIGIN}/` } } });

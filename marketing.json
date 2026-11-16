@@ -3,6 +3,11 @@
     "voxwarm",
     "umbra"
   ],
+  "campaigns": [
+    "dahlia",
+    "shiver",
+    "brightwater"
+  ],
   "products": [
     {
       "app": "voxwarm",
@@ -76,6 +81,30 @@
       "title": "Private reflection worksheet",
       "publishedAt": "2026-11-15",
       "description": "A short, printable reflection worksheet. Notice one manageable moment, write at your own pace, and keep the page to yourself."
+    },
+    {
+      "app": "dahlia",
+      "route": "resources/choose-tonight-date-planner",
+      "content": "marketing/resources/choose-tonight-date-planner.html",
+      "title": "Choose-tonight date planner",
+      "publishedAt": "2026-11-16",
+      "description": "A free, app-independent process and printable planning card for choosing an activity together, with time, budget, preferences, a backup, and invitation wording."
+    },
+    {
+      "app": "shiver",
+      "route": "resources/shower-habit-log",
+      "content": "marketing/resources/shower-habit-log.html",
+      "title": "Shower-habit log with room for rest",
+      "publishedAt": "2026-11-16",
+      "description": "A free, app-independent printable log with seven blank records for your existing shower choices, rest or skipped dates, optional feelings, and notes. No cold-exposure targets."
+    },
+    {
+      "app": "brightwater",
+      "route": "resources/aquarium-test-maintenance-record",
+      "content": "marketing/resources/aquarium-test-maintenance-record.html",
+      "title": "Aquarium water-test and maintenance record",
+      "publishedAt": "2026-11-16",
+      "description": "A free, app-independent printable record for aquarium water-test values, units, test kits, and maintenance already done. Blank reusable blocks, without target ranges or dosing advice."
     }
   ],
   "assets": [

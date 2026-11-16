@@ -11,6 +11,7 @@
   "purchaseNote": "Dahlia Premium is an optional auto-renewing subscription. Manage or cancel it in your App Store account settings at least 24 hours before renewal.",
   "sourceVersion": "1.5.0",
   "reviewedAt": "2026-11-15",
+  "resourceRoute": "resources/choose-tonight-date-planner",
   "steps": [
     {
       "title": "Choose what fits tonight",

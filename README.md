@@ -1,6 +1,6 @@
 # bogtsi-site
 
-Serves bogtsi.xyz: eleven released iPhone apps, two practical resources, and the complete app legal/support directory via GitHub Pages.
+Serves bogtsi.xyz: eleven released iPhone apps, five practical resources, and the complete app legal/support directory via GitHub Pages.
 
 ## How it works
 
@@ -10,8 +10,8 @@ workflow fetches only `pages.json` from the 19 repositories in `apps.json`.
 legacy root redirects, then renders checked-in marketing content.
 
 `apps.json` is the only product-name/App Store identity registry.
-`marketing.json` explicitly lists the eleven marketed products, two resources,
-featured order, and every public PNG/SVG/CSS asset. Product copy lives in
+`marketing.json` explicitly lists the eleven marketed products, five resources,
+primary featured order, compact campaign order, and every public PNG/SVG/CSS asset. Product copy lives in
 `marketing/apps/<registry-slug>.json`; resources are trusted HTML body fragments
 in `marketing/resources/`. Content files themselves are not published.
 Source-version/review timestamps are internal provenance, not public freshness claims.
@@ -70,9 +70,16 @@ published for other apps. Only HTML is published, never a recursive legal-docs c
 
 ## Marketing routes and content
 
-The homepage features Voxwarm and Penumbra first, followed by the other nine
-released products. `/support/` lists all 19 legal registry entries and their
-scoped routes, including Wageproof’s six English/Spanish links.
+The homepage keeps Voxwarm and Penumbra as its primary pair, followed by a compact
+Dahlia/Shiver/Brightwater campaign row and the six remaining released products.
+`featured` and optional `campaigns` are separate ordered identity lists.
+An absent or empty `campaigns` list means no campaign promotion. Campaign entries
+must be distinct marketed apps, must not already be primary features, and must
+have a registered, published companion resource linked by the product's
+`resourceRoute`. Their cards reuse the same approved full-screen iPhone component
+and link to the existing product URL and complete app-independent resource.
+`/support/` lists all 19 legal registry entries and their scoped routes,
+including Wageproof’s six English/Spanish links.
 `/site-privacy/` describes this website, not any app. Root `/privacy` and `/terms`
 remain legacy Halcyon redirects.
 
@@ -82,9 +89,23 @@ Product routes are `/voxwarm/`, `/penumbra/`, `/shiver/`, `/dahlia/`,
 `/umbra/privacy`, Halcyon uses `/noctura/privacy`, and Duskmere uses
 `/reverie/privacy`. No duplicate `/umbra/` marketing page is generated.
 
-The resource directory at `/resources/` contains two printable, app-independent guides:
-`/resources/five-minute-vocal-warm-up/` and
-`/resources/private-reflection-worksheet/`.
+The resource directory at `/resources/` contains five printable, app-independent tools:
+`/resources/five-minute-vocal-warm-up/`,
+`/resources/private-reflection-worksheet/`,
+`/resources/choose-tonight-date-planner/`,
+`/resources/shower-habit-log/`, and
+`/resources/aquarium-test-maintenance-record/`.
+The three new records were published on 2026-11-16. The date planner includes an
+original short process and blank planning card; the shower log records existing
+choices with room for rest/skip, not cold-exposure targets; the aquarium sheet
+records measured values/units/test kits and maintenance, not care or dosing advice.
+They require no app, signup or account and have no record-entry/upload fields.
+Readers can print or copy into their own notes; browser Print/Save as PDF is not
+a separate downloadable file or a website storage service.
+The new `record-group` print style allows long groups to paginate, while
+`record-block` keeps individual entries and `record-field` keeps card prompts
+together. Print spacing is compact and supporting art/app extras are hidden.
+These are static layout rules, not a claim of browser or physical print QA.
 Each resource’s required `publishedAt` records its actual content publication
 date (`YYYY-MM-DD`), displayed as semantic `time` metadata in the directory and
 guide. It is not an app-update date or the product’s internal review timestamp.
@@ -94,9 +115,9 @@ install URL from the registry; it contains no invented prices, offers, ratings,
 or reviews. `SoftwareApplication.screenshot` uses the complete original capture;
 `image`, Open Graph and social image metadata use the approved standalone iPhone
 PNG. Optional social metadata is empty on pages without a product image.
-The original 64 outputs remain; the manifest adds exactly 52 files
-(11 products, 2 guides, resource index, support, site privacy, sitemap, robots,
-22 PNGs, 11 SVGs and CSS), for 116 explicitly allowed output paths.
+The original 64 outputs remain; the manifest adds exactly 55 files
+(11 products, 5 guides/records, resource index, support, site privacy, sitemap, robots,
+22 PNGs, 11 SVGs and CSS), for 119 explicitly allowed output paths.
 
 Every product has exactly three required `visuals` roles, using the registry slug
 even where the public product route is an alias:

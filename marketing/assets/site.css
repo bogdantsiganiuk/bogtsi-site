@@ -76,6 +76,16 @@ p { max-width: 62ch; }
 .app-card h3 a:hover { text-decoration: underline; }
 .app-card .arrow { font-size: 16px; color: var(--muted); }
 .app-card p { font-size: 13px; line-height: 1.65; color: var(--muted); margin-top: 7px; }
+.campaigns { padding-top: 32px; }
+.campaign-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.campaign-card { display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--line); }
+.campaign-copy { padding: 24px 22px; }
+.campaign-copy .eyebrow { color: var(--muted); font-size: 10px; }
+.campaign-copy h3 { font-family: var(--serif); font-size: 25px; line-height: 1.2; letter-spacing: -0.025em; margin-top: 14px; }
+.campaign-card .campaign-art { padding: 18px 10px; margin-top: auto; }
+.campaign-card .iphone-scene { max-width: 250px; }
+.campaign-links { padding: 0 22px 24px; display: flex; flex-direction: column; align-items: flex-start; }
+.campaign-links .inline-link { margin-top: 16px; }
 .resources { padding-block: 58px 64px; background: #eeeadf; border-top: 1px solid var(--line); }
 .resources-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: end; margin-bottom: 35px; }
 .resources-intro .eyebrow { margin-bottom: 14px; color: var(--muted); }
@@ -226,6 +236,8 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .resource-body h3 { font-size: 21px; margin-block: 24px 12px; }
 .resource-body li + li { margin-top: 10px; }
 .resource-body .writing-space { width: 100%; min-height: 2rem; margin-block: 1rem; border-bottom: 1px solid #a79d8c; break-inside: avoid; }
+.resource-body .record-block { border-top: 1px solid var(--line); padding-top: 12px; margin-top: 24px; }
+.resource-body .record-field { break-inside: avoid; }
 .resource-card .resource-date, .editorial .resource-date { font-size: 12px; color: var(--muted); }
 .support-list { list-style: none; padding: 0; }
 .support-list li { padding-block: 20px; border-top: 1px solid var(--line); }
@@ -424,5 +436,16 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
   .depth-text-only .depth-copy > .eyebrow { margin-bottom: 17px; }
   .depth-text-only .depth-copy > p { margin-top: 21px; }
   .depth-text-only .plan-row { margin-top: 24px; }
+  .campaign-grid { grid-template-columns: 1fr; }
+  .campaign-card .iphone-scene { max-width: 280px; }
 }
-@media print { .art-note, .resource-heading > div { display: none; } .resource-heading { display: block; } }
+@media print {
+  .art-note, .resource-heading > div { display: none; }
+  .resource-heading { display: block; }
+  .resource-body .record-group { break-inside: auto; }
+  .resource-body .record-block { break-inside: avoid; margin-top: 12pt; padding-top: 6pt; }
+  .resource-body .record-group h2, .resource-body .record-group h3 { break-after: avoid; }
+  .resource-body .record-group h3 { margin-block: 10pt 5pt; font-size: 14pt; }
+  .resource-body .record-group p { margin-block: 5pt; }
+  .resource-body .record-group .writing-space { min-height: 12pt; margin-block: 4pt 7pt; }
+}
