@@ -11,7 +11,7 @@ legacy root redirects, then renders checked-in marketing content.
 
 `apps.json` is the only product-name/App Store identity registry.
 `marketing.json` explicitly lists the eleven marketed products, two resources,
-featured order, and every public PNG/CSS asset. Product copy lives in
+featured order, and every public PNG/SVG/CSS asset. Product copy lives in
 `marketing/apps/<registry-slug>.json`; resources are trusted HTML body fragments
 in `marketing/resources/`. Content files themselves are not published.
 Source-version/review timestamps are internal provenance, not public freshness claims.
@@ -30,10 +30,10 @@ Two steps, and **both** are required:
    Once the app is released and its identity is verified, add
    `"appStoreId": "<numeric ASC app id>"`. Leave it off while unreleased.
    An ID alone does not market an app: add a product to `marketing.json` with
-   complete released-version copy and registered real screenshots. The renderer
+   complete released-version copy and all three registered visual roles. The renderer
    rejects unknown/unreleased identities, identity overrides, foreign routes,
-   unsafe source paths, duplicate outputs, unregistered screenshots, and PNG
-   dimensions that disagree with the content.
+   unsafe source paths, duplicate outputs, missing/unregistered/foreign visuals,
+   invalid frame profiles, mismatched PNG/SVG dimensions, and unsupported SVG content.
 2. **Grant the `APP_REPOS_READ_TOKEN` PAT read access to the new repo.** It is scoped to
    named repositories only — it does *not* cover repos added later.
 
@@ -91,21 +91,68 @@ guide. It is not an app-update date or the product’s internal review timestamp
 New pages have trailing-slash canonicals, unique metadata, and a crawlable
 `sitemap.xml` / `robots.txt`. Product structured data takes its identity and
 install URL from the registry; it contains no invented prices, offers, ratings,
-or reviews. The original 64 outputs remain; the manifest adds exactly 32 files
+or reviews. `SoftwareApplication.screenshot` uses the complete original capture;
+`image`, Open Graph and social image metadata use the approved standalone iPhone
+PNG. Optional social metadata is empty on pages without a product image.
+The original 64 outputs remain; the manifest adds exactly 52 files
 (11 products, 2 guides, resource index, support, site privacy, sitemap, robots,
-13 PNGs and CSS), for 96 explicitly allowed output paths.
+22 PNGs, 11 SVGs and CSS), for 116 explicitly allowed output paths.
 
-To change an image, copy only the named real PNG into `marketing/assets/`,
-register that exact path, and record its real width/height and descriptive alt
-text in product content. Do not copy app screenshot directories or private docs
-trees. Do not promote draft app features or infer translated UIs from metadata
-locales.
+Every product has exactly three required `visuals` roles, using the registry slug
+even where the public product route is an alias:
+
+| Role | Registered asset | Use |
+|---|---|---|
+| `device` | `marketing/assets/<registry-slug>-device.png` | Approved standalone phone PNG, product/social image and full-render link |
+| `capture` | `marketing/assets/<registry-slug>-capture.png` | Unmodified complete native screenshot visible inside the approved HTML/CSS phone; full-source link and structured-data screenshot |
+| `illustration` | `marketing/assets/<registry-slug>-art.svg` | Original conceptual art in product how-it-works and the existing resource cards/headers |
+
+All roles require real `width`, `height` and descriptive `alt` metadata. Captures
+also require their qualification `caption` and explicit `frameProfile` (`notch`
+or `island`). Ascend uses `island`; the other approved captures use `notch`.
+The renderer reads the profile from content, not a runtime app-ID crop rule.
+No legacy image alias is supported. Product free/paid details remain text-only
+below the main phone, without a repeated screen.
+
+The phone is the original approved illustrative hardware, not a photograph,
+official Apple asset, or evidence of the capture-device model. The complete
+capture retains its natural aspect ratio with contain fitting: no crop,
+negative screenshot offset, perspective, repaint, invented OS chrome or image
+filter. The conservative display corners mask edge chrome, and the sensor sits
+in the empty central status area. The original source and standalone render
+remain available at full resolution. Existing genuine captures are not new
+native captures or proof of the latest binary; demonstration content is not a
+real user outcome. Ascend retains the complete original Today screen.
+
+`scripts/marketing-assets.mjs` is a small fail-closed admission boundary:
+`VISUAL_FILES` defines the three identity filename suffixes and
+`validateVisualAsset(bytes, visual, role)` checks PNG signature/IHDR dimensions
+or the site's closed static SVG language. SVG allows only `svg`, `title`, `desc`,
+`g`, `path`, `circle`, `ellipse`, `defs`, `linearGradient`, `stop` and `mask`,
+with explicit static geometry/color/ARIA attributes, the SVG root namespace and
+matching dimensions/viewBox. Unknown tags/attributes, events, style/script,
+hrefs, external paint/resources, DTDs, entities and processing instructions fail.
+Only resolved local `url(#id)` references are admitted. This is not a
+general-purpose SVG sanitizer: unsupported art must not be published.
+
+To update visuals, copy only the approved named assets into `marketing/assets/`,
+register each exact role path, and record the actual dimensions, alt text and
+capture qualifications in product content. Reuse approved source/export bytes;
+never nest a standalone phone PNG inside another phone. Do not copy app
+screenshot directories, private provenance, galleries, exports or source trees.
+Do not promote draft app features or infer translated UIs from metadata locales.
 
 ## Measurement and launch record
 
 Search Console verification is a separate owner-authorized action. No verification
 file or tag is currently registered. If a file is chosen later, review and add
 its exact public path to the publication contract; never relax the guard.
+
+Website analytics remains blocked on the owner's real Cloudflare Web Analytics
+public site token. There is no active beacon or placeholder tracking. Do not
+publish a dummy token, credentials, or a privacy statement claiming analytics is
+active. Wire the real public token only after it is supplied and coordinate the
+website privacy update with that actual change.
 
 Until Apple issues real provider/campaign tokens, App Store links are ordinary
 `https://apps.apple.com/app/id<verified-id>` links. Do not invent campaign IDs,
@@ -131,6 +178,14 @@ combined app/legal and publisher diffs before merging or publishing new routes.
 New language links must not go live before their target pages are available.
 The daily workflow can publish merged changes without a manual dispatch: hold
 publication while reviewing staged output, then coordinate the approved release.
+
+For visual updates, the integration owner runs the complete tests, build,
+publication verifier and HTTP/static smoke checks only after all owned changes
+have landed, then reviews and publishes the first eleven-phone rollout before
+starting any additional app campaign/resources. Do not open browser pages or
+run headless/interactive browser QA for this rollout; use direct image reads,
+static inspection and HTTP instead. This website work does not authorize native
+builds, captures, EAS releases, App Store changes, spending or outreach.
 
 ## Security
 

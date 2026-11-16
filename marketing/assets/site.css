@@ -45,8 +45,8 @@ p { max-width: 62ch; }
 .section-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 22px; }
 .section-heading .eyebrow { color: var(--muted); }
 .section-heading span { color: var(--muted); font-size: 12px; }
-.feature { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 590px; margin-bottom: 24px; overflow: hidden; }
-.feature-copy { padding: 54px 48px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; }
+.feature { display: grid; grid-template-columns: 1.05fr 1fr; min-height: 0; margin-bottom: 24px; overflow: hidden; }
+.feature-copy { padding: 54px 48px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; min-width: 0; }
 .feature .eyebrow { margin-bottom: 22px; }
 .feature-title { font-size: clamp(2.7rem, 4.25vw, 3.65rem); line-height: 1.05; letter-spacing: -0.05em; margin-bottom: 24px; }
 .feature-copy > p { font-size: 16px; max-width: 33ch; }
@@ -54,13 +54,9 @@ p { max-width: 62ch; }
 .feature-vox { background: var(--coral-soft); }
 .feature-vox .eyebrow { color: #873125; }
 .feature-vox .feature-art { background: #eac0b7; }
-.feature-art { position: relative; display: flex; align-items: center; justify-content: center; padding: 34px; }
-.poster { width: 235px; height: auto; border-radius: 7px; box-shadow: 0 16px 32px #30211a22; }
+.feature-art { position: relative; display: flex; align-items: center; justify-content: center; padding: 24px 20px 28px; min-height: 0; }
 .feature-pen { background: var(--brown); color: var(--cream); grid-template-columns: 1fr 1.05fr; }
-.feature-pen .feature-art { background: #47362b; gap: 18px; padding-inline: 30px; }
-.feature-pen .poster { width: min(46%, 205px); box-shadow: 0 16px 30px #140f0b40; }
-.feature-pen .poster:first-child { transform: translateY(-18px); }
-.feature-pen .poster:last-child { transform: translateY(18px); }
+.feature-pen .feature-art { background: #47362b; padding: 24px 20px 28px; min-height: 0; align-items: center; }
 .feature-pen .eyebrow, .feature-pen .feature-meta { color: #dfbd9f; }
 .button { display: inline-flex; justify-content: center; align-items: center; min-height: 48px; padding: 12px 21px; background: var(--ink); color: #fffaf1; text-decoration: none; font-size: 13px; font-weight: 600; border: 1px solid transparent; }
 .button:hover { background: #413d36; text-decoration: underline; }
@@ -103,6 +99,7 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .footer-bottom { border-top: 1px solid var(--line); margin-top: 40px; padding-top: 17px; display: flex; justify-content: space-between; gap: 24px; font-size: 11px; color: var(--muted); }
 .breadcrumb { margin-top: 27px; font-size: 12px; color: var(--muted); }
 .product-hero { display: grid; grid-template-columns: 1.08fr 1fr; gap: 64px; align-items: center; padding-block: 38px 64px; }
+.product-copy { min-width: 0; }
 .product-copy .eyebrow { color: var(--coral); margin-bottom: 21px; }
 .product-copy h1 { font-size: clamp(3.5rem, 6vw, 5rem); }
 .product-copy .lead { margin-top: 25px; font-size: 17px; line-height: 1.75; color: var(--muted); max-width: 37ch; }
@@ -110,8 +107,7 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .product-actions .inline-link { margin: 0; }
 .product-fineprint { font-size: 12px; color: var(--muted); margin-top: 17px; }
 .product-proof { margin-top: 35px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; gap: 19px; flex-wrap: wrap; font-size: 11px; color: var(--muted); }
-.product-art { background: #f0d1c8; padding: 30px; display: flex; justify-content: center; }
-.product-art .poster { width: 255px; }
+.product-art { background: #f0d1c8; padding: 24px 16px 28px; display: flex; justify-content: center; min-width: 0; }
 .how-section { padding-block: 58px 65px; border-top: 1px solid var(--line); }
 .how-section .eyebrow { margin-bottom: 15px; color: var(--muted); }
 .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 39px; margin-top: 38px; list-style: none; padding-left: 0; margin-bottom: 0; }
@@ -119,8 +115,6 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .steps h3 { font-size: 18px; font-weight: 500; margin-bottom: 10px; }
 .steps p { color: var(--muted); font-size: 14px; }
 .product-depth { display: grid; grid-template-columns: 0.8fr 1.2fr; background: #eeeadf; }
-.depth-art { padding: 36px; display: flex; align-items: center; justify-content: center; background: #e8c9c2; }
-.depth-art .poster { width: 218px; }
 .depth-copy { padding: 48px; }
 .depth-copy .eyebrow { color: var(--muted); margin-bottom: 17px; }
 .depth-copy h2 { max-width: 13ch; }
@@ -142,12 +136,8 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
   .brand-description { display: none; }
   .home-intro { gap: 32px; grid-template-columns: 1.2fr 0.9fr; }
   .feature-copy { padding: 36px 30px; }
-  .feature { min-height: 530px; }
-  .feature-art { padding: 25px; }
-  .feature-pen .feature-art { padding: 28px 18px; gap: 12px; }
   .catalog-groups { gap: 24px; }
   .product-hero { gap: 34px; }
-  .product-art { padding: 24px; }
   .depth-copy { padding: 35px; }
 }
 @media (max-width: 640px) {
@@ -169,11 +159,9 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
   .feature-copy > p { font-size: 14px; max-width: 34ch; }
   .feature .button { margin-top: 23px; }
   .feature-meta { margin-top: 21px; font-size: 10px; }
-  .feature-art { padding: 28px 22px; }
-  .feature-vox .poster { width: 215px; }
-  .feature-pen .feature-art { order: 2; min-height: 390px; padding: 35px 20px; gap: 14px; }
-  .feature-pen .poster { width: calc(50% - 7px); max-width: 154px; }
   .feature-pen .feature-copy { order: 1; }
+  .feature-art, .feature-pen .feature-art, .product-art { padding: 22px 12px 26px; min-height: 0; }
+  .feature-pen .feature-art { order: 2; }
   .catalog { padding-block: 38px 43px; }
   .catalog-intro { display: block; margin-bottom: 28px; }
   .catalog-intro h2 { font-size: 2.6rem; }
@@ -198,8 +186,6 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
   .product-actions { gap: 19px; margin-top: 25px; }
   .product-actions .inline-link { font-size: 12px; }
   .product-proof { margin-top: 27px; gap: 15px; font-size: 10px; }
-  .product-art { padding: 28px; }
-  .product-art .poster { width: 230px; }
   .how-section { padding-block: 36px 41px; }
   .how-section h2 { font-size: 2.65rem; }
   .steps { grid-template-columns: 1fr; gap: 25px; margin-top: 28px; }
@@ -208,8 +194,6 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
   .product-depth { grid-template-columns: 1fr; }
   .depth-copy { padding: 30px 25px 34px; order: 1; }
   .depth-copy h2 { font-size: 2.7rem; }
-  .depth-art { padding: 29px; order: 2; }
-  .depth-art .poster { width: 215px; }
   .privacy-block { grid-template-columns: 1fr; gap: 22px; padding-block: 39px; }
   .privacy-block h2 { font-size: 2.7rem; }
   .privacy-copy p { font-size: 14px; }
@@ -217,15 +201,15 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
-.theme-earth .product-art, .theme-earth .depth-art { background: #d6c5b3; }
-.theme-night .product-art, .theme-night .depth-art { background: #c9c8d5; }
-.theme-ice .product-art, .theme-ice .depth-art { background: #d0e3e8; }
-.theme-jade .product-art, .theme-jade .depth-art { background: #d3e2d6; }
-.theme-ocean .product-art, .theme-ocean .depth-art { background: #c7dee0; }
-.theme-garden .product-art, .theme-garden .depth-art { background: #dedcc9; }
-.theme-gold .product-art, .theme-gold .depth-art { background: #eadcb9; }
-.theme-indigo .product-art, .theme-indigo .depth-art { background: #d6d3e8; }
-.theme-slate .product-art, .theme-slate .depth-art { background: #d2d9dd; }
+.theme-earth .product-art { background: #d6c5b3; }
+.theme-night .product-art { background: #c9c8d5; }
+.theme-ice .product-art { background: #d0e3e8; }
+.theme-jade .product-art { background: #d3e2d6; }
+.theme-ocean .product-art { background: #c7dee0; }
+.theme-garden .product-art { background: #dedcc9; }
+.theme-gold .product-art { background: #eadcb9; }
+.theme-indigo .product-art { background: #d6d3e8; }
+.theme-slate .product-art { background: #d2d9dd; }
 .product-features { padding-block: 48px; }
 .product-features h2 { margin-bottom: 28px; }
 .feature-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
@@ -249,3 +233,196 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .support-list nav { display: flex; flex-wrap: wrap; gap: 10px 20px; font-size: 14px; }
 @media (max-width: 640px) { .feature-list { grid-template-columns: 1fr; } .editorial > h1 { font-size: 2.7rem; } }
 @media print { .site-header, .site-footer, .skip-link, .breadcrumb, .resource-app-link { display: none; } body { background: white; color: black; } .shell { width: 100%; } .editorial { padding: 0; max-width: none; } .resource-body section { break-inside: avoid; } a { text-decoration: none; } }
+
+/* Original graphite hardware illustration. No third-party frame or photographic asset.
+   Front-on pose is intentional: there is no perspective distortion of the native UI.
+   The source itself supplies every OS indicator, every reading and every control. */
+.iphone-scene { width: 100%; min-width: 0; margin: 0; }
+.iphone-stage { display: flex; justify-content: center; width: 100%; isolation: isolate; }
+.iphone-device {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  padding: 14px 6% 42px;
+  flex: 0 1 420px;
+  color: inherit;
+  text-decoration: none;
+  background: transparent;
+  isolation: isolate;
+  -webkit-tap-highlight-color: transparent;
+}
+.iphone-device:focus-visible { outline: 3px solid #2d64a0; outline-offset: 1px; border-radius: 28px; }
+.iphone-ground-shadow {
+  position: absolute;
+  display: block;
+  left: 20%;
+  right: 20%;
+  height: 13px;
+  bottom: 22px;
+  border-radius: 50%;
+  background: #251b162b;
+  filter: blur(8px);
+  z-index: -1;
+}
+.iphone-chassis {
+  position: relative;
+  display: block;
+  padding: 3.2%;
+  border: 1px solid #6d6c6a;
+  border-radius: 9.5% / 4.5%;
+  background: linear-gradient(106deg, #a5a6a3 0%, #333738 1%, #171a1b 3%, #090b0d 10%, #171a1b 73%, #4a4e50 97%, #b9bbb7 99%, #424648 100%);
+  box-shadow: inset 0 0 0 1px #d6d9d45c, inset 3px 0 2px #fff4, inset -2px 0 2px #000b, 0 12px 12px #20191430, 0 3px 4px #20191424;
+}
+/* The second, fine concentric edge distinguishes machined body from front glass. */
+.iphone-chassis::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid #a6aeac59;
+  border-radius: 8.9% / 4.2%;
+  pointer-events: none;
+  z-index: 3;
+}
+.iphone-chassis::after {
+  content: '';
+  position: absolute;
+  top: 8%;
+  bottom: 12%;
+  left: 2px;
+  width: 1px;
+  background: linear-gradient(transparent, #e2e7e0aa 15%, #d6d9d34d 50%, transparent);
+  pointer-events: none;
+}
+.iphone-glass {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  /* Conservative physical corner mask: keeps low-edge native content visible. */
+  border-radius: 5.5% / 2.54%;
+  background: #08090a;
+  box-shadow: 0 0 0 1px #000, 0 0 0 2px #040506, 0 0 0 3px #292c2e;
+}
+.iphone-screen-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  /* No image transform, crop rectangle, offsets, filter, recoloring or cover fit. */
+}
+.iphone-sensor {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 26%;
+  width: 48%;
+  height: 3.45%;
+  border-radius: 0 0 14px 14px;
+  background: linear-gradient(180deg, #090b0c, #020304 80%);
+  box-shadow: 0 1px 1px #0008;
+  pointer-events: none;
+}
+.iphone-earpiece {
+  position: absolute;
+  display: block;
+  top: 35%;
+  left: 26%;
+  width: 35%;
+  height: 14%;
+  min-height: 2px;
+  border-radius: 5px;
+  border: 1px solid #1b1f20;
+  background: repeating-linear-gradient(90deg, #080b0d 0 1px, #282d2f 1px 2px);
+  box-shadow: 0 1px 0 #ffffff0d;
+}
+.iphone-camera {
+  position: absolute;
+  display: block;
+  top: 24%;
+  left: 72%;
+  width: 5.5%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #344759 0 12%, #13212d 17% 35%, #03070c 42% 60%, #242a30 67% 74%, #030506 80%);
+  box-shadow: 0 0 0 1px #000;
+}
+/* Ascend has a different native status layout and aspect. This compact sensor island
+   sits only in its empty central status chrome; it is not a capture-model claim. */
+.iphone-device[data-frame-profile="island"] .iphone-sensor { top: .85%; left: 35.5%; width: 29%; height: 2.6%; border-radius: 100px; }
+.iphone-device[data-frame-profile="island"] .iphone-earpiece { left: 14%; top: 38%; width: 44%; height: 11%; }
+.iphone-device[data-frame-profile="island"] .iphone-camera { left: 74%; top: 27%; width: 9%; }
+.iphone-button {
+  position: absolute;
+  display: block;
+  width: 3px;
+  border: 1px solid #383d3f;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #c0c3c0, #5e6568 40%, #24292b);
+  box-shadow: 0 1px 1px #0006;
+  z-index: -1;
+}
+.iphone-mute { left: -3px; top: 14%; height: 3.4%; }
+.iphone-volume-up { left: -3px; top: 21%; height: 6.6%; }
+.iphone-volume-down { left: -3px; top: 29.3%; height: 6.6%; }
+.iphone-power { right: -3px; top: 22.5%; height: 10.5%; background: linear-gradient(90deg, #24292b, #7f8789 60%, #b9bdb9); }
+.iphone-antenna { position: absolute; display: block; right: 0; width: 3px; height: 5px; background: #929a9a; box-shadow: -1px 0 0 #181d1e; }
+.iphone-antenna-top { top: 9%; }
+.iphone-antenna-bottom { bottom: 9%; }
+.iphone-scene > figcaption { margin: 0 12px; color: var(--muted); font-size: 11px; line-height: 1.6; }
+.iphone-scene > figcaption > p { max-width: 59ch; }
+.iphone-scene .frame-note { margin-top: 4px; font-size: 10px; }
+.scene-sources { font-size: 11px; }
+.scene-sources summary { font-size: 11px; font-weight: 400; padding-block: 7px; margin-top: 3px; text-decoration: underline; text-underline-offset: 3px; }
+.scene-sources ul { padding-left: 17px; margin-block: 9px; }
+.scene-sources li + li { margin-top: 10px; }
+.scene-sources li span { display: block; margin-top: 3px; }
+.feature-pen .iphone-scene > figcaption { color: var(--cream); }
+.feature-pen .iphone-ground-shadow { background: #100b0870; }
+.feature-pen .iphone-chassis { box-shadow: inset 0 0 0 1px #d6d9d45c, inset 3px 0 2px #fff4, inset -2px 0 2px #000b, 0 12px 12px #100b0860, 0 3px 4px #100b0840; }
+
+/* Original art remains secondary to the complete app screen. */
+.depth-text-only { display: block; }
+.depth-text-only .depth-copy { padding: 42px 48px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px 42px; }
+.depth-text-only .depth-copy > .eyebrow, .depth-text-only .depth-copy > h2, .depth-text-only .depth-copy > p { grid-column: 1 / -1; margin: 0; max-width: none; }
+.depth-text-only .depth-copy > .eyebrow { margin-bottom: -10px; }
+.depth-text-only .depth-copy > p { max-width: 76ch; }
+.depth-text-only .plan-row { margin: 0; }
+.art-note { margin: 0; max-width: 190px; }
+.supporting-art { width: 180px; height: auto; max-width: 100%; object-fit: contain; box-shadow: none; }
+.art-note figcaption { font-size: 10px; color: var(--muted); line-height: 1.45; margin-top: 5px; }
+.how-editorial { display: grid; grid-template-columns: 1fr 190px; column-gap: 28px; align-items: center; }
+.how-editorial > .eyebrow, .how-editorial > h2 { grid-column: 1; }
+.how-editorial > .art-note { grid-column: 2; grid-row: 1 / 3; }
+.resource-card .art-note { float: right; width: 160px; margin: 0 0 18px 18px; }
+.resource-card::after { content: ''; display: block; clear: both; }
+.resource-heading { display: flex; align-items: center; gap: 28px; margin-bottom: 28px; }
+.resource-heading h1 { flex: 1; font-size: clamp(2.7rem, 5vw, 4rem); }
+.resource-heading > div { flex: 0 0 170px; }
+
+@media (min-width: 641px) and (max-width: 900px) {
+  .feature, .feature-pen { grid-template-columns: 1fr 1fr; }
+  .feature-art, .feature-pen .feature-art { padding-inline: 10px; }
+  .product-hero { gap: 26px; }
+  .product-art { padding-inline: 8px; }
+}
+@media (max-width: 640px) {
+  .iphone-device { padding-top: 12px; padding-bottom: 38px; }
+  .iphone-scene > figcaption { margin-inline: 8px; }
+  .how-editorial { grid-template-columns: 1fr; }
+  .how-editorial > .art-note { grid-column: 1; grid-row: auto; margin-top: 20px; }
+  .resource-heading { display: block; }
+  .resource-heading > div { margin-top: 22px; width: 160px; }
+  .resource-card .art-note { float: none; margin: 0 0 20px; }
+  .depth-text-only .depth-copy { display: block; padding: 30px 25px; }
+  .depth-text-only .depth-copy > .eyebrow { margin-bottom: 17px; }
+  .depth-text-only .depth-copy > p { margin-top: 21px; }
+  .depth-text-only .plan-row { margin-top: 24px; }
+}
+@media print { .art-note, .resource-heading > div { display: none; } .resource-heading { display: block; } }

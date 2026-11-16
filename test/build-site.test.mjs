@@ -59,7 +59,7 @@ test('support directory retains every app and legal endpoint, including unreleas
   }
 });
 
-test('marketing navigation, screenshots, resources and app legal links resolve to published files', () => {
+test('marketing navigation, visual assets, resources and app legal links resolve to published files', () => {
   const { srcDir, outDir } = stage();
   build({ srcDir, outDir, rootDir: ROOT });
   const marketing = JSON.parse(readFileSync(join(ROOT, 'marketing.json'), 'utf8'));
