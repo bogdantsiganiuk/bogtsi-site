@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="shiver-title shiver-desc">
+  <title id="shiver-title">A shower in changing phases</title>
+  <desc id="shiver-desc">An ordinary overhead shower releases a stream that shifts from warm clay through pale paper to cool blue. A three-part arc follows the same sequence beside it, above a small shower drain.</desc>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M226 139H330C369 139 393 158 393 191" stroke="#38352F" stroke-width="24"/>
+    <path d="M226 135H330C369 135 393 154 393 187" stroke="#F4EEE2" stroke-width="17"/>
+    <path d="M226 135H330C369 135 393 154 393 187" stroke="#8D8577" stroke-width="2.5"/>
+    <path d="M221 114V156" stroke="#38352F" stroke-width="6"/>
+    <path d="M215 114V156" stroke="#F4EEE2" stroke-width="4"/>
+    <path d="M377 182H410L421 211H366L377 182Z" fill="#F4EEE2" stroke="#38352F" stroke-width="3"/>
+    <path d="M310 222C310 202 348 188 394 188C440 188 478 202 478 222V237H310V222Z" fill="#DDD6C8" stroke="#38352F" stroke-width="3"/>
+    <ellipse cx="394" cy="234" rx="84" ry="19" fill="#F4EEE2" stroke="#38352F" stroke-width="3"/>
+    <path d="M339 232H340M362 228H363M386 227H387M410 228H411M434 231H435M455 235H456M351 240H352M375 242H376M401 242H402M426 241H427" stroke="#8D8577" stroke-width="4"/>
+    <path d="M328 271L319 303M356 276L351 311M384 279L382 313M412 279L415 313M440 275L446 309M467 268L476 301" stroke="#38352F" stroke-width="9" opacity=".12"/>
+    <path d="M326 269L317 301M354 274L349 309M382 277L380 311M410 277L413 311M438 273L444 307M465 266L474 299" stroke="#C88872" stroke-width="6"/>
+    <path d="M309 325L299 359M344 333L338 369M379 336L377 371M416 336L419 372M450 330L457 365M483 323L493 357" stroke="#38352F" stroke-width="9" opacity=".12"/>
+    <path d="M307 323L297 357M342 331L336 367M377 334L375 369M414 334L417 370M448 328L455 363M481 321L491 355" stroke="#F4EEE2" stroke-width="6"/>
+    <path d="M289 382L278 419M330 391L324 430M375 395L373 435M420 394L424 434M463 388L471 427M502 380L513 417" stroke="#668DA6" stroke-width="6"/>
+    <path d="M270 445L262 469M317 456L313 482M372 461L371 489M427 460L430 488M477 452L483 478M522 442L530 467" stroke="#668DA6" stroke-width="4" opacity=".6"/>
+    <path d="M241 518C319 502 466 501 554 515L578 535C489 549 329 549 237 535L241 518Z" fill="#38352F" opacity=".12"/>
+    <path d="M231 509C309 493 456 492 544 506L568 526C479 540 319 540 227 526L231 509Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M294 515L463 512M314 523L484 520" stroke="#8D8577" stroke-width="3"/>
+    <path d="M609 168C693 182 753 242 764 315" stroke="#F4EEE2" stroke-width="23"/>
+    <path d="M609 168C665 177 713 208 740 251" stroke="#C88872" stroke-width="15"/>
+    <path d="M750 272C759 293 764 315 764 338" stroke="#DDD6C8" stroke-width="15"/>
+    <path d="M764 360C760 418 727 466 681 494" stroke="#F4EEE2" stroke-width="23"/>
+    <path d="M764 360C760 418 727 466 681 494" stroke="#668DA6" stroke-width="15"/>
+    <path d="M604 151L610 168L625 156M684 473L679 496L701 493" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M645 277L641 291M679 325L676 339M633 376L629 390" stroke="#668DA6" stroke-width="3" opacity=".55"/>
+  </g>
+</svg>

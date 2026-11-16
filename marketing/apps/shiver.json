@@ -61,12 +61,26 @@
     "Shiver is a habit and timer tool, not a medical device or treatment. It does not measure water temperature or turn a shower into a cold plunge.",
     "Breathing preparation is seated and outside the shower. Extra time after a target is not an instruction to stay cold longer."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/shiver-1.png",
-      "alt": "Shiver App Store screenshot showing the large cold-phase shower countdown, safety stop cues, and Pause and End controls.",
-      "width": 1242,
-      "height": 2688
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/shiver-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Shiver app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/shiver-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Shiver cold-phase timer with a countdown, safety stop cues, Pause and End controls.",
+      "caption": "Actual timer view · not a recommended cold-exposure duration.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/shiver-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Shiver; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

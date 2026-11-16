@@ -66,12 +66,26 @@
     "Dosing tools record names and amounts you supply. They do not recommend a product or dosage.",
     "Ranges and cited hobbyist guidance do not guarantee water quality, cycling time, compatibility, or livestock outcomes. Use appropriate tests and your own judgment."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/brightwater-1.png",
-      "alt": "Brightwater App Store screenshot showing the water-clarity troubleshooter with choices for milky white, green, drifting particles, or yellow-brown water.",
-      "width": 1284,
-      "height": 2778
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/brightwater-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Brightwater app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/brightwater-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Brightwater trend screen for a demonstration aquarium with readings, comparison controls and that tank’s example targets.",
+      "caption": "Demo tank history · example targets, not universal care advice.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/brightwater-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Brightwater; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

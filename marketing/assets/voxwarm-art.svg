@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="vox-title vox-desc">
+  <title id="vox-title">A phrase, a pause, an answer</title>
+  <desc id="vox-desc">An illustrated paper piano offers a short coral phrase. After an open interval, a soft answering ribbon rests between two range brackets. This is a conceptual illustration, not an app screen or a measurement of vocal ability.</desc>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- A low, tactile keyboard: an instrument, not a screen. -->
+    <path d="M128 382 410 329 468 441 185 501Z" fill="#38352F" opacity=".12"/>
+    <path d="M119 366 403 312 460 423 176 480Z" fill="#D9D0BF" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m176 480 284-57v16l-284 57Z" fill="#C86C70" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m119 366 57 114v16l-57-114Z" fill="#E5DCCB" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m126 367 272-52 50 101-272 55Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.4"/>
+    <path d="m153 362 51 103m-24-108 51 103m-24-108 51 102m-24-107 51 101m-24-106 51 101m-24-106 51 100m-24-105 51 99m-24-105 51 99m-24-104 51 98" stroke="#8D8577" stroke-width="1.8"/>
+    <path d="m147 363 12-2 28 56-12 3Zm28-5 12-3 28 57-12 2Zm54-11 12-2 28 56-12 3Zm28-5 12-3 28 56-12 3Zm27-6 12-2 28 55-12 3Zm55-10 12-3 27 55-12 3Zm27-6 12-2 27 54-12 3Z" fill="#38352F" stroke="#38352F" stroke-width="1.6"/>
+    <!-- The offered phrase has a cut-paper edge and a folded beginning. -->
+    <path d="M183 321c40-68 74-112 111-109 35 3 42 55 77 56 26 1 39-23 61-26v33c-26 3-38 27-65 24-35-4-44-54-76-54-27 0-54 39-84 91Z" fill="#38352F" opacity=".10"/>
+    <path d="M178 311c40-68 74-112 111-109 35 3 42 55 77 56 26 1 39-23 61-26v33c-26 3-38 27-65 24-35-4-44-54-76-54-27 0-54 39-84 91Z" fill="#C86C70" stroke="#38352F" stroke-width="2.5"/>
+    <path d="m178 311 24 15-3 23-24-17Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M223 270c24-31 44-50 64-49 34 0 42 52 77 52 26 0 40-23 63-25" stroke="#F4EEE2" stroke-width="2" opacity=".8"/>
+    <!-- Separate paper pause marks make the intentional space visible. -->
+    <path d="m482 222 7-1 5 36-7 1Zm20-2 7-1 5 36-7 1Z" fill="#F4EEE2" stroke="#8D8577" stroke-width="1.8"/>
+    <path d="M475 286c14 5 31 5 45-1" stroke="#8D8577" stroke-width="1.7"/>
+    <!-- An answer stays inside an open, non-numeric range. -->
+    <path d="M568 181h-22v204h22m286-204h22v204h-22" stroke="#F4EEE2" stroke-width="7"/>
+    <path d="M568 181h-22v204h22m286-204h22v204h-22" stroke="#8D8577" stroke-width="2.4"/>
+    <path d="M579 308c32 0 39-89 79-89s44 107 83 107c36 0 50-57 93-57v34c-36 0-51 57-90 57-46 0-46-108-86-108-28 0-38 89-79 89Z" fill="#38352F" opacity=".10"/>
+    <path d="M574 298c32 0 39-89 79-89s44 107 83 107c36 0 50-57 93-57v34c-36 0-51 57-90 57-46 0-46-108-86-108-28 0-38 89-79 89Z" fill="#C86C70" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M574 315c36 0 46-89 79-89 40 0 43 107 85 107 37 0 52-57 91-57" stroke="#F4EEE2" stroke-width="2.2" opacity=".8"/>
+    <path d="m829 259 14 9v34l-14-9" fill="#E0A2A3" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M597 423c52 17 109 20 168 6" stroke="#8D8577" stroke-width="1.8"/>
+    <path d="M637 438c26 5 54 5 81 1" stroke="#8D8577" stroke-width="1.5" opacity=".6"/>
+  </g>
+</svg>

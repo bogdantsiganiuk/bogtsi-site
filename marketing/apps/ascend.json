@@ -62,12 +62,26 @@
     "The October 5 production update changed the free/Pro boundary. Older App Store description text may still describe weight sync, CSV export, and Chronicle averages as Pro; they are free in the released update.",
     "CSV export is available; CSV import and file backup/restore are not promised for this release."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/ascend-1.png",
-      "alt": "Ascend App Store screenshot showing a Knight portrait, class title, XP progress, and a body-fat tracking panel marked Ascend Pro.",
-      "width": 1284,
-      "height": 2778
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/ascend-device.png",
+      "width": 1120,
+      "height": 1824,
+      "alt": "Complete Ascend app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/ascend-capture.png",
+      "width": 1290,
+      "height": 2796,
+      "alt": "Complete genuine Ascend Today screenshot, with demonstration hero, goal progress, weight entry and quests.",
+      "caption": "Full app screen · demonstration weights, goals and XP, not a promised result.",
+      "frameProfile": "island"
+    },
+    "illustration": {
+      "src": "marketing/assets/ascend-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Ascend; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

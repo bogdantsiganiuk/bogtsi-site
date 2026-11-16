@@ -61,12 +61,26 @@
     "Move within a comfortable range and stop if a stretch hurts. Consult a qualified professional before beginning if you have an injury or condition.",
     "The released app provides reminders and guided stretches. It does not monitor your posture with a camera or AirPods."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/posture-coach-1.png",
-      "alt": "Posture Coaching App Store screenshot showing a check-in, streak freezes, a Desk Posture Reset plan, reminder hours, and badges.",
-      "width": 856,
-      "height": 1852
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/posture-coach-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Posture Coaching app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/posture-coach-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Posture Coaching home screen with check-in, routine progress and reminder settings using example history.",
+      "caption": "Demo check-ins and reminders · not a clinical result.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/posture-coach-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Posture Coaching; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

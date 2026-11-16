@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Ascend — a small logging ritual, a modest next step</title>
+  <desc id="desc">An original cut-paper weighing scale beside a paper log and pencil. A winding trail of a few plain experience tokens leads to a small, unadorned hero shield. There are no weight readings, body comparisons, loss charts or promises of a particular outcome.</desc>
+  <g stroke="#38352F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M139 492c88-18 184-18 278 4l223-15 32 25-268 35-260-22Z" fill="#38352F" opacity=".1" stroke="none"/>
+    <path d="M143 342c0-21 17-37 38-37h170c21 0 38 16 38 37v140c0 21-17 38-38 38H181c-21 0-38-17-38-38Z" fill="#C8C3B7"/>
+    <path d="M143 329c0-21 17-37 38-37h170c21 0 38 16 38 37v140c0 21-17 38-38 38H181c-21 0-38-17-38-38Z" fill="#F4EEE2"/>
+    <path d="M158 332c0-14 11-25 25-25h166c14 0 25 11 25 25v131c0 16-11 28-27 28H185c-16 0-27-12-27-28Z" fill="#E6E0D3" stroke="#8D8577" stroke-width="2.2"/>
+    <path d="M221 330c26-19 64-19 90 0l-8 31h-74Z" fill="#F4EEE2"/>
+    <path d="m266 351 12-18" stroke="#8D8577" stroke-width="2.5"/>
+    <path d="M184 388h49v78h-49Zm115 0h49v78h-49Z" fill="#B39250" stroke="none"/>
+    <path d="M193 399v56m10-56v56m10-56v56m10-56v56m86-56v56m10-56v56m10-56v56m10-56v56" stroke="#F4EEE2" stroke-width="2.4"/>
+    <path d="M196 509v7m140-7v7" stroke-width="5"/>
+    <path d="M562 314c38-31 66-53 80-76 23-38 58-37 86-13 30 26 52 30 75-2 11-14 13-27 15-42" stroke="#8D8577" stroke-width="2.6" stroke-dasharray="5 10"/>
+    <path d="m592 302 38-12 26 21-38 13Z" fill="#D6C290" stroke="none"/>
+    <ellipse cx="619" cy="296" rx="26" ry="21" transform="rotate(-16 619 296)" fill="#D6C290"/>
+    <ellipse cx="619" cy="289" rx="26" ry="21" transform="rotate(-16 619 289)" fill="#F4EEE2"/>
+    <path d="m612 289 7 5 8-11" stroke="#B39250" stroke-width="2.6"/>
+    <ellipse cx="674" cy="208" rx="26" ry="21" transform="rotate(13 674 208)" fill="#D6C290"/>
+    <ellipse cx="674" cy="201" rx="26" ry="21" transform="rotate(13 674 201)" fill="#F4EEE2"/>
+    <path d="M667 201h14m-7-7v14" stroke="#B39250" stroke-width="2.6"/>
+    <ellipse cx="751" cy="253" rx="26" ry="21" transform="rotate(-9 751 253)" fill="#D6C290"/>
+    <ellipse cx="751" cy="246" rx="26" ry="21" transform="rotate(-9 751 246)" fill="#F4EEE2"/>
+    <path d="M744 246h14m-7-7v14" stroke="#B39250" stroke-width="2.6"/>
+    <path d="m788 135 45-13 45 13v42c0 28-17 47-45 61-28-14-45-33-45-61Z" fill="#D6C290"/>
+    <path d="m781 128 45-13 45 13v42c0 28-17 47-45 61-28-14-45-33-45-61Z" fill="#F4EEE2"/>
+    <path d="m793 138 33-10 33 10v31c0 21-12 36-33 48-21-12-33-27-33-48Z" fill="#B39250" stroke-width="2.5"/>
+    <path d="M826 140v62" stroke="#F4EEE2" stroke-width="2.5"/>
+    <g transform="rotate(-10 509 410)">
+      <path d="M393 295h222c7 0 12 5 12 12v230H393Z" fill="#B39250"/>
+      <path d="M401 289h215v237H401Z" fill="#DBD5C8"/>
+      <path d="M402 279h180l34 34v203H402Z" fill="#F4EEE2"/>
+      <path d="M582 279v34h34" fill="#E6E0D3"/>
+      <path d="M421 279v237" stroke="#8D8577" stroke-width="2.2"/>
+      <path d="M393 310h17m-17 33h17m-17 33h17m-17 33h17m-17 33h17m-17 33h17" stroke="#38352F" stroke-width="4"/>
+      <path d="M446 333h112m-112 38h133m-133 38h125m-125 38h132" stroke="#8D8577" stroke-width="2.1"/>
+      <path d="m446 349 23 1m18 0 41 1m-82 36 28 1m20 0 31 1m-79 36 21 1m20 0 43 1" stroke="#8D8577" stroke-width="2.6"/>
+      <path d="m548 476 9 9 17-22" stroke="#B39250" stroke-width="3.3"/>
+      <path d="M462 517h18v36l-9-7-9 7Z" fill="#B39250" stroke-width="2.3"/>
+    </g>
+    <g transform="rotate(24 641 407)">
+      <path d="M632 325h20v156l-10 25-10-25Z" fill="#B39250"/>
+      <path d="M632 481h20l-10 25Z" fill="#E4D1AD"/>
+      <path d="m639 498 3 8 3-8Z" fill="#38352F"/>
+      <path d="M639 346v128" stroke="#F4EEE2" stroke-width="2"/>
+      <path d="M632 317c0-7 20-7 20 0v21h-20Z" fill="#DED8CB"/>
+      <path d="M632 333h20v10h-20Z" fill="#F4EEE2" stroke-width="2.4"/>
+    </g>
+  </g>
+</svg>

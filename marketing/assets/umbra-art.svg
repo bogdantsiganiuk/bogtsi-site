@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="umbra-title umbra-desc">
+  <title id="umbra-title">Six quiet paths into a private journal</title>
+  <desc id="umbra-desc">An open, curved paper journal holds abstract ink gestures. Six leaf-shaped bookmarks fan behind its pages, and a small physical clasp sits at the fore-edge. No journal entry, personal information, or therapeutic outcome is depicted.</desc>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- Six individually shaped bookmark leaves, not navigation controls. -->
+    <path d="M476 326C385 280 290 236 273 155c83 7 133 83 203 171Z" fill="#E4D4BF" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M476 326C403 238 361 174 377 115c68 28 86 114 99 211Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M476 326C450 223 450 159 487 109c42 56 24 141-11 217Z" fill="#9C7555" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M480 326c14-108 48-169 104-195 16 74-38 137-104 195Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M480 326c67-95 125-133 192-127-23 72-103 100-192 127Z" fill="#E4D4BF" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M480 326c100-59 171-69 230-44-53 53-142 54-230 44Z" fill="#9C7555" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M291 176c56 47 109 89 185 150m-91-189c34 62 60 121 91 189m11-194c-8 64-11 129-11 194m100-173c-39 50-70 109-96 173m168-113c-55 31-106 69-168 113m204-40c-65 10-132 26-204 40" stroke="#8D8577" stroke-width="1.7"/>
+    <path d="M487 132c-8 64-11 129-11 194m208-40c-65 10-132 26-204 40" stroke="#F4EEE2" stroke-width="1.7" opacity=".8"/>
+    <!-- Offset cover and page edges give the open book a tangible thickness. -->
+    <path d="M195 288c111-25 215-5 291 51 84-47 188-54 306-17l-21 206c-109-33-203-22-283 22-90-55-190-67-306-38Z" fill="#38352F" opacity=".12"/>
+    <path d="M182 272c111-25 215-5 291 51 84-47 188-54 306-17l-21 206c-109-33-203-22-283 22-90-55-190-67-306-38Z" fill="#9C7555" stroke="#38352F" stroke-width="2.8"/>
+    <path d="M194 267c105-21 204-3 279 51 83-47 182-53 293-20l-20 199c-105-31-196-21-271 22-87-52-183-65-293-38Z" fill="#D9D0BF" stroke="#38352F" stroke-width="2.3"/>
+    <path d="M198 255c110-14 200 8 275 57 80-51 180-61 291-32l-20 198c-107-27-196-11-269 32-87-51-183-63-290-43Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.7"/>
+    <path d="M473 312c-8 58-9 127 2 198" stroke="#8D8577" stroke-width="2.2"/>
+    <path d="M485 317c-7 53-7 113 1 173m-24-173c-5 56-3 111 3 166" stroke="#D9D0BF" stroke-width="2"/>
+    <path d="M198 483c97-16 184-4 259 36m37-5c67-34 148-47 237-27" stroke="#8D8577" stroke-width="1.5"/>
+    <!-- Abstract ink: open loops and a brush gesture, never words. -->
+    <path d="M264 327c21-28 56-31 75-8 18 21 1 53-24 51-25-3-30-24-18-37 17-18 43-9 63 10 18 17 32 17 44 4" stroke="#9C7555" stroke-width="3"/>
+    <path d="M257 401c29-12 51-11 74 4 21 14 40 18 62 5" stroke="#8D8577" stroke-width="2"/>
+    <path d="M283 423c22-3 42 0 60 7" stroke="#8D8577" stroke-width="1.6"/>
+    <path d="M540 363c17-25 45-35 72-23 29 13 34 39 62 41" stroke="#9C7555" stroke-width="3"/>
+    <path d="M548 417c35 11 64 6 88-17" stroke="#8D8577" stroke-width="2"/>
+    <path d="M561 432c14 2 28 0 41-4" stroke="#8D8577" stroke-width="1.6"/>
+    <!-- The journal's closed clasp folds back beside the open pages. -->
+    <path d="m753 359 47 6c14 2 23 13 21 27l-4 29c-2 13-12 21-25 19l-47-6Z" fill="#9C7555" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m769 373 26 4c6 1 10 6 9 12l-3 28c-1 6-6 10-12 9l-26-4Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.3"/>
+    <path d="m783 388-2 22" stroke="#9C7555" stroke-width="3.2"/>
+    <circle cx="782" cy="389" r="4.5" fill="#38352F"/>
+    <path d="M237 521c30-1 58 2 82 7" stroke="#8D8577" stroke-width="1.6"/>
+  </g>
+</svg>

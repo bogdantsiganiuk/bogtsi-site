@@ -70,19 +70,27 @@
     "Stop and rest if you feel pain, strain, or hoarseness. Ask a qualified professional about persistent vocal symptoms.",
     "A selected range is not a target to exceed. Choose a comfortable span for today; neither a score nor a warm-up promises range growth."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/voxwarm-1.png",
-      "alt": "Voxwarm App Store screenshot: See every note as you sing it. The Your turn pitch ladder shows C-sharp 3.",
-      "width": 1290,
-      "height": 2796
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/voxwarm-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Voxwarm app screen in an illustrative iPhone mockup"
     },
-    {
-      "src": "marketing/assets/voxwarm-3.png",
-      "alt": "Voxwarm's Hear tab shows listen-only interval practice, with eight free drills and 28 drills in the full set. The microphone stays closed.",
-      "width": 1290,
-      "height": 2796
+    "capture": {
+      "src": "marketing/assets/voxwarm-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Voxwarm session interface showing Your turn and a highlighted C-sharp 3 pitch in a demonstration state.",
+      "caption": "Actual app UI · demonstration pitch, not a measured user result.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/voxwarm-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Voxwarm; conceptual artwork, not an app screen."
     }
-  ],
+  },
   "resourceRoute": "resources/five-minute-vocal-warm-up"
 }

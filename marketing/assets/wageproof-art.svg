@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Wageproof — tracing a shift onto paper</title>
+  <desc id="desc">An original wide illustration of an open hours ledger with unnumbered shift intervals, a large sharpened pencil and loose calculation paper. Plain plus and equals marks suggest checking the arithmetic, without paysums, employer details or a paystub.</desc>
+  <g stroke="#38352F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m146 501 293 44 362-51-279-66Z" fill="#38352F" opacity=".1" stroke="none"/>
+    <path d="m520 170 217-31 38 202-218 31Z" fill="#D7DFE3"/>
+    <path d="m534 155 217-30 31 191-217 31Z" fill="#F4EEE2"/>
+    <path d="m561 181 151-22m-146 51 152-21" stroke="#8D8577" stroke-width="2.3"/>
+    <path d="m592 230 5 29m8-31 5 29m8-31 5 29m-32-5 45-18" stroke="#657C93" stroke-width="2.6"/>
+    <path d="m682 216 5 29m8-31 5 29m8-31 5 29m-32-5 45-18" stroke="#657C93" stroke-width="2.6"/>
+    <path d="m165 217 263-32 290 41 38 263-312 42-297-40Z" fill="#657C93"/>
+    <path d="m163 208 266-32 286 40 35 266-306 40-294-40Z" fill="#DED9CE"/>
+    <path d="m155 198 274-31 286 39 31 265-303 42-295-42Z" fill="#F4EEE2"/>
+    <path d="M155 198c103-15 194-16 274-7 91-22 184-16 286 15l31 265c-104-26-205-32-303 15-87-29-185-35-295-15Z" fill="#F4EEE2"/>
+    <path d="m429 191 14 295"/>
+    <path d="M419 213c-71-12-146-12-228-2m257 3c80-20 157-17 238 3" stroke="#8D8577" stroke-width="2.3"/>
+    <path d="m180 244 224-11m-228 64 231-6m-234 64 237 1m-241 56 244 9" stroke="#8D8577" stroke-width="2"/>
+    <path d="m197 262 188-8m-191 64 194-4m-195 65 199 4" stroke="#8D8577" stroke-width="2.4"/>
+    <path d="m198 254 49-2 1 15-51 2Zm74-4 76-3 1 15-77 3Z" fill="#9DAFBC" stroke-width="2.6"/>
+    <path d="m226 308 102-2 1 16-103 2Z" fill="#657C93" stroke-width="2.6"/>
+    <path d="m204 369 66 1v17l-66-1Zm89 2 88 1v17l-88-1Z" fill="#9DAFBC" stroke-width="2.6"/>
+    <path d="m196 252-1 23m191-31v23m-193 42v24m197-27v24m-199 38-1 25m204-21v24" stroke="#38352F" stroke-width="2"/>
+    <path d="m198 437 61 3m19 1 48 3m20 1 43 4" stroke="#8D8577" stroke-width="2.3"/>
+    <path d="m477 259 62-4m31 0 79 4m-169 34 53-3m43 0 88 6" stroke="#8D8577" stroke-width="2.4"/>
+    <path d="m547 275 2 25m-14-11 26-2m-81 52 61-2m34 0 86 6" stroke="#657C93" stroke-width="3.3"/>
+    <path d="m489 372 33 1m-32 13 33 1" stroke="#657C93" stroke-width="3.4"/>
+    <path d="m549 380 65 3m-64 23 112 7" stroke="#8D8577" stroke-width="2.4"/>
+    <path d="m594 477 19-4 7 47-11-6-8 9Z" fill="#657C93" stroke-width="2.5"/>
+    <path d="m769 502 46 14 19-13-21-9Z" fill="#38352F" opacity=".14" stroke="none"/>
+    <g transform="rotate(17 783 333)">
+      <path d="M765 154h36v285l-18 49-18-49Z" fill="#657C93"/>
+      <path d="M765 439h36l-18 49Z" fill="#D4BA91"/>
+      <path d="m778 475 5 13 5-13Z" fill="#38352F"/>
+      <path d="M777 188v245m12-245v245" stroke="#B6C4CD" stroke-width="2.3"/>
+      <path d="M765 154c0-12 36-12 36 0v25h-36Z" fill="#D9D4C9"/>
+      <path d="M765 176h36v16h-36Z" fill="#F4EEE2"/>
+      <path d="M770 182h26" stroke="#8D8577" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

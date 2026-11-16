@@ -61,12 +61,26 @@
     "Not every story has narration: the released version has 18 narrated stories out of 20. Headphones are recommended for binaural tones, not required for ordinary sound mixes.",
     "Use a comfortable listening volume. Optional alongside playback changes which app provides Lock Screen controls."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/noctura-1.png",
-      "alt": "Halcyon App Store screenshot showing the Sounds library, noise choices, wind-down programs, and a Rainy Night mix with two layers playing.",
-      "width": 1284,
-      "height": 2778
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/noctura-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Halcyon app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/noctura-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Halcyon Sounds screen with noise choices, wind-down programs and a two-layer Rainy Night player.",
+      "caption": "Actual app screen · an example two-layer sound mix.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/noctura-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Halcyon; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

@@ -61,12 +61,26 @@
     "The app supplies ideas and planning tools; it does not book venues, verify availability, or guarantee the outcome of a date.",
     "Extra App Store listing languages do not imply translated app interfaces."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/dahlia-1.png",
-      "alt": "Dahlia App Store screenshot showing a date idea on Tonight, with mood, budget, time, and indoor tags plus save, share, and planning controls.",
-      "width": 1290,
-      "height": 2796
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/dahlia-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Dahlia app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/dahlia-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Dahlia Tonight screen with a complete date idea, mood and time tags, and idea actions.",
+      "caption": "Actual app screen · a date idea, ready to make your own.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/dahlia-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Dahlia; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

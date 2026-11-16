@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">Brightwater — a planted tank and its care ritual</title>
+  <desc id="desc">An original paper-cut aquarium composition with broad aquatic leaves, a capped test vial and an open maintenance notebook. Blank log strokes and checkmarks suggest routine care without chemical readings or connected equipment.</desc>
+  <g stroke="#38352F" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M158 497 663 517 770 463 268 445Z" fill="#38352F" opacity=".1" stroke="none"/>
+    <path d="m169 198 82-45 481 14-76 45Z" fill="#F4EEE2"/>
+    <path d="m656 212 76-45v275l-76 49Z" fill="#C7DBD3"/>
+    <path d="m169 198 487 14v279l-487-17Z" fill="#F4EEE2"/>
+    <path d="m184 252 457 13v210l-457-16Z" fill="#DCE8DF" stroke="none"/>
+    <path d="m671 264 46-29v199l-46 30Z" fill="#AAC9C0" stroke="none"/>
+    <path d="m184 252 457 13m30-1 46-29" stroke="#5F8F88" stroke-width="2.5"/>
+    <path d="m188 437 453 15v23l-457-16Z" fill="#E5DFD2" stroke="none"/>
+    <path d="M234 442c-5-64 13-117 28-157m-27 107c-28-11-40-39-35-59 25 4 40 28 35 59Zm10-40c-8-32-1-65 18-77 16 24 7 56-18 77Z" fill="#5F8F88"/>
+    <path d="M243 399c10-28 35-46 56-41 0 27-25 49-56 41Z" fill="#92B5A4"/>
+    <path d="M335 446c-13-63-7-117-15-166m13 119c-24-8-43-35-37-60 25 3 45 33 37 60Zm-6-42c21-16 31-44 21-62-24 8-36 38-21 62Zm-6-35c-28-14-39-46-28-69 24 11 36 42 28 69Z" fill="#92B5A4"/>
+    <path d="M449 450c-4-58 12-111 42-158m-38 115c-31-3-57-28-55-56 31-1 59 24 55 56Zm12-41c-10-37 0-76 26-91 19 32 7 68-26 91Z" fill="#5F8F88"/>
+    <path d="M454 423c20-29 52-40 74-27-9 28-43 43-74 27Z" fill="#92B5A4"/>
+    <path d="M562 453c12-48 11-88 6-119m-1 81c-27-14-37-39-29-58 25 6 40 32 29 58Zm3-31c23-16 31-41 20-59-22 9-31 33-20 59Z" fill="#5F8F88"/>
+    <path d="m221 439 9-4 13 5m41 3 12-5 12 5m68 1 9-6 13 7m97 4 12-5 10 6m53-1 11-5 9 6" stroke="#8D8577" stroke-width="2.3"/>
+    <path d="m192 218 26 1m394 12 19 1M193 271v93" stroke="#FFFFFF" stroke-opacity=".8" stroke-width="5"/>
+    <path d="m656 212 76-45M656 491V212m-487-14 487 14"/>
+    <path d="m154 477 505 17 79-50v11l-78 51-506-18Z" fill="#F4EEE2"/>
+    <path d="m679 511 149-26 24 16-142 32Z" fill="#38352F" opacity=".12" stroke="none"/>
+    <g transform="rotate(8 791 335)">
+      <path d="M767 224h48v194c0 20-9 30-24 30s-24-10-24-30Z" fill="#F4EEE2"/>
+      <path d="M774 342h34v74c0 15-6 24-17 24s-17-9-17-24Z" fill="#A4C5BB" stroke="none"/>
+      <path d="M774 342c11 5 23 5 34 0" stroke="#5F8F88" stroke-width="2.3"/>
+      <path d="M776 257v52" stroke="#8D8577" stroke-width="2.3"/>
+      <path d="M763 218h56v19h-56Z" fill="#5F8F88"/>
+      <path d="M775 220v14m12-14v14m12-14v14m12-14v14" stroke="#F4EEE2" stroke-width="2"/>
+    </g>
+    <g transform="rotate(-9 640 469)">
+      <path d="m523 381 119 5 145 18v141l-146-16-118 4Z" fill="#5F8F88"/>
+      <path d="m526 373 116 9 140 15v139l-140-15-116 4Z" fill="#E5DFD2"/>
+      <path d="M526 365c42-5 81 2 116 12 45-4 92 3 140 14v135c-47-12-94-18-140-14-38-12-77-16-116-12Z" fill="#F4EEE2"/>
+      <path d="M642 377v135" stroke="#8D8577" stroke-width="2.3"/>
+      <path d="m546 399 8 9 14-18m-22 42 8 9 14-18m-22 42 8 9 14-18" stroke="#5F8F88" stroke-width="3.2"/>
+      <path d="m583 405 36 3m-36 30 29 3m-29 30 36 3m44-63 86 10m-86 20 69 8m-69 22 86 10" stroke="#8D8577" stroke-width="2.3"/>
+      <path d="m711 515 17 2v40l-8-8-9 6Z" fill="#5F8F88" stroke-width="2.3"/>
+    </g>
+  </g>
+</svg>

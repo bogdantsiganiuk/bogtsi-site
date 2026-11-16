@@ -67,12 +67,26 @@
     "Tip reports are records, not calculated reporting obligations or submitted reports. The Year-End Pay Check is not tax filing or a deduction guarantee.",
     "A final-pay date is an estimate from your inputs and available sources. The app cannot know whether a paycheck arrived."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/wageproof-1.png",
-      "alt": "Wageproof App Store screenshot showing the shift editor with start and end times, breaks, an optional rate, shift tags, and notes.",
-      "width": 1290,
-      "height": 2796
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/wageproof-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Wageproof app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/wageproof-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Wageproof Breakdown screen showing an example pay calculation, rates, hours and overtime arithmetic.",
+      "caption": "Demo calculation · not a pay stub or a real worker’s result.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/wageproof-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Wageproof; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }

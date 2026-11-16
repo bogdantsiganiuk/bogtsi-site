@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="dahlia-title dahlia-desc">
+  <title id="dahlia-title">A small plan for two</title>
+  <desc id="dahlia-desc">Two empty chairs meet around a table set with two cups, an open book, a pair of dominoes, and an unmarked paper calendar invitation. The arrangement suggests choosing a simple shared activity.</desc>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M192 313L178 518M267 326L283 507M719 324L704 508M796 311L812 519" stroke="#38352F" stroke-width="6"/>
+    <path d="M174 267C169 244 181 230 205 233L265 242C286 245 296 258 292 280L279 357L187 346L174 267Z" fill="#C88872" stroke="#38352F" stroke-width="3"/>
+    <path d="M188 263C187 254 193 250 203 251L262 259C273 261 278 268 276 279L267 331L198 323L188 263Z" fill="#F4EEE2" stroke="#8D8577" stroke-width="2"/>
+    <path d="M169 392L273 382L307 416L195 430L169 412V392Z" fill="#B77D69" stroke="#38352F" stroke-width="3"/>
+    <path d="M169 392L273 382L307 402L195 416L169 392Z" fill="#F4EEE2" stroke="#38352F" stroke-width="3"/>
+    <path d="M706 279C702 257 713 244 735 242L794 233C818 230 831 244 826 267L813 346L720 357L706 279Z" fill="#C88872" stroke="#38352F" stroke-width="3"/>
+    <path d="M722 279C720 268 725 261 736 259L795 251C805 250 811 254 810 263L800 323L731 331L722 279Z" fill="#F4EEE2" stroke="#8D8577" stroke-width="2"/>
+    <path d="M693 402L728 382L831 392V412L805 430L693 416V402Z" fill="#B77D69" stroke="#38352F" stroke-width="3"/>
+    <path d="M693 402L728 382L831 392L805 416L693 402Z" fill="#F4EEE2" stroke="#38352F" stroke-width="3"/>
+    <path d="M375 393L351 532L370 533L399 396M603 396L630 533L650 532L626 393" fill="#DDD6C8" stroke="#38352F" stroke-width="3"/>
+    <path d="M381 475H617" stroke="#38352F" stroke-width="7"/>
+    <path d="M381 472H617" stroke="#DDD6C8" stroke-width="4"/>
+    <path d="M252 344C252 292 362 250 500 250C638 250 748 292 748 344V360C748 412 638 454 500 454C362 454 252 412 252 360V344Z" fill="#DDD6C8" stroke="#38352F" stroke-width="3"/>
+    <ellipse cx="500" cy="344" rx="248" ry="94" fill="#F4EEE2" stroke="#38352F" stroke-width="3"/>
+    <path d="M343 292L415 272L471 291L548 278L568 342L490 359L434 340L362 361L343 292Z" fill="#38352F" opacity=".1"/>
+    <path d="M338 285L411 266L466 286L544 272L560 334L481 350L426 331L355 352L338 285Z" fill="#DDD6C8" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M338 279L410 260L464 279L542 266L556 326L480 342L425 324L353 345L338 279Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M410 260L425 324M464 279L480 342" stroke="#8D8577" stroke-width="2"/>
+    <path d="M425 324C442 318 460 324 480 342L464 279C446 267 429 260 410 260L425 324Z" fill="#E7D3C8" stroke="#8D8577" stroke-width="2"/>
+    <path d="M360 294L391 286M365 310L397 301M491 293L526 287M495 308L530 301" stroke="#8D8577" stroke-width="2"/>
+    <path d="M493 333L507 328L514 351L504 347L499 357L493 333Z" fill="#C88872" stroke="#38352F" stroke-width="1.8"/>
+    <path d="M603 208L692 221L712 313L625 302L603 208Z" fill="#DDD6C8" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M584 300L603 208L679 219L659 312L584 300Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M599 225L676 236L679 219L603 208L599 225Z" fill="#C88872" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M617 201L612 222M650 206L645 227" stroke="#38352F" stroke-width="3"/>
+    <path d="M603 244L661 253M599 262L657 271M595 280L653 289M620 247L611 291M641 250L632 294" stroke="#8D8577" stroke-width="1.7"/>
+    <ellipse cx="323" cy="354" rx="33" ry="12" fill="#E7D3C8" stroke="#8D8577" stroke-width="2"/>
+    <path d="M341 321C362 317 364 344 343 344" stroke="#38352F" stroke-width="3"/>
+    <path d="M303 316L306 345C307 359 340 359 342 345L345 316H303Z" fill="#C88872" stroke="#38352F" stroke-width="2.5"/>
+    <ellipse cx="324" cy="316" rx="21" ry="7" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <ellipse cx="673" cy="365" rx="33" ry="12" fill="#E7D3C8" stroke="#8D8577" stroke-width="2"/>
+    <path d="M693 331C713 328 715 354 694 354" stroke="#38352F" stroke-width="3"/>
+    <path d="M653 327L656 356C657 370 690 370 692 356L695 327H653Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <ellipse cx="674" cy="327" rx="21" ry="7" fill="#E7D3C8" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M449 388L494 375L520 391V400L474 414L449 398V388Z" fill="#DDD6C8" stroke="#38352F" stroke-width="2"/>
+    <path d="M449 388L494 375L520 391L474 405L449 388Z" fill="#C88872" stroke="#38352F" stroke-width="2"/>
+    <path d="M472 381L497 398" stroke="#38352F" stroke-width="1.7"/>
+    <path d="M462 387H463M507 391H508" stroke="#38352F" stroke-width="4"/>
+    <path d="M528 366L573 373L588 395V404L543 397L528 375V366Z" fill="#DDD6C8" stroke="#38352F" stroke-width="2"/>
+    <path d="M528 366L573 373L588 395L543 388L528 366Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2"/>
+    <path d="M550 369L565 392M540 374H541M551 382H552M571 382H572" stroke="#38352F" stroke-width="2.5"/>
+  </g>
+</svg>

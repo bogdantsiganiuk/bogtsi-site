@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="noctura-title noctura-desc">
+  <title id="noctura-title">Rain, texture, and a quieter wave</title>
+  <desc id="noctura-desc">A paper crescent rests above overlapping lavender and ivory wave ribbons. Fine rain strokes and a softly textured paper layer mingle with the waves, which break into faint fragments at either end.</desc>
+  <defs>
+    <linearGradient id="noctura-fade" x1="147" y1="0" x2="860" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0"/>
+      <stop offset=".13" stop-color="white" stop-opacity=".82"/>
+      <stop offset=".3" stop-color="white"/>
+      <stop offset=".72" stop-color="white"/>
+      <stop offset=".9" stop-color="white" stop-opacity=".8"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="noctura-soft-ends" maskUnits="userSpaceOnUse" x="140" y="220" width="730" height="310">
+      <path d="M140 220H870V530H140Z" fill="url(#noctura-fade)"/>
+    </mask>
+  </defs>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M746 130C711 137 686 167 686 201C686 241 718 272 758 272C782 272 803 260 816 242C775 252 739 223 736 187C734 165 738 146 746 130Z" fill="#38352F" opacity=".13"/>
+    <path d="M737 122C702 129 677 159 677 193C677 233 709 264 749 264C773 264 794 252 807 234C766 244 730 215 727 179C725 157 729 138 737 122Z" fill="#F4EEE2" stroke="#38352F" stroke-width="3"/>
+    <path d="M695 180C690 210 711 237 740 243" stroke="#8A82A7" stroke-width="9"/>
+    <path d="M262 177L255 196M255 215L247 236" stroke="#8A82A7" stroke-width="3" opacity=".35"/>
+    <path d="M306 166L298 189M292 208L284 231M278 250L270 273" stroke="#F4EEE2" stroke-width="7"/>
+    <path d="M306 166L298 189M292 208L284 231M278 250L270 273" stroke="#8A82A7" stroke-width="2.5"/>
+    <path d="M353 151L345 175M339 194L331 217M325 236L317 259M311 278L303 301" stroke="#F4EEE2" stroke-width="7"/>
+    <path d="M353 151L345 175M339 194L331 217M325 236L317 259M311 278L303 301" stroke="#8A82A7" stroke-width="2.5"/>
+    <path d="M398 166L390 189M384 208L376 231M370 250L362 273M356 292L348 315" stroke="#F4EEE2" stroke-width="7"/>
+    <path d="M398 166L390 189M384 208L376 231M370 250L362 273M356 292L348 315" stroke="#8A82A7" stroke-width="2.5"/>
+    <path d="M445 176L437 199M431 218L423 241M417 260L409 283M403 302L395 325" stroke="#F4EEE2" stroke-width="7"/>
+    <path d="M445 176L437 199M431 218L423 241M417 260L409 283M403 302L395 325" stroke="#8A82A7" stroke-width="2.5"/>
+    <path d="M489 194L481 217M475 236L467 259M461 278L453 301" stroke="#8A82A7" stroke-width="3" opacity=".6"/>
+    <path d="M531 217L523 240M517 259L509 282" stroke="#8A82A7" stroke-width="3" opacity=".35"/>
+    <g mask="url(#noctura-soft-ends)">
+      <path d="M158 370C231 373 269 318 339 311C422 302 466 360 542 355C623 349 655 288 730 291C786 293 815 328 852 322L852 352C797 368 768 333 721 336C652 340 629 400 548 404C461 408 421 350 349 359C279 366 234 412 158 409V370Z" fill="#38352F" opacity=".12"/>
+      <path d="M151 359C224 362 262 307 332 300C415 291 459 349 535 344C616 338 648 277 723 280C779 282 808 317 845 311L845 341C790 357 761 322 714 325C645 329 622 389 541 393C454 397 414 339 342 348C272 355 227 401 151 398V359Z" fill="#8A82A7" stroke="#38352F" stroke-width="2.5"/>
+      <path d="M167 414C247 422 299 375 367 377L381 372L395 378L410 377L425 386L440 385C484 402 510 417 555 414C629 409 673 359 740 370C784 377 813 399 853 393L853 431C797 443 761 420 720 422C649 425 615 463 547 463C468 464 421 419 360 427C285 437 246 469 167 455V414Z" fill="#DDD6E2" stroke="#38352F" stroke-width="2.5"/>
+      <path d="M151 408C225 423 272 352 348 356C430 360 453 413 531 418C617 425 662 354 741 350C789 348 819 365 854 357L854 401C815 408 784 392 742 397C660 407 624 475 534 468C448 461 414 408 345 407C270 406 228 465 151 451V408Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+      <path d="M162 464C246 480 291 439 355 440C426 442 471 488 541 484C617 480 660 435 728 433C781 431 810 452 849 444L849 469C798 479 779 461 730 466C663 474 619 518 539 517C460 516 422 474 354 477C287 479 243 512 162 495V464Z" fill="#8A82A7" stroke="#38352F" stroke-width="2.5"/>
+      <path d="M215 409C272 394 303 374 345 375C416 377 450 431 520 436" stroke="#8D8577" stroke-width="2"/>
+      <path d="M578 446C640 434 680 382 737 378" stroke="#8A82A7" stroke-width="2.5"/>
+      <path d="M250 475C291 468 315 457 347 458M592 497C626 489 651 471 674 462" stroke="#F4EEE2" stroke-width="2"/>
+      <path d="M282 334L287 330M304 325L310 323M332 320L338 321M358 322L364 325M382 330L388 334M406 344L411 348M432 361L438 365M459 375L465 378M489 385L495 386M520 387L526 386M551 383L557 381M580 371L586 368M607 354L612 350M632 333L637 329M659 313L665 310M688 301L694 300M719 300L725 302M748 308L754 310" stroke="#F4EEE2" stroke-width="2.5" opacity=".65"/>
+    </g>
+    <path d="M149 392L177 389M128 429L153 431M169 473L191 472M823 332L849 329M847 380L874 377M823 481L847 480" stroke="#8A82A7" stroke-width="2.5" opacity=".35"/>
+    <path d="M108 430L117 431M883 376L895 373M859 479L868 478" stroke="#8A82A7" stroke-width="2" opacity=".18"/>
+  </g>
+</svg>

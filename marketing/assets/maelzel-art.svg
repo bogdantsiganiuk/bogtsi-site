@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" fill="none" role="img" aria-labelledby="maelzel-title maelzel-desc">
+  <title id="maelzel-title">Keep the beat through the quiet</title>
+  <desc id="maelzel-desc">A mechanical paper metronome swings above a physical beat strip. The strip has a deliberate open gap followed by a returning accented beat. A small unnumbered ladder suggests tempo adjustment; no tuner, app interface, or measured performance is shown.</desc>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- A tapered mechanical body, built from offset paper planes. -->
+    <path d="m412 113 47 16 115 313-43 25-252-9 4-22Z" fill="#38352F" opacity=".12"/>
+    <path d="m402 102 47 16 115 313-43 25-252-9 4-22Z" fill="#9F2832" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m402 102 119 330-248-7Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m402 127 101 286-212-6Z" fill="#E6DDCD" stroke="#8D8577" stroke-width="1.9"/>
+    <path d="m402 150 91 254-190-5Z" fill="#F4EEE2" stroke="#8D8577" stroke-width="1.6"/>
+    <path d="m273 425 248 7 43-1v17l-43 24-248-8Z" fill="#9F2832" stroke="#38352F" stroke-width="2.8"/>
+    <path d="m273 425 248 7v40" stroke="#38352F" stroke-width="2.6"/>
+    <path d="m291 438 211 6" stroke="#F4EEE2" stroke-width="1.8" opacity=".8"/>
+    <path d="m292 465-3 13 33 1 4-13m155 5 4 13 34 1-4-13" fill="#38352F" stroke="#38352F" stroke-width="2.3"/>
+    <!-- A quiet unnumbered adjustment ladder, etched into the side. -->
+    <path d="m443 191 62 172m-52-155 10-3m-1 25 10-4m-3 25 11-4m-3 25 11-4m-3 25 11-4m-3 25 11-4m-4 25 11-4" stroke="#F4EEE2" stroke-width="2" opacity=".85"/>
+    <!-- Pendulum: one physical arm, movable weight, and low pivot. -->
+    <path d="M418 402 356 174" stroke="#38352F" stroke-width="9"/>
+    <path d="M416 397 357 178" stroke="#F4EEE2" stroke-width="3.2"/>
+    <path d="m363 249 25-7 13 47-26 7Z" fill="#38352F" opacity=".12"/>
+    <path d="m357 245 25-7 13 47-26 7Z" fill="#9F2832" stroke="#38352F" stroke-width="2.5"/>
+    <path d="m365 254 12-3m-9 14 11-3m-8 14 11-3" stroke="#F4EEE2" stroke-width="1.6"/>
+    <circle cx="418" cy="402" r="17" fill="#D9D0BF" stroke="#38352F" stroke-width="2.4"/>
+    <circle cx="418" cy="402" r="6" fill="#9F2832" stroke="#38352F" stroke-width="1.8"/>
+    <path d="M314 202c47-29 99-37 150-26" stroke="#F4EEE2" stroke-width="5.5"/>
+    <path d="M314 202c47-29 99-37 150-26" stroke="#8D8577" stroke-width="1.8"/>
+    <path d="m317 190-5 13 14 3" stroke="#8D8577" stroke-width="1.8"/>
+    <path d="M321 183c17-8 33-13 50-17" stroke="#8D8577" stroke-width="1.5" opacity=".65"/>
+    <!-- A cut beat strip: the blank interval is genuinely open canvas. -->
+    <path d="M139 496h445l-9 13 10 11-11 14H139Z" fill="#38352F" opacity=".10"/>
+    <path d="M133 488h445l-9 13 10 11-11 14H133Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M694 488h170v38H684l9-13-10-12Z" fill="#38352F" opacity=".10"/>
+    <path d="M688 480h170v38H678l9-13-10-12Z" fill="#F4EEE2" stroke="#38352F" stroke-width="2.5"/>
+    <path d="M153 507h392m162-8h130" stroke="#8D8577" stroke-width="1.7"/>
+    <path d="M175 493v28" stroke="#9F2832" stroke-width="6"/>
+    <path d="M249 495v24m74-24v24m74-24v24m74-24v24m74-24v24" stroke="#38352F" stroke-width="3"/>
+    <path d="M721 485v28" stroke="#9F2832" stroke-width="6"/>
+    <path d="M795 487v24" stroke="#38352F" stroke-width="3"/>
+    <!-- The returning gesture clears the torn gap without filling it. -->
+    <path d="M578 464c35-60 109-61 143-9" stroke="#F4EEE2" stroke-width="6.5"/>
+    <path d="M578 464c35-60 109-61 143-9" stroke="#9F2832" stroke-width="2.7"/>
+    <path d="m709 451 14 7 2-16" stroke="#F4EEE2" stroke-width="6.5"/>
+    <path d="m709 451 14 7 2-16" stroke="#9F2832" stroke-width="2.7"/>
+    <path d="M606 546c19 5 41 5 60 0" stroke="#8D8577" stroke-width="1.7"/>
+  </g>
+</svg>

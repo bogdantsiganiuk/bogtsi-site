@@ -58,12 +58,26 @@
     "The trial is 72 hours from its original purchase, not three days from each reinstall. Nothing is charged automatically when it ends.",
     "An incoming call stops playback. Press Play afterward to start a new run; automatic resumption is not promised."
   ],
-  "screenshots": [
-    {
-      "src": "marketing/assets/maelzel-1.png",
-      "alt": "Maelzel App Store screenshot showing a 120 BPM metronome with tempo ruler, meter and sound controls, tap tempo, Trainer, and Songs.",
-      "width": 1290,
-      "height": 2796
+  "visuals": {
+    "device": {
+      "src": "marketing/assets/maelzel-device.png",
+      "width": 1120,
+      "height": 1822,
+      "alt": "Complete Maelzel app screen in an illustrative iPhone mockup"
+    },
+    "capture": {
+      "src": "marketing/assets/maelzel-capture.png",
+      "width": 828,
+      "height": 1792,
+      "alt": "Actual Maelzel metronome interface at120BPM with meter, subdivision, sound, tempo ruler, Trainer, Songs and Play.",
+      "caption": "Actual metronome screen · an example tempo setting.",
+      "frameProfile": "notch"
+    },
+    "illustration": {
+      "src": "marketing/assets/maelzel-art.svg",
+      "width": 1000,
+      "height": 640,
+      "alt": "Original supporting illustration for Maelzel; conceptual artwork, not an app screen."
     }
-  ]
+  }
 }
