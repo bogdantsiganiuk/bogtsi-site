@@ -11,7 +11,8 @@ legacy root redirects, then renders checked-in marketing content.
 
 `apps.json` is the only product-name/App Store identity registry.
 `marketing.json` explicitly lists the eleven marketed products, five resources,
-one shared `appOrder`, and every public PNG/SVG/CSS asset. Product copy lives in
+one shared `appOrder`, and every public PNG/SVG/CSS asset plus the exact homepage
+module `marketing/assets/carousel.mjs`. Product copy lives in
 `marketing/apps/<registry-slug>.json`; resources are trusted HTML body fragments
 in `marketing/resources/`. Content files themselves are not published.
 Source-version/review timestamps are internal provenance, not public freshness claims.
@@ -81,18 +82,41 @@ identities fail closed. The obsolete `featured` and `campaigns` fields are rejec
 
 Each equal-width carousel card shows the app's complete secondary screenshot and
 links to its own `#highlight-<registry-slug>` below. The focusable, labelled scroll
-region supports native swipe, trackpad, scrollbar, keyboard, and tab navigation,
-with proximity scroll snap, visible focus, persistent instructions, and a skip link.
-There is no carousel JavaScript, autoplay, fake control, hidden scrollbar, or input
-interception. Reduced-motion preferences disable smooth scrolling.
+region preserves native swipe, trackpad, scrollbar, keyboard, and tab navigation,
+visible focus, persistent instructions, and a skip link. Without JavaScript, it
+remains a native scrolling list with proximity snap and working app anchors.
+
+The homepage alone loads the dependency-free `marketing/assets/carousel.mjs`.
+Initialization reveals native previous/next arrows and a Pause/Play control before
+the content in tab order. Arrows stay visible at bounds, where the unavailable
+direction is disabled; narrow layouts place them below the full-width viewport.
+Rotation moves at 18 CSS pixels per second, stops at the end without wrapping,
+and can restart from the beginning with explicit Play. Hover pauses temporarily;
+focus entering the carousel, arrow use, pointer/touch, wheel and navigation keys
+pause until explicit Play. Play works while its control retains focus. Hidden
+pages, offscreen carousels and reduced-motion preferences suppress movement, with
+a fresh animation clock on resume. Snap is disabled during automatic mode and
+restored for permanent manual mode; native input and links are not intercepted.
+No animation frames are continuously scheduled while paused.
+
+All carousel cards share four CSS grid/subgrid rows for the wrapped header, full
+phone, value caption and action. Longer category/title text enlarges the common
+header row rather than pushing down one app's phone. Phone aspect ratios and
+mobile viewport width are preserved without fixed header heights, clamped text
+or per-app alignment patches. This is a source-level layout change, not a claim
+of browser-tested alignment.
 
 Every highlight shows the existing full introduction, headline, tagline, primary
 screenshot, and “Meet” button. Its heading, phone, and button link to the canonical
 product page, not a raw image or App Store URL. Alternating desktop columns use CSS
 only; mobile always presents the copy before the phone. The homepage displays 22
-complete native screenshots: two distinct actual screens per app, with truthful
-source/demo captions. The five existing companion resources remain independent
-and unchanged; further resource work is deferred.
+complete native screenshots: two distinct actual screens per app, with useful
+value captions. The secondary shots now show Dahlia's garden progress, Voxwarm's
+session summary, Ascend's character view and Brightwater's maintenance record;
+all eleven secondary captions describe the value shown. Primary captures, art,
+standalone phone images and product/social image roles stay unchanged. The five
+existing companion resources remain independent and unchanged; further resource
+work is deferred.
 `/support/` lists all 19 legal registry entries and their scoped routes,
 including Wageproof’s six English/Spanish links.
 `/site-privacy/` describes this website, not any app. Root `/privacy` and `/terms`
@@ -130,9 +154,13 @@ install URL from the registry; it contains no invented prices, offers, ratings,
 or reviews. `SoftwareApplication.screenshot` uses the complete original capture;
 `image`, Open Graph and social image metadata use the approved standalone iPhone
 PNG. Optional social metadata is empty on pages without a product image.
-The original 64 outputs remain; the manifest adds exactly 66 files
+The original 64 outputs remain; the manifest adds exactly 67 files
 (11 products, 5 guides/records, resource index, support, site privacy, sitemap, robots,
-33 PNGs, 11 SVGs and CSS), for 130 explicitly allowed output paths.
+33 PNGs, 11 SVGs, CSS and the homepage module), for 131 explicitly allowed output
+paths. The module is required for a successful marketing build and registered
+outside the four image roles; arbitrary JavaScript asset paths are rejected.
+Carousel controls add no analytics events, storage or collection. The existing
+20-page Cloudflare beacon scope is unchanged, with no provider-ingestion claim.
 
 Every product has exactly four required `visuals` roles, using the registry slug
 even where the public product route is an alias:
@@ -145,7 +173,7 @@ even where the public product route is an alias:
 | `illustration` | `marketing/assets/<registry-slug>-art.svg` | Original conceptual art in product how-it-works and the existing resource cards/headers |
 
 All roles require real `width`, `height` and descriptive `alt` metadata. Both capture
-roles also require their qualification `caption` and explicit `frameProfile` (`notch`
+roles also require their value `caption` and explicit `frameProfile` (`notch`
 or `island`). Ascend uses `island`; the other approved captures use `notch`.
 The renderer reads the profile from content, not a runtime app-ID crop rule.
 No legacy image alias is supported. Product free/paid details remain text-only

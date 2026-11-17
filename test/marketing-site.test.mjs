@@ -33,7 +33,7 @@ test('rejects duplicate assets and unsafe content publication paths', () => {
   const privateContent = manifest();
   privateContent.products[0].content = '.superpowers/private.json';
   assert.throws(() => marketingFiles({ apps, marketing: privateContent }), /content/i);
-  for (const asset of ['marketing/assets/voxwarm-1.png', 'marketing/assets/unregistered-art.svg', 'marketing/assets/voxwarm-art.svg/../private.svg', 'marketing/assets/voxwarm.html']) {
+  for (const asset of ['marketing/assets/voxwarm-1.png', 'marketing/assets/unregistered-art.svg', 'marketing/assets/voxwarm-art.svg/../private.svg', 'marketing/assets/voxwarm.html', 'marketing/assets/unregistered.mjs', 'marketing/assets/carousel.js', 'marketing/assets/carousel.mjs/../private.mjs']) {
     const unsafe = manifest();
     unsafe.assets.push(asset);
     assert.throws(() => marketingFiles({ apps, marketing: unsafe }), /asset publication path/i);
@@ -138,6 +138,15 @@ function visualFixture() {
   cpSync(join(ROOT, 'pages.json'), join(rootDir, 'pages.json'));
   return { rootDir, outDir: join(rootDir, '_site'), apps, marketing: manifest() };
 }
+
+test('refuses publication without the registered homepage controller', () => {
+  const fixture = visualFixture();
+  fixture.marketing.assets = fixture.marketing.assets.filter(asset => asset !== 'marketing/assets/carousel.mjs');
+  try {
+    assert.throws(() => buildMarketing(fixture), /required.*carousel module/i);
+    assert.equal(existsSync(fixture.outDir), false);
+  } finally { rmSync(fixture.rootDir, { recursive: true, force: true }); }
+});
 
 test('rejects missing, unregistered, foreign and dimension-mismatched visual roles before publication', () => {
   const fixture = visualFixture();

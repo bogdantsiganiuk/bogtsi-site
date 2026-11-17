@@ -113,6 +113,7 @@
   ],
   "assets": [
     "marketing/assets/site.css",
+    "marketing/assets/carousel.mjs",
     "marketing/assets/voxwarm-device.png",
     "marketing/assets/voxwarm-capture.png",
     "marketing/assets/voxwarm-art.svg",

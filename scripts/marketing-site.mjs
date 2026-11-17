@@ -63,7 +63,7 @@ export function marketingFiles({ apps, marketing }) {
     files.push(`${resource.route}/index.html`);
   }
   const assets = new Set();
-  const allowedAssets = new Set(['marketing/assets/site.css', ...marketing.products.flatMap(entry => Object.values(VISUAL_FILES).map(file => `marketing/assets/${entry.app}-${file}`))]);
+  const allowedAssets = new Set(['marketing/assets/site.css', 'marketing/assets/carousel.mjs', ...marketing.products.flatMap(entry => Object.values(VISUAL_FILES).map(file => `marketing/assets/${entry.app}-${file}`))]);
   for (const asset of marketing.assets) {
     if (typeof asset !== 'string' || !allowedAssets.has(asset)) fail(`unsafe asset publication path: ${asset}`);
     if (assets.has(asset)) fail(`duplicate marketing asset: ${asset}`);
@@ -119,12 +119,12 @@ function scene(product, { placement = 'main', visual = 'capture', link = 'source
   const { app, data } = product;
   const image = data.visuals[visual];
   const sourceLinks = sources ? `<details class="scene-sources"><summary>Open complete images</summary><ul><li><a href="/${esc(image.src)}">Complete source screenshot · ${image.width} × ${image.height}</a></li><li><a href="/${esc(data.visuals.device.src)}">Standalone iPhone render · ${data.visuals.device.width} × ${data.visuals.device.height}</a></li></ul></details>` : '';
-  return `<figure class="iphone-scene" id="scene-${placement}-${app.slug}" aria-label="${esc(app.name)} shown on an illustrative iPhone"><div class="iphone-stage">${device(product, { placement, visual, link, lazy })}</div><figcaption><p>${esc(image.caption)}</p><p class="frame-note">Complete native screenshot in an original illustrative frame; not a device photograph.</p>${sourceLinks}</figcaption></figure>`;
+  return `<figure class="iphone-scene" id="scene-${placement}-${app.slug}" aria-label="${esc(app.name)} shown on an illustrative iPhone"><div class="iphone-stage">${device(product, { placement, visual, link, lazy })}</div><figcaption><p>${esc(image.caption)}</p>${sourceLinks}</figcaption></figure>`;
 }
 
 function art(data) {
   const visual = data.visuals.illustration;
-  return `<figure class="art-note"><img class="supporting-art" src="/${esc(visual.src)}" width="${visual.width}" height="${visual.height}" alt="${esc(visual.alt)}" loading="lazy"><figcaption>Original conceptual illustration · not app UI</figcaption></figure>`;
+  return `<figure class="art-note"><img class="supporting-art" src="/${esc(visual.src)}" width="${visual.width}" height="${visual.height}" alt="${esc(visual.alt)}" loading="lazy"></figure>`;
 }
 const list = (items) => `<ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul>`;
 const paragraphs = (items) => items.map(item => `<p>${esc(item)}</p>`).join('');
@@ -170,6 +170,7 @@ function homepage(products, marketing, template) {
 export function buildMarketing({ rootDir, outDir, apps, marketing }) {
   marketingFiles({ apps, marketing });
   if (!marketing.assets.includes('marketing/assets/site.css')) fail('required marketing stylesheet is not registered');
+  if (!marketing.assets.includes('marketing/assets/carousel.mjs')) fail('required homepage carousel module is not registered');
   const assets = new Map(marketing.assets.map(path => [path, source(rootDir, path, 'asset')]));
   const products = marketing.products.map(entry => {
     const data = JSON.parse(source(rootDir, entry.content, 'product content').toString('utf8'));
