@@ -99,10 +99,12 @@ a fresh animation clock on resume. Snap is disabled during automatic mode and
 restored for permanent manual mode; native input and links are not intercepted.
 No animation frames are continuously scheduled while paused.
 
-All carousel cards share four CSS grid/subgrid rows for the wrapped header, full
-phone, value caption and action. Longer category/title text enlarges the common
-header row rather than pushing down one app's phone. Phone aspect ratios and
-mobile viewport width are preserved without fixed header heights, clamped text
+All carousel cards share five CSS grid/subgrid rows for the category, app name,
+full phone, value caption and action. The copy spans the first two rows as a
+subgrid: longer categories enlarge the shared category row, so each app name
+starts on the shared second row rather than shifting with its own category.
+Longer names enlarge the shared name row rather than pushing down one app's phone.
+Phone aspect ratios and mobile viewport width are preserved without fixed header heights, clamped text
 or per-app alignment patches. This is a source-level layout change, not a claim
 of browser-tested alignment.
 

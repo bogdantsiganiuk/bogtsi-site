@@ -93,20 +93,20 @@ p { max-width: 62ch; }
 .carousel-viewport:focus-visible { outline: 3px solid #2d64a0; outline-offset: 3px; }
 .carousel-controlled { scroll-behavior: auto; }
 .carousel-auto { scroll-snap-type: none; }
-/* Four common tracks: wrapped header, full phone, value caption, and action. */
-.carousel-track { display: grid; grid-auto-flow: column; grid-auto-columns: 280px; grid-template-rows: repeat(4, auto); column-gap: 20px; list-style: none; margin: 0; padding: 8px 8px 20px; }
-.carousel-item { display: grid; grid-row: 1 / span 4; grid-template-rows: subgrid; min-width: 0; scroll-snap-align: start; }
+/* Five common tracks: category, app name, full phone, value caption, and action. */
+.carousel-track { display: grid; grid-auto-flow: column; grid-auto-columns: 280px; grid-template-rows: repeat(5, auto); column-gap: 20px; list-style: none; margin: 0; padding: 8px 8px 20px; }
+.carousel-item { display: grid; grid-row: 1 / span 5; grid-template-rows: subgrid; min-width: 0; scroll-snap-align: start; }
 .carousel-card { display: grid; grid-row: 1 / -1; grid-template-rows: subgrid; min-width: 0; padding: 22px 16px; background: var(--theme-surface); color: var(--theme-ink); text-decoration: none; overflow-wrap: anywhere; }
-.carousel-copy { grid-row: 1; padding: 0 6px 12px; }
-.carousel-copy .eyebrow { color: var(--theme-muted); font-size: 10px; }
-.carousel-copy h3 { font-family: var(--serif); font-size: 29px; line-height: 1.15; letter-spacing: -0.03em; margin-top: 8px; }
+.carousel-copy { display: grid; grid-row: 1 / span 2; grid-template-rows: subgrid; padding: 0 6px 12px; }
+.carousel-copy .eyebrow { grid-row: 1; align-self: start; color: var(--theme-muted); font-size: 10px; }
+.carousel-copy h3 { grid-row: 2; align-self: start; font-family: var(--serif); font-size: 29px; line-height: 1.15; letter-spacing: -0.03em; margin-top: 8px; }
 .carousel-card:hover h3 { text-decoration: underline; }
-.carousel-card .iphone-scene { display: grid; grid-row: 2 / span 2; grid-template-rows: subgrid; }
+.carousel-card .iphone-scene { display: grid; grid-row: 3 / span 2; grid-template-rows: subgrid; }
 .carousel-card .iphone-stage { grid-row: 1; align-self: start; width: 200px; max-width: 100%; margin-inline: auto; }
 .carousel-card .iphone-scene > figcaption { grid-row: 2; }
 .carousel-card .iphone-device { width: 200px; max-width: 100%; flex-basis: 200px; }
 :is(.feature, .carousel-card) .iphone-scene > figcaption { color: var(--theme-ink); }
-.carousel-explore { grid-row: 4; padding: 20px 6px 0; font-size: 13px; font-weight: 600; }
+.carousel-explore { grid-row: 5; padding: 20px 6px 0; font-size: 13px; font-weight: 600; }
 .app-highlights { padding-block: 16px 64px; scroll-margin-top: 24px; }
 .app-highlights > .section-heading { flex-wrap: wrap; margin-bottom: 28px; }
 .resources { padding-block: 58px 64px; background: #eeeadf; border-top: 1px solid var(--line); }
