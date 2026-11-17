@@ -60,6 +60,7 @@ class Element extends EventTarget {
   hasAttribute(name) { return this.attributes.has(name); }
   contains(node) { return node === this || this.children.some(child => child.contains(node)); }
   matches(selector) {
+    if (selector === ':hover') return this.contains(this.ownerDocument.hoveredElement);
     if (selector.startsWith('.')) return this.classList.contains(selector.slice(1));
     if (selector.startsWith('#')) return this.id === selector.slice(1);
     const attribute = /^\[([^=\]]+)(?:="([^"]*)")?\]$/.exec(selector);
@@ -87,6 +88,7 @@ function fixture({ reducedMotion = false, hidden = false, visible = true } = {})
   document.hidden = hidden;
   Object.defineProperty(document, 'visibilityState', { get: () => document.hidden ? 'hidden' : 'visible' });
   document.activeElement = null;
+  document.hoveredElement = null;
   let now = 0;
   let nextFrame = 0;
   const frames = new Map();
@@ -133,6 +135,8 @@ function fixture({ reducedMotion = false, hidden = false, visible = true } = {})
   root.append(toggle, previous, viewport, next);
 
   function emit(target, type, properties = {}) {
+    if (type === 'mouseenter') document.hoveredElement = target;
+    if (type === 'mouseleave' && target.contains(document.hoveredElement)) document.hoveredElement = null;
     const event = new Event(type, { bubbles: true, cancelable: true });
     Object.defineProperties(event, Object.fromEntries(Object.entries({ target, ...properties }).map(([name, value]) => [name, { value, configurable: true }])));
     for (let node = target; node; node = node.parentElement) {
@@ -297,6 +301,43 @@ controllerTest('arrows use geometry relative to the first card even after a part
   f.emit(f.viewport, 'scroll');
   f.click(f.previous);
   closeTo(f.viewport.scrollLeft, 0);
+  cleanup();
+});
+
+controllerTest('initial hover pauses rotation until the existing pointer leaves', () => {
+  const f = fixture();
+  f.document.hoveredElement = f.anchor;
+  const cleanup = f.start();
+  f.advance(1000);
+  closeTo(f.viewport.scrollLeft, 0);
+  assert.equal(f.pendingFrames(), 0);
+  f.advance(60000);
+  closeTo(f.viewport.scrollLeft, 0);
+  f.emit(f.root, 'mouseleave');
+  f.advance(0);
+  f.advance(1000);
+  closeTo(f.viewport.scrollLeft, 18);
+  cleanup();
+});
+
+controllerTest('initial focus requires explicit Play even after focus leaves the carousel', () => {
+  const f = fixture();
+  f.anchor.focus();
+  const cleanup = f.start();
+  f.advance(1000);
+  closeTo(f.viewport.scrollLeft, 0);
+  assert.equal(f.pendingFrames(), 0);
+  f.document.activeElement = null;
+  f.emit(f.anchor, 'focusout', { relatedTarget: null });
+  f.emit(f.root, 'mouseleave');
+  f.setVisible(false);
+  f.setVisible(true);
+  f.advance(60000);
+  closeTo(f.viewport.scrollLeft, 0);
+  f.pointerClick(f.toggle);
+  f.advance(0);
+  f.advance(1000);
+  closeTo(f.viewport.scrollLeft, 18);
   cleanup();
 });
 

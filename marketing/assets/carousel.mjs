@@ -10,8 +10,8 @@ export function initCarousel(root) {
   const next = root.querySelector('[data-carousel-next]');
   const motion = view.matchMedia('(prefers-reduced-motion: reduce)');
   const listeners = [];
-  let requested = !motion.matches;
-  let hovered = false;
+  let requested = !motion.matches && !root.contains(document.activeElement);
+  let hovered = root.matches(':hover');
   let visible = !view.IntersectionObserver;
   let disposed = false;
   let frame = null;
