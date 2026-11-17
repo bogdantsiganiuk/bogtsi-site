@@ -94,8 +94,8 @@
       "src": "marketing/assets/voxwarm-secondary-capture.png",
       "width": 828,
       "height": 1792,
-      "alt": "Voxwarm Hear screen showing a listening-only interval question, Play control, and answer choices.",
-      "caption": "Hear · example interval drill; listening only.",
+      "alt": "Voxwarm practice summary showing example pitch feedback, in-tune and steadiness scores, and a pitch graph.",
+      "caption": "Review your practice with an example session summary.",
       "frameProfile": "notch"
     }
   },
