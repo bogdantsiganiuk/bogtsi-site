@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtempSync, readFileSync, writeFileSync, cpSync, rmSync, existsSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, writeFileSync, cpSync, rmSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { marketingFiles, buildMarketing } from '../scripts/marketing-site.mjs';
 import { expectedFiles } from '../scripts/verify-site.mjs';
@@ -277,4 +277,156 @@ test('SVG publication accepts registered static art and rejects active, event, e
       assert.equal(existsSync(publishedPath), false, `${label} must not be published`);
     }
   } finally { rmSync(rootDir, { recursive: true, force: true }); }
+});
+
+// ---- Resource authoring boundary (tools + guides) ----
+const TOOL_SCRIPT = 'marketing/assets/tools/vocal-warm-up.mjs';
+const OLD_ROUTE = 'resources/five-minute-vocal-warm-up';
+
+// A manifest that satisfies the full resource contract: resources[0] is a tool with a script and a redirect, the rest are guides.
+function resourceManifest() {
+  const marketing = manifest();
+  marketing.resources = marketing.resources.map((resource, i) => ({ ...resource, kind: 'guide', appPitch: 'The app adds more.', note: '' }));
+  Object.assign(marketing.resources[0], { route: 'resources/vocal-warm-up', content: 'marketing/resources/vocal-warm-up.html', kind: 'tool', script: TOOL_SCRIPT, redirectFrom: [OLD_ROUTE] });
+  return marketing;
+}
+
+function resourceFixture(mutate = () => {}) {
+  const fixture = visualFixture();
+  fixture.marketing = resourceManifest();
+  const fragment = '<p class="lead">Pick a range.</p><div class="tool" data-tool="vocal-warm-up"><label for="vw-range">Range</label><select id="vw-range"><option>Low</option></select><button id="vw-start" class="tool-button" type="button">Start</button><input id="vw-x" type="number"><output id="vw-out" class="tool-output"></output><table class="guide-table"><tr><td>1</td></tr></table></div>';
+  fixture.write = (path, content) => { mkdirSync(dirname(join(fixture.rootDir, path)), { recursive: true }); writeFileSync(join(fixture.rootDir, path), content); };
+  // Every resource fragment must exist for a build; guides reuse a trivial valid body.
+  for (const resource of fixture.marketing.resources) fixture.write(resource.content, resource === fixture.marketing.resources[0] ? fragment : '<p class="lead">A guide.</p>');
+  fixture.write(TOOL_SCRIPT, 'export function init() {}\n');
+  mutate(fixture);
+  return fixture;
+}
+const withFixture = (mutate, run) => { const fixture = resourceFixture(mutate); try { return run(fixture); } finally { rmSync(fixture.rootDir, { recursive: true, force: true }); } };
+
+test('control: a fully valid tool/guide manifest builds, with redirects outside the sitemap', () => {
+  assert.doesNotThrow(() => marketingFiles({ apps, marketing: resourceManifest() }));
+  withFixture(() => {}, fixture => {
+    buildMarketing(fixture);
+    assert.ok(existsSync(join(fixture.outDir, 'resources/vocal-warm-up/index.html')));
+    assert.ok(existsSync(join(fixture.outDir, TOOL_SCRIPT)));
+    const sitemap = readFileSync(join(fixture.outDir, 'sitemap.xml'), 'utf8');
+    assert.match(sitemap, /resources\/vocal-warm-up\//);
+    assert.doesNotMatch(sitemap, /five-minute-vocal-warm-up/);
+  });
+});
+
+test('resource kind must be tool or guide', () => {
+  for (const kind of [undefined, '', 'worksheet', 'Tool']) {
+    const marketing = resourceManifest();
+    marketing.resources[1].kind = kind;
+    assert.throws(() => marketingFiles({ apps, marketing }), /kind/i);
+  }
+});
+
+test('resource appPitch is required', () => {
+  for (const appPitch of [undefined, '', '   ', 7]) {
+    const marketing = resourceManifest();
+    marketing.resources[1].appPitch = appPitch;
+    assert.throws(() => marketingFiles({ apps, marketing }), /appPitch/i);
+  }
+});
+
+test('resource script must be the exact registered tool module for its own slug', () => {
+  const wrong = [
+    'marketing/assets/tools/other.mjs',
+    'marketing/assets/tools/vocal-warm-up.js',
+    'marketing/assets/tools/../vocal-warm-up.mjs',
+    'marketing/assets/tools/vocal-warm-up.mjs/../x.mjs',
+    'marketing/assets/carousel.mjs',
+    '/marketing/assets/tools/vocal-warm-up.mjs',
+    'https://example.com/vocal-warm-up.mjs',
+    '../marketing/assets/tools/vocal-warm-up.mjs'
+  ];
+  for (const script of wrong) {
+    const marketing = resourceManifest();
+    marketing.resources[0].script = script;
+    assert.throws(() => marketingFiles({ apps, marketing }), /script/i, script);
+  }
+  const unregistered = resourceManifest();
+  unregistered.assets = unregistered.assets.filter(asset => asset !== TOOL_SCRIPT);
+  assert.throws(() => marketingFiles({ apps, marketing: unregistered }), /script/i);
+});
+
+test('tool modules only publish through, and only appear on, their own resource page', () => {
+  const foreign = resourceManifest();
+  foreign.resources[1].script = TOOL_SCRIPT;
+  assert.throws(() => marketingFiles({ apps, marketing: foreign }), /script/i);
+  const orphan = resourceManifest();
+  delete orphan.resources[0].script;
+  assert.throws(() => marketingFiles({ apps, marketing: orphan }), /script|asset publication path/i);
+  withFixture(() => {}, fixture => {
+    buildMarketing(fixture);
+    const tag = `<script type="module" src="/${TOOL_SCRIPT}"></script>`;
+    assert.ok(readFileSync(join(fixture.outDir, 'resources/vocal-warm-up/index.html'), 'utf8').includes(tag));
+    for (const page of ['index.html', 'resources/index.html', 'site-privacy/index.html', 'resources/how-to-start-shadow-work/index.html'].filter(page => existsSync(join(fixture.outDir, page)))) {
+      assert.ok(!readFileSync(join(fixture.outDir, page), 'utf8').includes('tools/vocal-warm-up.mjs'), page);
+    }
+  });
+});
+
+test('redirectFrom publishes noindex forwarding pages that are not in the sitemap', () => {
+  assert.ok(marketingFiles({ apps, marketing: resourceManifest() }).includes(`${OLD_ROUTE}/index.html`));
+  withFixture(() => {}, fixture => {
+    buildMarketing(fixture);
+    const html = readFileSync(join(fixture.outDir, OLD_ROUTE, 'index.html'), 'utf8');
+    const target = 'https://bogtsi.xyz/resources/vocal-warm-up/';
+    assert.ok(html.includes(`<link rel="canonical" href="${target}">`));
+    assert.match(html, /<meta http-equiv="refresh" content="0; ?url=https:\/\/bogtsi\.xyz\/resources\/vocal-warm-up\/">/);
+    assert.match(html, /<meta name="robots" content="noindex/i);
+    assert.doesNotMatch(html, /cloudflareinsights/);
+    assert.doesNotMatch(html, /site-header/);
+    assert.doesNotMatch(readFileSync(join(fixture.outDir, 'sitemap.xml'), 'utf8'), /five-minute/);
+  });
+});
+
+test('redirectFrom routes are safe and collision-checked against every route', () => {
+  const bad = ['resources/vocal-warm-up', resourceManifest().resources[1].route, 'resources', 'privacy', 'Resources/Old', 'resources/../x', '/resources/old', 'resources/old/', ''];
+  for (const route of bad) {
+    const marketing = resourceManifest();
+    marketing.resources[0].redirectFrom = [route];
+    assert.throws(() => marketingFiles({ apps, marketing }), /redirect|route/i, route);
+  }
+  const productRoute = resourceManifest();
+  productRoute.resources[0].redirectFrom = [productRoute.products[0].route];
+  assert.throws(() => marketingFiles({ apps, marketing: productRoute }), /redirect|route|duplicate/i);
+  const duplicated = resourceManifest();
+  duplicated.resources[1].redirectFrom = [OLD_ROUTE];
+  assert.throws(() => marketingFiles({ apps, marketing: duplicated }), /redirect|route|duplicate/i);
+  const repeated = resourceManifest();
+  repeated.resources[0].redirectFrom = [OLD_ROUTE, OLD_ROUTE];
+  assert.throws(() => marketingFiles({ apps, marketing: repeated }), /redirect|route|duplicate/i);
+  const notArray = resourceManifest();
+  notArray.resources[0].redirectFrom = OLD_ROUTE;
+  assert.throws(() => marketingFiles({ apps, marketing: notArray }), /redirect/i);
+});
+
+test('fragment validator rejects forbidden elements and attributes but accepts tool controls', () => {
+  const forbidden = {
+    script: '<script>1</script>', style: '<style>p{}</style>', iframe: '<iframe src="/x"></iframe>', form: '<form></form>',
+    textarea: '<textarea></textarea>', link: '<link rel="x" href="/y">', h1: '<h1>Title</h1>', object: '<object data="/x"></object>', embed: '<embed src="/x">',
+    onclick: '<button id="vw-b" onclick="x()">Go</button>', onmouseover: '<p ONMOUSEOVER = "x()">Hi</p>', styleAttr: '<p style="color:red">Hi</p>'
+  };
+  for (const [name, markup] of Object.entries(forbidden)) {
+    withFixture(fixture => fixture.write(fixture.marketing.resources[0].content, `<p class="lead">Intro</p>${markup}`), fixture => {
+      assert.throws(() => buildMarketing(fixture), /fragment|resource/i, name);
+      assert.equal(existsSync(fixture.outDir), false, name);
+    });
+  }
+  withFixture(fixture => fixture.write(fixture.marketing.resources[0].content, '<p class="lead">Intro</p><label for="vw-a">A</label><input id="vw-a" type="number"><select id="vw-s"><option>1</option></select><button id="vw-go" type="button">Go</button><output id="vw-o"></output><table class="guide-table"><tr><td>1</td></tr></table>'), fixture => {
+    assert.doesNotThrow(() => buildMarketing(fixture));
+  });
+});
+
+test('fragment ids must be unique', () => {
+  for (const body of ['<p id="vw-a">a</p><p id="vw-a">b</p>']) {
+    withFixture(fixture => fixture.write(fixture.marketing.resources[0].content, `<p class="lead">Intro</p>${body}`), fixture => {
+      assert.throws(() => buildMarketing(fixture), /id/i, body);
+    });
+  }
 });

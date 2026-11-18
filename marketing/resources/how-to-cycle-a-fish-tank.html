@@ -1,0 +1,127 @@
+<p class="lead">A new tank has no bacteria to break down fish waste. Cycling grows them: one colony turns ammonia into nitrite, a second turns nitrite into nitrate. Most cycles take 2&ndash;6 weeks. Work out your tank's volume and water-change amounts below, then follow the four phases.</p>
+
+<section class="tool" data-tool="how-to-cycle-a-fish-tank" aria-labelledby="bw-tool-title">
+  <h2 id="bw-tool-title">Tank volume and water-change calculators</h2>
+
+  <h3>1. How many liters or gallons is my tank?</h3>
+  <div class="tool-controls">
+    <label class="tool-field" for="bw-length">Length <input id="bw-length" type="number" inputmode="decimal" min="0" step="any"></label>
+    <label class="tool-field" for="bw-width">Width <input id="bw-width" type="number" inputmode="decimal" min="0" step="any"></label>
+    <label class="tool-field" for="bw-height">Height <input id="bw-height" type="number" inputmode="decimal" min="0" step="any"></label>
+    <label class="tool-field" for="bw-depth">Water depth (optional) <input id="bw-depth" type="number" inputmode="decimal" min="0" step="any"></label>
+    <label class="tool-field" for="bw-dim-unit">Measured in
+      <select id="bw-dim-unit">
+        <option value="cm">centimeters</option>
+        <option value="in">inches</option>
+      </select>
+    </label>
+    <button type="button" id="bw-volume-go" class="tool-button">Calculate volume</button>
+  </div>
+  <p class="tool-status" id="bw-volume-status" aria-live="polite"></p>
+  <output class="tool-output" id="bw-volume-result" aria-live="polite"></output>
+
+  <h3>2. How much water do I replace?</h3>
+  <div class="tool-controls">
+    <label class="tool-field" for="bw-change-volume">Water volume <input id="bw-change-volume" type="number" inputmode="decimal" min="0" step="any"></label>
+    <label class="tool-field" for="bw-change-unit">Unit
+      <select id="bw-change-unit">
+        <option value="L">liters</option>
+        <option value="gal">US gallons</option>
+      </select>
+    </label>
+    <label class="tool-field" for="bw-change-percent">Percent to change <input id="bw-change-percent" type="number" inputmode="decimal" min="1" max="100" step="any" value="30"></label>
+    <button type="button" id="bw-change-go" class="tool-button">Calculate water change</button>
+  </div>
+  <p class="tool-status" id="bw-change-status" aria-live="polite"></p>
+  <output class="tool-output" id="bw-change-result" aria-live="polite"></output>
+
+  <h3>The formulas</h3>
+  <ul>
+    <li>Liters = length &times; width &times; height in cm &divide; 1,000.</li>
+    <li>Liters = length &times; width &times; height in inches &times; 16.387 &divide; 1,000.</li>
+    <li>US gallons = liters &divide; 3.785 (or cubic inches &divide; 231).</li>
+    <li>Use water depth instead of height for the water you actually hold. A tank filled 2&ndash;3 cm below the rim holds noticeably less than its label says, and decor and substrate take up more.</li>
+    <li>Water to replace = water volume &times; percent &divide; 100. Old water left = 100% &minus; percent, so a 30% change leaves 70% of the old water behind.</li>
+  </ul>
+</section>
+
+<h2>The four phases of a cycle</h2>
+<p>Whether you cycle with or without fish, the tank moves through the same four phases. The numbers below are typical, not promises: biology sets the pace, and a cold or low-pH tank is slower.</p>
+
+<table class="guide-table">
+  <thead>
+    <tr><th>Phase</th><th>Typical timing</th><th>What you see on the test kit</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1. Setting up</td><td>First 1&ndash;2 weeks</td><td>Ammonia present (dosed or from fish), nitrite 0</td></tr>
+    <tr><td>2. Ammonia dropping</td><td>Around weeks 2&ndash;3</td><td>Ammonia falls back toward 0 on its own</td></tr>
+    <tr><td>3. Nitrite spike</td><td>Around weeks 3&ndash;6, often the longest stretch</td><td>Nitrite climbs, sits high, then falls</td></tr>
+    <tr><td>4. Cycled</td><td>Most cycles take 2&ndash;6 weeks overall</td><td>Ammonia 0, nitrite 0, nitrate rising</td></tr>
+  </tbody>
+</table>
+
+<h3>Phase 1: Setting up</h3>
+<p><strong>What is happening:</strong> bacteria that eat ammonia are moving in, but the colony is tiny, so nothing visible changes for a while.</p>
+<ul>
+  <li><strong>Fishless:</strong> run the filter and dose pure ammonia (no surfactants or perfumes) to about 2 ppm. Going past 4 ppm slows the cycle rather than speeding it up.</li>
+  <li><strong>Fish-in:</strong> the fish are your ammonia source. Test every day, feed lightly, and never add bottled ammonia.</li>
+  <li><strong>Test:</strong> ammonia and nitrite once a day. The trend across days matters more than any single reading.</li>
+</ul>
+
+<h3>Phase 2: Ammonia dropping</h3>
+<p><strong>What is happening:</strong> the first colony is established. A 2 ppm dose now disappears within about a day.</p>
+<ul>
+  <li><strong>Fishless:</strong> re-dose to 2 ppm whenever ammonia reads 0. Letting the tank sit at 0 starves the colony you just grew.</li>
+  <li><strong>Fish-in:</strong> keep testing daily. Nitrite usually rises next, so the job is not done.</li>
+</ul>
+
+<h3>Phase 3: Nitrite spike</h3>
+<p><strong>What is happening:</strong> nitrite rising is normal. The bacteria that eat nitrite grow more slowly than the ammonia eaters, so a spike means the cycle is on track. Nitrite can sit high for a while before it falls.</p>
+<ul>
+  <li><strong>Fishless:</strong> keep dosing ammonia to 2 ppm as it clears, and add a nitrate test. Nitrate climbing while nitrite falls is the tail end of the cycle showing itself.</li>
+  <li><strong>Fish-in:</strong> nitrite counts as much as ammonia. Change water whenever either reads 0.25 ppm or more.</li>
+</ul>
+
+<h3>Phase 4: Cycled</h3>
+<p><strong>What is happening:</strong> your filter is keeping up.</p>
+<ul>
+  <li><strong>Fishless finish line:</strong> a full 2 ppm ammonia dose reads 0 ammonia and 0 nitrite within 24 hours, per the <a href="https://drtimsaquatics.com/">Dr Tim's Aquatics fishless method</a>. Do a big water change (half the tank or more) to bring nitrate down, then add your first fish soon so the colony stays fed. Without ammonia it starts shrinking within days. Stock lightly at first and build up over a few weeks.</li>
+  <li><strong>Fish-in finish line:</strong> ammonia and nitrite have held at 0 for about a week. Ease back into a normal routine and keep an eye on nitrate.</li>
+</ul>
+
+<h2>Readings to act on</h2>
+<table class="guide-table">
+  <thead>
+    <tr><th>Reading</th><th>Fishless</th><th>Fish-in</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Ammonia target during cycling</td><td>Dose to about 2 ppm (2&ndash;4 ppm range)</td><td>Keep as close to 0 as you can</td></tr>
+    <tr><td>Ammonia or nitrite 0.25&ndash;0.5 ppm or more</td><td>Expected during the cycle</td><td>Change a third to half of the water, retest the next day</td></tr>
+    <tr><td>Nitrite at 1 ppm or more</td><td>The nitrite spike has begun</td><td>Water change and go easy on feeding</td></tr>
+    <tr><td>Cycle complete</td><td>2 ppm ammonia &rarr; 0 ammonia and 0 nitrite in 24 hours</td><td>0 ammonia and 0 nitrite for about 7 days in a row</td></tr>
+    <tr><td>pH below 6.5</td><td colspan="2">Nitrifying bacteria slow or stall; test pH if the cycle seems stuck</td></tr>
+  </tbody>
+</table>
+<p>Hobby ammonia and nitrite kits usually step 0, 0.25, 0.5, 1 ppm, so a reading below 0.25 is a zero on your kit. Read the result at the time your kit specifies.</p>
+
+<h2>Fishless or fish-in?</h2>
+<ul>
+  <li><strong>Fishless</strong> uses a dosed ammonia source instead of animals. It takes the same few weeks but no fish are exposed to ammonia or nitrite, and you can dose a measured 2 ppm for a clean finish test.</li>
+  <li><strong>Fish-in</strong> means starting with a few hardy fish and managing the toxic peaks with frequent water changes. It demands daily testing and prompt changes, and it is harder on the fish.</li>
+</ul>
+
+<h2>Water-change habits that keep a cycle safe</h2>
+<ol class="step-list">
+  <li>Match the new water's temperature to the tank.</li>
+  <li>Dechlorinate every time.</li>
+  <li>Rinse filter media in old tank water, never tap water.</li>
+  <li>If the cycle is not done by around day 28, check that any top-off water is dechlorinated.</li>
+</ol>
+
+<section class="sources">
+  <h2>Sources</h2>
+  <ul>
+    <li><a href="https://drtimsaquatics.com/">Dr Tim's Aquatics &mdash; the fishless cycling method</a></li>
+    <li><a href="https://users.cs.duke.edu/~narten/faq/cycling.html">Aquarium FAQ by Thomas Narten &mdash; cycling and the nitrogen cycle</a></li>
+  </ul>
+</section>

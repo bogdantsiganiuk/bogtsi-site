@@ -1,6 +1,6 @@
 # bogtsi-site
 
-Serves bogtsi.xyz: eleven released iPhone apps, five practical resources, and the complete app legal/support directory via GitHub Pages.
+Serves bogtsi.xyz: eleven released iPhone apps, seven free tools and guides, and the complete app legal/support directory via GitHub Pages.
 
 ## How it works
 
@@ -10,7 +10,7 @@ workflow fetches only `pages.json` from the 19 repositories in `apps.json`.
 legacy root redirects, then renders checked-in marketing content.
 
 `apps.json` is the only product-name/App Store identity registry.
-`marketing.json` explicitly lists the eleven marketed products, five resources,
+`marketing.json` explicitly lists the eleven marketed products, seven resources,
 one shared `appOrder`, and every public PNG/SVG/CSS asset plus the exact homepage
 module `marketing/assets/carousel.mjs`. Product copy lives in
 `marketing/apps/<registry-slug>.json`; resources are trusted HTML body fragments
@@ -116,9 +116,8 @@ complete native screenshots: two distinct actual screens per app, with useful
 value captions. The secondary shots now show Dahlia's garden progress, Voxwarm's
 session summary, Ascend's character view and Brightwater's maintenance record;
 all eleven secondary captions describe the value shown. Primary captures, art,
-standalone phone images and product/social image roles stay unchanged. The five
-existing companion resources remain independent and unchanged; further resource
-work is deferred.
+standalone phone images and product/social image roles stay unchanged. The free tools
+and guides are described below.
 `/support/` lists all 19 legal registry entries and their scoped routes,
 including Wageproof’s six English/Spanish links.
 `/site-privacy/` describes this website, not any app. Root `/privacy` and `/terms`
@@ -130,23 +129,22 @@ Product routes are `/voxwarm/`, `/penumbra/`, `/shiver/`, `/dahlia/`,
 `/umbra/privacy`, Halcyon uses `/noctura/privacy`, and Duskmere uses
 `/reverie/privacy`. No duplicate `/umbra/` marketing page is generated.
 
-The resource directory at `/resources/` contains five printable, app-independent tools:
-`/resources/five-minute-vocal-warm-up/`,
-`/resources/private-reflection-worksheet/`,
-`/resources/choose-tonight-date-planner/`,
-`/resources/shower-habit-log/`, and
-`/resources/aquarium-test-maintenance-record/`.
-The three new records were published on 2026-11-16. The date planner includes an
-original short process and blank planning card; the shower log records existing
-choices with room for rest/skip, not cold-exposure targets; the aquarium sheet
-records measured values/units/test kits and maintenance, not care or dosing advice.
-They require no app, signup or account and have no record-entry/upload fields.
-Readers can print or copy into their own notes; browser Print/Save as PDF is not
-a separate downloadable file or a website storage service.
-The new `record-group` print style allows long groups to paginate, while
-`record-block` keeps individual entries and `record-field` keeps card prompts
-together. Print spacing is compact and supporting art/app extras are hidden.
-These are static layout rules, not a claim of browser or physical print QA.
+The resource directory at `/resources/` lists seven free tools and guides:
+tools `/resources/vocal-warm-up/`, `/resources/date-night-ideas/` and
+`/resources/how-to-cycle-a-fish-tank/`; guides `/resources/how-to-start-shadow-work/`,
+`/resources/cold-shower-plan/`, `/resources/how-to-remember-your-dreams/` and
+`/resources/desk-stretch-routine/`. Each manifest entry carries `kind` (`tool` or
+`guide`), `appPitch` (one sentence rendered in the app section after the fragment),
+`note` (small safety text, rendered last; empty when no real risk), an optional
+`script` (exactly `marketing/assets/tools/<slug>.mjs`, registered in `assets`, loaded
+only on that page) and optional `redirectFrom` routes. Redirect pages carry a canonical
+link and meta refresh to the new URL, are noindex and stay out of the sitemap; the five
+retired addresses (`five-minute-vocal-warm-up`, `private-reflection-worksheet`,
+`choose-tonight-date-planner`, `shower-habit-log`,
+`aquarium-test-maintenance-record`) forward this way. Fragments are body-only HTML:
+no `h1`, script, style, frame, form, textarea, link, object, embed, inline handlers or
+style attributes; `hidden` and `data-*` are allowed and ids must be unique. Tool modules
+are dependency-free ES modules that run only in the browser (tests in `test/tools/`).
 Each resource’s required `publishedAt` records its actual content publication
 date (`YYYY-MM-DD`), displayed as semantic `time` metadata in the directory and
 guide. It is not an app-update date or the product’s internal review timestamp.
@@ -156,9 +154,9 @@ install URL from the registry; it contains no invented prices, offers, ratings,
 or reviews. `SoftwareApplication.screenshot` uses the complete original capture;
 `image`, Open Graph and social image metadata use the approved standalone iPhone
 PNG. Optional social metadata is empty on pages without a product image.
-The original 64 outputs remain; the manifest adds exactly 67 files
-(11 products, 5 guides/records, resource index, support, site privacy, sitemap, robots,
-33 PNGs, 11 SVGs, CSS and the homepage module), for 131 explicitly allowed output
+The original 64 outputs remain; the manifest adds exactly 77 files
+(11 products, 7 resources, 5 redirect pages, 3 tool modules, resource index, support, site privacy, sitemap, robots,
+33 PNGs, 11 SVGs, CSS and the homepage module), for 141 explicitly allowed output
 paths. The module is required for a successful marketing build and registered
 outside the four image roles; arbitrary JavaScript asset paths are rejected.
 Carousel controls add no analytics events, storage or collection. The existing
@@ -219,10 +217,10 @@ its exact public path to the publication contract; never relax the guard.
 Cloudflare Web Analytics is installed using the owner-supplied literal module
 beacon in `templates/page.html`. Its site token
 `b315f78a92b84683a6fe606a1ef1a05a` is intentionally public, not a credential.
-The manual embed covers exactly 20 generated pages: the homepage, eleven product
-pages, five resources, the resource directory, support directory, and website
+The manual embed covers exactly 22 generated pages: the homepage, eleven product
+pages, seven resources, the resource directory, support directory, and website
 privacy page. It is absent from the 60 byte-preserved app-scoped legal/support
-pages and both legacy redirects. No app analytics SDK or app privacy policy changes.
+pages, both legacy redirects, and the five resource forwarding pages. No app analytics SDK or app privacy policy changes.
 
 The provider setup uses Cloudflare Web Analytics for `bogtsi.xyz` with this manual
 snippet; do not also enable an automatic injection that would duplicate it.

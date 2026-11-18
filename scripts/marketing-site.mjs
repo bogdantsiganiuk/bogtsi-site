@@ -6,6 +6,8 @@ import { VISUAL_FILES, validateVisualAsset } from './marketing-assets.mjs';
 const ORIGIN = 'https://bogtsi.xyz';
 const ALIASES = { umbra: 'penumbra', noctura: 'halcyon', reverie: 'duskmere' };
 const RESERVED = new Set(['privacy', 'terms', 'support', 'site-privacy', 'resources', 'marketing', 'index', 'robots', 'sitemap']);
+const KINDS = new Set(['tool', 'guide']);
+const RESOURCE_ROUTE = /^resources\/[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const THEMES = new Set(['coral', 'earth', 'night', 'ice', 'jade', 'ocean', 'garden', 'gold', 'indigo', 'slate']);
 const esc = (s) => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const lines = (s) => esc(s).replace(/\r?\n/g, '<br>');
@@ -55,15 +57,28 @@ export function marketingFiles({ apps, marketing }) {
   if (ordered.size !== products.size) fail('appOrder must contain every marketed product exactly once');
   for (const resource of marketing.resources) {
     if (!products.has(resource.app)) fail(`unknown resource app: ${resource.app}`);
-    if (!/^resources\/[a-z0-9]+(?:-[a-z0-9]+)*$/.test(resource.route) || routes.has(resource.route)) fail(`unsafe or duplicate resource route: ${resource.route}`);
+    if (!RESOURCE_ROUTE.test(resource.route) || routes.has(resource.route)) fail(`unsafe or duplicate resource route: ${resource.route}`);
     if (resource.content !== `marketing/${resource.route}.html`) fail(`invalid resource content path: ${resource.content}`);
     if (!text(resource.title) || !text(resource.description)) fail(`resource title and description required: ${resource.route}`);
     if (!/^\d{4}-\d{2}-\d{2}$/.test(resource.publishedAt || '') || !Number.isFinite(Date.parse(resource.publishedAt)) || new Date(resource.publishedAt).toISOString().slice(0, 10) !== resource.publishedAt) fail(`valid resource publication date required: ${resource.route}`);
+    if (!KINDS.has(resource.kind)) fail(`resource kind must be tool or guide: ${resource.route}`);
+    if (!text(resource.appPitch)) fail(`resource appPitch required: ${resource.route}`);
+    if (typeof resource.note !== 'string') fail(`resource note must be a string: ${resource.route}`);
+    if (resource.script !== undefined && resource.script !== `marketing/assets/tools/${resource.route.slice('resources/'.length)}.mjs`) fail(`resource script must be marketing/assets/tools/<slug>.mjs for its own slug: ${resource.route}`);
+    if (resource.script !== undefined && !marketing.assets.includes(resource.script)) fail(`resource script must be registered in assets: ${resource.route}`);
+    if (resource.redirectFrom !== undefined && !Array.isArray(resource.redirectFrom)) fail(`resource redirectFrom must be a list: ${resource.route}`);
     routes.add(resource.route);
     files.push(`${resource.route}/index.html`);
   }
+  for (const resource of marketing.resources) {
+    for (const from of resource.redirectFrom || []) {
+      if (typeof from !== 'string' || !RESOURCE_ROUTE.test(from) || routes.has(from)) fail(`unsafe or colliding redirect route: ${from}`);
+      routes.add(from);
+      files.push(`${from}/index.html`);
+    }
+  }
   const assets = new Set();
-  const allowedAssets = new Set(['marketing/assets/site.css', 'marketing/assets/carousel.mjs', ...marketing.products.flatMap(entry => Object.values(VISUAL_FILES).map(file => `marketing/assets/${entry.app}-${file}`))]);
+  const allowedAssets = new Set(['marketing/assets/site.css', 'marketing/assets/carousel.mjs', ...marketing.resources.filter(r => r.script).map(r => r.script), ...marketing.products.flatMap(entry => Object.values(VISUAL_FILES).map(file => `marketing/assets/${entry.app}-${file}`))]);
   for (const asset of marketing.assets) {
     if (typeof asset !== 'string' || !allowedAssets.has(asset)) fail(`unsafe asset publication path: ${asset}`);
     if (assets.has(asset)) fail(`duplicate marketing asset: ${asset}`);
@@ -71,6 +86,12 @@ export function marketingFiles({ apps, marketing }) {
     files.push(asset);
   }
   return files.sort();
+}
+
+function validateFragment(html, route) {
+  if (!html.trim() || /<(?:h1|script|style|iframe|form|textarea|link|object|embed)\b/i.test(html) || /<[^>]*\s(?:on[a-z]+|style)\s*=/i.test(html)) fail(`resource must be a body fragment without h1, script, style, frame, form, textarea, link, object, embed, inline handlers or style attributes: ${route}`);
+  const ids = [...html.matchAll(/<[^>]*\sid\s*=\s*["']([^"']+)["']/gi)].map(m => m[1]);
+  if (new Set(ids).size !== ids.length) fail(`resource fragment ids must be unique: ${route}`);
 }
 
 function source(rootDir, path, label) {
@@ -149,7 +170,7 @@ const resourceDate = (resource) => `<p class="resource-date">Published <time dat
 function resourceCards(products, marketing) {
   return marketing.resources.map(resource => {
     const { app, data } = products.find(product => product.app.slug === resource.app);
-    return `<article class="resource-card">${art(data)}<p class="eyebrow">${esc(app.name)} / A practical guide</p><h3><a href="/${resource.route}/">${esc(resource.title)}</a></h3>${resourceDate(resource)}<p>${esc(resource.description)}</p></article>`;
+    return `<article class="resource-card">${art(data)}<p class="eyebrow">${resource.kind === 'tool' ? 'Free tool' : 'Free guide'} / ${esc(app.name)}</p><h3><a href="/${resource.route}/">${esc(resource.title)}</a></h3>${resourceDate(resource)}<p>${esc(resource.description)}</p></article>`;
   }).join('');
 }
 
@@ -181,24 +202,33 @@ export function buildMarketing({ rootDir, outDir, apps, marketing }) {
   });
   const resources = marketing.resources.map(resource => {
     const html = source(rootDir, resource.content, 'resource content').toString('utf8');
-    if (!html.trim() || /<(?:h1|script|iframe|form|input|textarea|link)\b/i.test(html)) fail(`resource must be a noninteractive body fragment without h1: ${resource.route}`);
+    validateFragment(html, resource.route);
     return { ...resource, html };
   });
   const template = source(rootDir, 'templates/page.html', 'page template').toString('utf8');
+  const redirectTemplate = source(rootDir, 'templates/redirect.html', 'redirect template').toString('utf8');
   const write = (path, content) => { mkdirSync(dirname(join(outDir, path)), { recursive: true }); writeFileSync(join(outDir, path), content); };
-  const page = ({ route = '', title, description, content, bodyClass = '', schema, socialImage }) => {
-    const values = { TITLE: esc(title), DESCRIPTION: esc(description), CANONICAL: esc(canonical(route)), CONTENT: content, BODY_CLASS: esc(bodyClass), SCHEMA: schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : '', SOCIAL_META: socialImage ? `<meta property="og:image" content="${ORIGIN}/${esc(socialImage.src)}">\n  <meta property="og:image:width" content="${socialImage.width}">\n  <meta property="og:image:height" content="${socialImage.height}">\n  <meta property="og:image:alt" content="${esc(socialImage.alt)}">\n  <meta name="twitter:image" content="${ORIGIN}/${esc(socialImage.src)}">\n  <meta name="twitter:image:alt" content="${esc(socialImage.alt)}">` : '', TWITTER_CARD: socialImage ? 'summary_large_image' : 'summary' };
-    write(route ? `${route}/index.html` : 'index.html', template.replace(/__(TITLE|DESCRIPTION|CANONICAL|CONTENT|BODY_CLASS|SCHEMA|SOCIAL_META|TWITTER_CARD)__/g, (_, key) => values[key]));
+  const page = ({ route = '', title, description, content, bodyClass = '', schema, socialImage, headExtra = '' }) => {
+    const values = { TITLE: esc(title), DESCRIPTION: esc(description), CANONICAL: esc(canonical(route)), HEAD_EXTRA: headExtra, CONTENT: content, BODY_CLASS: esc(bodyClass), SCHEMA: schema ? `<script type="application/ld+json">${JSON.stringify(schema).replace(/</g, '\\u003c')}</script>` : '', SOCIAL_META: socialImage ? `<meta property="og:image" content="${ORIGIN}/${esc(socialImage.src)}">\n  <meta property="og:image:width" content="${socialImage.width}">\n  <meta property="og:image:height" content="${socialImage.height}">\n  <meta property="og:image:alt" content="${esc(socialImage.alt)}">\n  <meta name="twitter:image" content="${ORIGIN}/${esc(socialImage.src)}">\n  <meta name="twitter:image:alt" content="${esc(socialImage.alt)}">` : '', TWITTER_CARD: socialImage ? 'summary_large_image' : 'summary' };
+    write(route ? `${route}/index.html` : 'index.html', template.replace(/__(TITLE|DESCRIPTION|CANONICAL|CONTENT|BODY_CLASS|SCHEMA|SOCIAL_META|TWITTER_CARD|HEAD_EXTRA)__/g, (_, key) => values[key]));
   };
   page({ title: 'bogtsi — independent iPhone apps for real life', description: 'Eleven independent iPhone apps for voice practice, private reflection, everyday care, and the things you make time for. Find your next useful thing.', content: homepage(products, marketing, source(rootDir, 'templates/index.html', 'homepage template').toString('utf8')) });
-  page({ route: 'resources', title: 'Free practical guides and printable records — bogtsi', description: 'Free, app-independent tools for voice, reflection, date planning, shower choices, and aquarium records. Read online or print; no account or sign-up required.', content: `<section class="home-intro shell" aria-labelledby="resources-title"><div><p class="eyebrow">From the notebook</p><h1 id="resources-title">A good place<br>to start.</h1></div><div class="intro-aside"><p>Practical guides and blank records. Read them here or print a copy. No sign-up, no download, and no app required.</p></div></section><section class="resources" aria-label="Practical guides and records"><div class="shell resource-grid">${resourceCards(products, marketing)}</div></section>` });
+  page({ route: 'resources', title: 'Free tools and guides — bogtsi', description: 'Free browser tools and step-by-step guides: a vocal warm-up, date night ideas, a fish-tank cycling guide, shadow work, cold showers, dream recall and desk stretches.', content: `<section class="home-intro shell" aria-labelledby="resources-title"><div><p class="eyebrow">Free tools and guides</p><h1 id="resources-title">A good place<br>to start.</h1></div><div class="intro-aside"><p>Free tools and step-by-step guides you can use right now, each built around something we make.</p></div></section><section class="resources" aria-label="Free tools and guides"><div class="shell resource-grid">${resourceCards(products, marketing)}</div></section>` });
   for (const product of products) {
     const { app, entry, data } = product;
     page({ route: entry.route, title: data.title, description: data.description, bodyClass: `theme-${data.theme}`, content: productBody(product, marketing), socialImage: data.visuals.device, schema: { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: app.name, description: data.description, operatingSystem: 'iOS', url: canonical(entry.route), installUrl: storeUrl(app), screenshot: [`${ORIGIN}/${data.visuals.capture.src}`], image: `${ORIGIN}/${data.visuals.device.src}`, author: { '@type': 'Organization', name: 'bogtsi', url: `${ORIGIN}/` } } });
   }
   for (const resource of resources) {
     const product = products.find(p => p.app.slug === resource.app);
-    page({ route: resource.route, title: `${resource.title} — bogtsi`, description: resource.description, content: `<article class="shell editorial"><p class="eyebrow">From the notebook / ${esc(product.app.name)}</p><div class="resource-heading"><h1>${esc(resource.title)}</h1><div>${art(product.data)}</div></div>${resourceDate(resource)}<div class="resource-body">${resource.html}</div><p class="resource-app-link">Want an app alongside this practice? <a href="/${product.entry.route}/">Meet ${esc(product.app.name)}</a>. No app is required to use this page.</p></article>` });
+    const name = esc(product.app.name);
+    const capture = product.data.visuals.capture;
+    const appSection = `<section class="resource-app" aria-labelledby="resource-app-title"><div class="resource-app-copy"><p class="eyebrow">${name}</p><h2 id="resource-app-title">Take it further with ${name}.</h2><p>${esc(resource.appPitch)}</p><a class="button button-coral" href="/${product.entry.route}/">Meet ${name}</a></div>${scene(product, { placement: 'resource', visual: 'capture', link: 'product', lazy: true, sources: false })}</section>`;
+    const note = resource.note.trim() ? `<p class="resource-note">${esc(resource.note)}</p>` : '';
+    const headExtra = resource.script ? `<script type="module" src="/${resource.script}"></script>` : '';
+    page({ route: resource.route, title: `${resource.title} — bogtsi`, description: resource.description, headExtra, content: `<article class="shell editorial"><p class="eyebrow">${resource.kind === 'tool' ? 'Free tool' : 'Free guide'} / ${name}</p><div class="resource-heading"><h1>${esc(resource.title)}</h1><div>${art(product.data)}</div></div>${resourceDate(resource)}<div class="resource-body">${resource.html}</div>${appSection}${note}</article>` });
+    for (const from of resource.redirectFrom || []) {
+      write(`${from}/index.html`, redirectTemplate.replaceAll('__TARGET__', canonical(resource.route)));
+    }
   }
   page({ route: 'site-privacy', title: 'Website privacy — bogtsi', description: 'How bogtsi.xyz uses aggregate, cookie-free Cloudflare Web Analytics, ordinary GitHub Pages hosting requests, and separate privacy policies for each app.', content: source(rootDir, 'templates/site-privacy.html', 'privacy template').toString('utf8') });
   const urls = ['', 'support', 'site-privacy', 'resources', ...marketing.products.map(p => p.route), ...marketing.resources.map(r => r.route)];
@@ -213,7 +243,7 @@ export function buildMarketing({ rootDir, outDir, apps, marketing }) {
 function buildSupport({ rootDir, outDir, apps, pages }) {
   const links = apps.map(app => `<li><strong>${esc(app.name)}</strong><nav aria-label="${esc(app.name)} legal and support">${pages.filter(p => !p.app || p.app === app.slug).map(p => `<a href="/${app.slug}/${p.route}">${esc(p.label)}</a>`).join('')}</nav></li>`).join('\n');
   const content = readFileSync(join(rootDir, 'templates/support.html'), 'utf8').replaceAll('__APP_LINKS__', links);
-  const values = { TITLE: 'App support, privacy & terms — bogtsi', DESCRIPTION: 'Find support, privacy policies and terms for every bogtsi app, including Wageproof’s Spanish support and legal pages.', CANONICAL: canonical('support'), CONTENT: content, BODY_CLASS: '', SCHEMA: '', SOCIAL_META: '', TWITTER_CARD: 'summary' };
+  const values = { TITLE: 'App support, privacy & terms — bogtsi', DESCRIPTION: 'Find support, privacy policies and terms for every bogtsi app, including Wageproof’s Spanish support and legal pages.', CANONICAL: canonical('support'), CONTENT: content, BODY_CLASS: '', SCHEMA: '', SOCIAL_META: '', TWITTER_CARD: 'summary', HEAD_EXTRA: '' };
   mkdirSync(join(outDir, 'support'), { recursive: true });
-  writeFileSync(join(outDir, 'support/index.html'), readFileSync(join(rootDir, 'templates/page.html'), 'utf8').replace(/__(TITLE|DESCRIPTION|CANONICAL|CONTENT|BODY_CLASS|SCHEMA|SOCIAL_META|TWITTER_CARD)__/g, (_, key) => key === 'CONTENT' ? values[key] : esc(values[key])));
+  writeFileSync(join(outDir, 'support/index.html'), readFileSync(join(rootDir, 'templates/page.html'), 'utf8').replace(/__(TITLE|DESCRIPTION|CANONICAL|CONTENT|BODY_CLASS|SCHEMA|SOCIAL_META|TWITTER_CARD|HEAD_EXTRA)__/g, (_, key) => key === 'CONTENT' ? values[key] : esc(values[key])));
 }

@@ -89,5 +89,6 @@
       "caption": "Follow a guided stretch at your desk.",
       "frameProfile": "notch"
     }
-  }
+  },
+  "resourceRoute": "resources/desk-stretch-routine"
 }

@@ -83,6 +83,7 @@ marketing_probes=$(node --input-type=module -e '
     "robots.txt\tSitemap:",
     ...products,
     ...marketing.resources.map(r => r.route + "/\t" + r.title),
+    ...marketing.resources.flatMap(r => (r.redirectFrom || []).map(from => from + "/\tRedirecting to")),
   ].join("\n"));
 ')
 while IFS=$'\t' read -r route marker; do

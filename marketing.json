@@ -72,43 +72,98 @@
   "resources": [
     {
       "app": "voxwarm",
-      "route": "resources/five-minute-vocal-warm-up",
-      "content": "marketing/resources/five-minute-vocal-warm-up.html",
-      "title": "Five-minute vocal warm-up",
-      "publishedAt": "2026-11-15",
-      "description": "A gentle, five-minute vocal warm-up you can follow without an app. Start comfortably, listen, and stop if your voice feels strained."
+      "route": "resources/vocal-warm-up",
+      "content": "marketing/resources/vocal-warm-up.html",
+      "title": "Free Five-Minute Vocal Warm-Up With Piano",
+      "publishedAt": "2026-11-18",
+      "description": "Pick your range, press Start and sing along: a free five-minute vocal warm-up with piano that plays breath, scale, triad, siren, lip trill and hum.",
+      "kind": "tool",
+      "appPitch": "Voxwarm adds call-and-response sessions that listen through your microphone, score each note against the piano, and fit the exercises to your measured range.",
+      "note": "Stop if singing hurts, your voice turns hoarse, or you feel lightheaded during the breathing, and rest your voice instead.",
+      "script": "marketing/assets/tools/vocal-warm-up.mjs",
+      "redirectFrom": [
+        "resources/five-minute-vocal-warm-up"
+      ]
     },
     {
       "app": "umbra",
-      "route": "resources/private-reflection-worksheet",
-      "content": "marketing/resources/private-reflection-worksheet.html",
-      "title": "Private reflection worksheet",
-      "publishedAt": "2026-11-15",
-      "description": "A short, printable reflection worksheet. Notice one manageable moment, write at your own pace, and keep the page to yourself."
+      "route": "resources/how-to-start-shadow-work",
+      "content": "marketing/resources/how-to-start-shadow-work.html",
+      "title": "How to Start Shadow Work: A 15-Minute Guide With Prompts",
+      "publishedAt": "2026-11-18",
+      "description": "What shadow work is, a 15-minute journaling session step by step, seven starter prompts, and how to keep going without overwhelm.",
+      "kind": "guide",
+      "appPitch": "Penumbra turns these prompts into a guided seven-day journey with a private, on-device journal, a trigger log and Face ID lock.",
+      "note": "If you are in crisis or thinking about harming yourself, call or text 988 in the US, or contact local emergency or crisis services elsewhere. Stop writing if it feels overwhelming, and consider talking with a licensed professional.",
+      "redirectFrom": [
+        "resources/private-reflection-worksheet"
+      ]
     },
     {
       "app": "dahlia",
-      "route": "resources/choose-tonight-date-planner",
-      "content": "marketing/resources/choose-tonight-date-planner.html",
-      "title": "Choose-tonight date planner",
-      "publishedAt": "2026-11-16",
-      "description": "A free, app-independent process and printable planning card for choosing an activity together, with time, budget, preferences, a backup, and invitation wording."
+      "route": "resources/date-night-ideas",
+      "content": "marketing/resources/date-night-ideas.html",
+      "title": "Date Night Ideas Picker: Free Ideas by Budget, Time and Setting",
+      "publishedAt": "2026-11-18",
+      "description": "Pick a date night idea in seconds. Filter by budget, time and indoors or out, then get one idea at a time with no repeats, plus tips to keep date night going.",
+      "kind": "tool",
+      "appPitch": "Dahlia adds themed idea decks, conversation prompts and a date builder for planning your evening.",
+      "note": "",
+      "script": "marketing/assets/tools/date-night-ideas.mjs",
+      "redirectFrom": [
+        "resources/choose-tonight-date-planner"
+      ]
     },
     {
       "app": "shiver",
-      "route": "resources/shower-habit-log",
-      "content": "marketing/resources/shower-habit-log.html",
-      "title": "Shower-habit log with room for rest",
-      "publishedAt": "2026-11-16",
-      "description": "A free, app-independent printable log with seven blank records for your existing shower choices, rest or skipped dates, optional feelings, and notes. No cold-exposure targets."
+      "route": "resources/cold-shower-plan",
+      "content": "marketing/resources/cold-shower-plan.html",
+      "title": "14-Day Cold Shower Plan for Beginners, Plus What the Evidence Shows",
+      "publishedAt": "2026-11-18",
+      "description": "A day-by-day 14-day cold shower plan (15 to 90 seconds), how to do each session, and what research actually shows cold showers can and can't do.",
+      "kind": "guide",
+      "appPitch": "Shiver runs the warm, cool and cold phases on a timer for you and keeps a before-and-after mood log so you can see how the habit feels for you.",
+      "note": "Check with a doctor first if you have heart or circulation conditions. Stop if you feel unwell.",
+      "redirectFrom": [
+        "resources/shower-habit-log"
+      ]
     },
     {
       "app": "brightwater",
-      "route": "resources/aquarium-test-maintenance-record",
-      "content": "marketing/resources/aquarium-test-maintenance-record.html",
-      "title": "Aquarium water-test and maintenance record",
-      "publishedAt": "2026-11-16",
-      "description": "A free, app-independent printable record for aquarium water-test values, units, test kits, and maintenance already done. Blank reusable blocks, without target ranges or dosing advice."
+      "route": "resources/how-to-cycle-a-fish-tank",
+      "content": "marketing/resources/how-to-cycle-a-fish-tank.html",
+      "title": "How to Cycle a Fish Tank: Phases, Readings and Water-Change Calculators",
+      "publishedAt": "2026-11-18",
+      "description": "Cycle a new aquarium step by step: the four phases, ammonia and nitrite readings, plus free tank-volume and water-change calculators in liters and gallons.",
+      "kind": "tool",
+      "appPitch": "Brightwater's cycle assistant reads your logged ammonia and nitrite tests, spots which phase your tank is in, and tells you when it is safe to stock.",
+      "note": "Test kits differ; follow your kit's instructions. Ammonia and nitrite are toxic to fish, so use these numbers as a guide and change water when readings climb.",
+      "script": "marketing/assets/tools/how-to-cycle-a-fish-tank.mjs",
+      "redirectFrom": [
+        "resources/aquarium-test-maintenance-record"
+      ]
+    },
+    {
+      "app": "reverie",
+      "route": "resources/how-to-remember-your-dreams",
+      "content": "marketing/resources/how-to-remember-your-dreams.html",
+      "title": "How to Remember Your Dreams: A 7-Morning Plan",
+      "publishedAt": "2026-11-18",
+      "description": "Why dreams fade and how to keep them: a one-minute morning capture routine, a 7-morning plan, what to write down, and how to spot your own dream signs.",
+      "kind": "guide",
+      "appPitch": "Duskmere keeps your dream journal with a keywords-only mode for half-asleep mornings and turns your tags into a ranked list of your recurring dream signs.",
+      "note": ""
+    },
+    {
+      "app": "posture-coach",
+      "route": "resources/desk-stretch-routine",
+      "content": "marketing/resources/desk-stretch-routine.html",
+      "title": "A 5-Minute Desk Stretch Routine",
+      "publishedAt": "2026-11-18",
+      "description": "Eight desk-friendly stretches and strengtheners in about five minutes, with form cues, when to do them, a quick desk setup check and habit tips.",
+      "kind": "guide",
+      "appPitch": "Posture Coaching adds guided, timed sessions, a larger exercise library and routines you can build around your day.",
+      "note": "Move gently and skip anything that causes pain. See a professional if you have persistent pain."
     }
   ],
   "assets": [
@@ -157,6 +212,9 @@
     "marketing/assets/brightwater-secondary-capture.png",
     "marketing/assets/posture-coach-secondary-capture.png",
     "marketing/assets/wageproof-secondary-capture.png",
-    "marketing/assets/maelzel-secondary-capture.png"
+    "marketing/assets/maelzel-secondary-capture.png",
+    "marketing/assets/tools/vocal-warm-up.mjs",
+    "marketing/assets/tools/date-night-ideas.mjs",
+    "marketing/assets/tools/how-to-cycle-a-fish-tank.mjs"
   ]
 }
