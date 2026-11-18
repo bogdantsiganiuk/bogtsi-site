@@ -480,8 +480,7 @@ summary { cursor: pointer; font-size: 13px; font-weight: 600; width: fit-content
 .resource-body table, .guide-table { width: 100%; border-collapse: collapse; font-size: 15px; margin-block: 22px; }
 .resource-body th, .resource-body td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
 .resource-body th { font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--ink); }
-.resource-body div:has(> table.guide-table), .resource-body .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.resource-body table.guide-table { min-width: 520px; }
+.resource-body table.guide-table { display: block; max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .step-list { list-style: none; counter-reset: step; padding: 0 !important; }
 .step-list > li { counter-increment: step; position: relative; padding: 4px 0 4px 52px; min-height: 40px; }
 .step-list > li::before { content: counter(step); position: absolute; left: 0; top: 2px; width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--coral); border-radius: 50%; color: var(--coral); font-family: var(--serif); font-size: 18px; }

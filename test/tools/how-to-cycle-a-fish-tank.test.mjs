@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { tankVolume, waterChange } from '../../marketing/assets/tools/how-to-cycle-a-fish-tank.mjs';
+import { tankVolume, waterChange, shouldAutoFillVolume } from '../../marketing/assets/tools/how-to-cycle-a-fish-tank.mjs';
 
 const near = (actual, expected, eps = 0.01) =>
   assert.ok(Math.abs(actual - expected) <= eps, `${actual} not within ${eps} of ${expected}`);
@@ -91,4 +91,16 @@ test('waterChange: rejects invalid input', () => {
     assert.equal(r.ok, false, JSON.stringify(input));
     assert.equal(typeof r.error, 'string');
   }
+});
+
+test('shouldAutoFillVolume: fills when empty or still holding the last auto-filled value', () => {
+  assert.equal(shouldAutoFillVolume('', null), true);
+  assert.equal(shouldAutoFillVolume('   ', '200'), true);
+  assert.equal(shouldAutoFillVolume('200', '200'), true);
+  assert.equal(shouldAutoFillVolume(' 200 ', '200'), true);
+});
+
+test('shouldAutoFillVolume: keeps a value the user typed or changed', () => {
+  assert.equal(shouldAutoFillVolume('150', null), false);
+  assert.equal(shouldAutoFillVolume('150', '200'), false);
 });

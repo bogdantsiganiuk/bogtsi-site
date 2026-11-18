@@ -4,7 +4,7 @@
   <h2 id="bw-tool-title">Tank volume and water-change calculators</h2>
 
   <h3>1. How many liters or gallons is my tank?</h3>
-  <div class="tool-controls">
+  <div class="tool-controls" hidden>
     <label class="tool-field" for="bw-length">Length <input id="bw-length" type="number" inputmode="decimal" min="0" step="any"></label>
     <label class="tool-field" for="bw-width">Width <input id="bw-width" type="number" inputmode="decimal" min="0" step="any"></label>
     <label class="tool-field" for="bw-height">Height <input id="bw-height" type="number" inputmode="decimal" min="0" step="any"></label>
@@ -21,7 +21,7 @@
   <output class="tool-output" id="bw-volume-result" aria-live="polite"></output>
 
   <h3>2. How much water do I replace?</h3>
-  <div class="tool-controls">
+  <div class="tool-controls" hidden>
     <label class="tool-field" for="bw-change-volume">Water volume <input id="bw-change-volume" type="number" inputmode="decimal" min="0" step="any"></label>
     <label class="tool-field" for="bw-change-unit">Unit
       <select id="bw-change-unit">
@@ -85,7 +85,7 @@
 <h3>Phase 4: Cycled</h3>
 <p><strong>What is happening:</strong> your filter is keeping up.</p>
 <ul>
-  <li><strong>Fishless finish line:</strong> a full 2 ppm ammonia dose reads 0 ammonia and 0 nitrite within 24 hours, per the <a href="https://drtimsaquatics.com/">Dr Tim's Aquatics fishless method</a>. Do a big water change (half the tank or more) to bring nitrate down, then add your first fish soon so the colony stays fed. Without ammonia it starts shrinking within days. Stock lightly at first and build up over a few weeks.</li>
+  <li><strong>Fishless finish line:</strong> a full 2 ppm ammonia dose reads 0 ammonia and 0 nitrite within 24 hours, per the <a href="https://www.drtimsaquatics.com/resources/fishless-cycling">Dr Tim's Aquatics fishless method</a>. Do a big water change (half the tank or more) to bring nitrate down, then add your first fish soon so the colony stays fed. Without ammonia it starts shrinking within days. Stock lightly at first and build up over a few weeks.</li>
   <li><strong>Fish-in finish line:</strong> ammonia and nitrite have held at 0 for about a week. Ease back into a normal routine and keep an eye on nitrate.</li>
 </ul>
 
@@ -121,7 +121,7 @@
 <section class="sources">
   <h2>Sources</h2>
   <ul>
-    <li><a href="https://drtimsaquatics.com/">Dr Tim's Aquatics &mdash; the fishless cycling method</a></li>
+    <li><a href="https://www.drtimsaquatics.com/resources/fishless-cycling">Dr Tim's Aquatics &mdash; the fishless cycling method</a></li>
     <li><a href="https://users.cs.duke.edu/~narten/faq/cycling.html">Aquarium FAQ by Thomas Narten &mdash; cycling and the nitrogen cycle</a></li>
   </ul>
 </section>

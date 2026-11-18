@@ -259,6 +259,8 @@ export function init(root) {
     const env = ctx.createGain();
     env.gain.setValueAtTime(0.0001, start);
     env.gain.exponentialRampToValueAtTime(0.35, start + 0.012);
+    // Glides hold their level so the target pitch is still audible; only the tail fades.
+    if (toMidi !== fromMidi) env.gain.setValueAtTime(0.35, start + Math.max(0.012, seconds - 0.15));
     env.gain.exponentialRampToValueAtTime(0.0001, start + seconds);
     env.connect(out);
     for (const [mult, amp] of HARMONICS) {
@@ -385,11 +387,16 @@ export function init(root) {
 
   function syncButtons() {
     const active = state === 'running' || state === 'paused';
+    const focused = globalThis.document?.activeElement;
     startBtn.disabled = state === 'running';
     startBtn.textContent = state === 'paused' ? 'Resume' : state === 'finished' ? 'Start again' : 'Start';
     pauseBtn.disabled = state !== 'running';
     nextBtn.disabled = !active;
     rangeSelect.disabled = active;
+    // A button that disables itself would drop focus to the page: hand it on.
+    if ((focused === startBtn || focused === pauseBtn || focused === nextBtn) && focused.disabled) {
+      (state === 'running' ? pauseBtn : startBtn).focus();
+    }
   }
 
   function start() {

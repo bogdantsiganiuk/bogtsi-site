@@ -75,6 +75,15 @@ export function waterChange(input) {
 const fmt = (n) =>
   (Math.round(n * 10) / 10).toLocaleString('en-US', { maximumFractionDigits: 1 });
 
+/**
+ * Decide whether the water-change volume field may be overwritten by the tank
+ * calculator: yes if it is empty or still holds the value we filled in last.
+ */
+export function shouldAutoFillVolume(currentValue, lastAutoFilled) {
+  const current = String(currentValue ?? '').trim();
+  return current === '' || (lastAutoFilled != null && current === lastAutoFilled);
+}
+
 export function init(root) {
   if (!root) return;
   const $ = (id) => root.querySelector(`#${id}`);
@@ -83,6 +92,8 @@ export function init(root) {
   const volStatus = $('bw-volume-status');
   const wcStatus = $('bw-change-status');
   if (!volOut || !wcOut) return;
+  root.querySelectorAll('.tool-controls[hidden]').forEach((el) => { el.hidden = false; });
+  let lastAutoFilled = null;
 
   const runVolume = () => {
     const r = tankVolume({
@@ -103,9 +114,10 @@ export function init(root) {
       ? `Water volume: ${fmt(r.filledLiters)} L (${fmt(r.filledUsGallons)} US gal). Full tank: ${fmt(r.liters)} L (${fmt(r.usGallons)} US gal).`
       : `Tank volume: ${fmt(r.liters)} L (${fmt(r.usGallons)} US gal).`;
     // Hand the water volume to the water-change calculator.
-    if (!$('bw-change-volume').value.trim()) {
+    if (shouldAutoFillVolume($('bw-change-volume').value, lastAutoFilled)) {
       const unit = $('bw-change-unit').value;
-      $('bw-change-volume').value = fmt(unit === 'gal' ? r.filledUsGallons : r.filledLiters).replace(/,/g, '');
+      lastAutoFilled = fmt(unit === 'gal' ? r.filledUsGallons : r.filledLiters).replace(/,/g, '');
+      $('bw-change-volume').value = lastAutoFilled;
     }
   };
 

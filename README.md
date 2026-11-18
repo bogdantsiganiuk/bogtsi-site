@@ -160,7 +160,7 @@ The original 64 outputs remain; the manifest adds exactly 77 files
 paths. The module is required for a successful marketing build and registered
 outside the four image roles; arbitrary JavaScript asset paths are rejected.
 Carousel controls add no analytics events, storage or collection. The existing
-20-page Cloudflare beacon scope is unchanged, with no provider-ingestion claim.
+22-page Cloudflare beacon scope is unchanged, with no provider-ingestion claim.
 
 Every product has exactly four required `visuals` roles, using the registry slug
 even where the public product route is an alias:
